@@ -1,0 +1,112 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-felt: #0a5c2a;
+    --color-felt-dark: #074420;
+    --color-cell-bg: rgba(0, 0, 0, 0.2);
+    --color-cell-border: rgba(255, 255, 255, 0.15);
+    --color-text: #e0e0e0;
+    --card-width: 10.5vw;
+    --card-height: 15vw;
+    --card-gap: 1vw;
+    --card-radius: 0.6vw;
+    font-size: 16px;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family:
+        system-ui,
+        -apple-system,
+        sans-serif;
+    background-color: var(--color-felt);
+    color: var(--color-text);
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5vw 0;
+    background-color: var(--color-felt-dark);
+}
+
+.header h1 {
+    font-size: 4vw;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.playing-area {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    gap: var(--card-gap);
+    padding: var(--card-gap);
+}
+
+.free-cells,
+.foundation-cells {
+    display: flex;
+    gap: var(--card-gap);
+}
+
+.free-cells {
+    justify-content: flex-start;
+}
+
+.foundation-cells {
+    justify-content: flex-end;
+}
+
+.cell {
+    width: var(--card-width);
+    height: var(--card-height);
+    background-color: var(--color-cell-bg);
+    border: 1px solid var(--color-cell-border);
+    border-radius: var(--card-radius);
+}
+
+.tableau {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: var(--card-gap);
+    justify-content: center;
+}
+
+.column {
+    flex: 1;
+    min-height: var(--card-height);
+    background-color: var(--color-cell-bg);
+    border-radius: var(--card-radius);
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5vw 0;
+    background-color: var(--color-felt-dark);
+}

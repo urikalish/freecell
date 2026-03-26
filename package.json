@@ -1,0 +1,36 @@
+{
+  "name": "freecell",
+  "version": "1.0.0",
+  "description": "FreeCell",
+  "keywords": [
+    "freecell",
+    "game",
+    "cards"
+  ],
+  "author": "Uri Kalish",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/urikalish/freecell.git"
+  },
+  "type": "module",
+  "scripts": {
+    "format": "prettier --write \"src/**/*.{ts,css,html}\"",
+    "lint": "eslint . --ext .ts",
+    "build": "tsc && vite build",
+    "full": "yarn format && yarn lint && yarn build",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "eslint": "10.0.3",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-prettier": "5.5.5",
+    "globals": "17.4.0",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.56.1",
+    "vite": "8.0.0"
+  }
+}
