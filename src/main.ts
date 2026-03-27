@@ -31,13 +31,7 @@ import {
   canStartDrag,
   DragState,
 } from './ui/interactions';
-import {
-  animateDeal,
-  animateButtonPress,
-  animateVictory,
-  animateLand,
-  startSteamPuffs,
-} from './ui/animations';
+import { animateDeal, animateButtonPress, animateVictory, animateLand } from './ui/animations';
 import { suitSvg } from './ui/suits';
 
 const ROMAN: Record<Rank, string> = {
@@ -458,7 +452,6 @@ function stopTimer(): void {
 function initApp(): void {
   themeIndex = loadThemeIndex();
   applyTheme(THEMES[themeIndex]);
-  startSteamPuffs();
   newGame();
 }
 

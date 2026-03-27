@@ -81,24 +81,3 @@ export function animateVictory(): void {
     }, burst * 500);
   }
 }
-
-export function startSteamPuffs(): void {
-  const container = document.getElementById('steam-container');
-  if (!container) return;
-
-  function createPuff(): void {
-    const puff = document.createElement('div');
-    puff.className = 'steam-puff';
-    const size = 30 + Math.random() * 60;
-    puff.style.width = size + 'px';
-    puff.style.height = size + 'px';
-    puff.style.left = Math.random() * 100 + '%';
-    puff.style.bottom = '0';
-    puff.style.animationDuration = 6 + Math.random() * 8 + 's';
-    container!.appendChild(puff);
-    setTimeout(() => puff.remove(), 14000);
-  }
-
-  setInterval(createPuff, 1200);
-  for (let i = 0; i < 5; i++) setTimeout(createPuff, i * 300);
-}
