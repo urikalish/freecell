@@ -463,3 +463,17 @@ function initApp(): void {
 }
 
 document.addEventListener('DOMContentLoaded', initApp);
+
+document.addEventListener(
+  'touchstart',
+  event => {
+    if (event.touches.length > 1) {
+      event.preventDefault();
+    }
+  },
+  { passive: false },
+);
+
+document.addEventListener('gesturestart', event => {
+  event.preventDefault();
+});

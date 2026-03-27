@@ -110,6 +110,7 @@ body {
     z-index: 0;
     pointer-events: none;
     inset: 0;
+    overflow: hidden;
 }
 
 .gear {
