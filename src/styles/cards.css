@@ -1,0 +1,208 @@
+/* === CARDS === */
+.card {
+    width: 100%;
+    height: var(--card-height);
+    border-radius: var(--card-radius);
+    position: relative;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--card-radius);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    display: flex;
+    flex-direction: column;
+    padding: 0.8vw 1.2vw;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        inset 0 1px 0 rgba(201, 168, 76, 0.05),
+        0 2px 4px rgba(0, 0, 0, 0.4);
+    transition:
+        background 0.6s ease,
+        border-color 0.6s ease;
+}
+
+/* Gear watermark on card */
+.card-inner::before {
+    content: '';
+    position: absolute;
+    bottom: 0.5vw;
+    right: 1vw;
+    width: 3.5vw;
+    height: 3.5vw;
+    opacity: 0.06;
+    background: currentColor;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64L19.43 12.97z'/%3E%3C/svg%3E");
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    color: var(--brass);
+    transition: color 0.6s ease;
+}
+
+/* Top gold highlight line */
+.card-inner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.15), transparent);
+}
+
+.card-value {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 400;
+    font-size: var(--font-card-value);
+    line-height: 1;
+    transition: color 0.6s ease;
+}
+
+.card-suit {
+    font-size: var(--font-card-suit);
+    line-height: 1;
+    transition: color 0.6s ease;
+}
+
+.card-suit svg {
+    width: var(--font-card-suit);
+    height: var(--font-card-suit);
+}
+
+.card-suit-center {
+    position: absolute;
+    right: 1vw;
+    bottom: 0.5vw;
+    opacity: 0.08;
+    transition: color 0.6s ease;
+}
+
+.card-suit-center svg {
+    width: var(--font-card-suit-center);
+    height: var(--font-card-suit-center);
+}
+
+.card-engrave {
+    position: absolute;
+    top: 0.8vw;
+    right: 1.2vw;
+    font-family: 'Spectral', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: var(--font-card-engrave);
+    color: var(--brass-dark);
+    opacity: 0.2;
+    letter-spacing: 0.5px;
+    transition: color 0.6s ease;
+}
+
+/* Ruby (red) cards */
+.card.ruby .card-value {
+    color: var(--ruby-light);
+    text-shadow: 0 0 4px rgba(164, 36, 59, 0.2);
+}
+
+.card.ruby .card-suit,
+.card.ruby .card-suit-center {
+    color: var(--ruby);
+}
+
+.card.ruby .card-inner {
+    border-color: rgba(164, 36, 59, 0.12);
+}
+
+/* Emerald (black) cards */
+.card.emerald .card-value {
+    color: var(--emerald-light);
+    text-shadow: 0 0 4px rgba(26, 107, 74, 0.2);
+}
+
+.card.emerald .card-suit,
+.card.emerald .card-suit-center {
+    color: var(--emerald);
+}
+
+.card.emerald .card-inner {
+    border-color: rgba(26, 107, 74, 0.12);
+}
+
+/* Selected card */
+.card.selected .card-inner {
+    border-color: var(--brass);
+    box-shadow:
+        inset 0 1px 0 rgba(201, 168, 76, 0.1),
+        0 0 12px rgba(201, 168, 76, 0.25),
+        0 0 30px rgba(201, 168, 76, 0.08);
+    background: var(--selected-bg);
+}
+
+.card.selected {
+    transform: translateY(-1vw);
+    z-index: 100;
+}
+
+.card.in-selected-group .card-inner {
+    border-color: var(--brass);
+    box-shadow:
+        inset 0 1px 0 rgba(201, 168, 76, 0.08),
+        0 0 8px rgba(201, 168, 76, 0.15);
+    background: var(--selected-bg);
+}
+
+.card.in-selected-group {
+    z-index: 99;
+}
+
+.card:active {
+    transform: scale(0.97);
+}
+
+.card.locked {
+    opacity: 0.8;
+    cursor: default;
+}
+
+.card.movable {
+    cursor: grab;
+}
+
+/* Cards in cells */
+.free-cell .card,
+.foundation-cell .card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Drag ghost */
+.drag-ghost {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    opacity: 0.9;
+    transform: scale(1.05);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.drag-ghost .card-slot {
+    margin-bottom: calc(var(--card-overlap) * -1);
+}
+
+.drag-ghost .card-slot:last-child {
+    margin-bottom: 0;
+}
+
+.drag-ghost .card-inner {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,52 @@
+:root {
+    /* Default theme fallbacks (Original Brass) */
+    --brass: #c9a84c;
+    --brass-light: #e4c96a;
+    --brass-dark: #8b6914;
+    --mahogany: #2a1a0e;
+    --parchment: #f0e6d0;
+    --parchment-dim: #d4c8a8;
+    --ruby: #a4243b;
+    --ruby-light: #d4364f;
+    --emerald: #1a6b4a;
+    --emerald-light: #2a9b6a;
+    --ink-dark: #1a1208;
+    --panel-bg: rgba(30, 18, 8, 0.92);
+    --card-bg: linear-gradient(145deg, #2a1e10, #1e1408);
+    --card-border: rgba(139, 105, 20, 0.2);
+    --selected-bg: linear-gradient(145deg, #34240e, #2a1c0c);
+    --bg-gradient: linear-gradient(170deg, #1e1208 0%, #2a1a0e 30%, #1a1008 60%, #0e0a04 100%);
+    --bg-accent1: rgba(184, 115, 51, 0.08);
+    --bg-accent2: rgba(201, 168, 76, 0.06);
+    --steam-color: rgba(200, 190, 170, 0.06);
+    --gear-opacity: 0.06;
+    --info-bg: rgba(14, 10, 4, 0.94);
+    --amber-glow: 0 0 12px rgba(201, 168, 76, 0.3), 0 0 30px rgba(201, 168, 76, 0.1);
+
+    /* Sizing - mobile portrait */
+    --card-height: 14.8vw;
+    --card-gap: 1vw;
+    --card-radius: 0.8vw;
+    --card-overlap: 5.4vw;
+    --cell-gap: 1vw;
+    --hud-height: auto;
+    --action-bar-height: auto;
+
+    /* Typography */
+    --font-title: 3.5vw;
+    --font-title-sub: 2vw;
+    --font-stat-label: 1.8vw;
+    --font-stat-value: 3.5vw;
+    --font-card-value: 3.4vw;
+    --font-card-suit: 2.8vw;
+    --font-card-suit-center: 5vw;
+    --font-card-engrave: 1.4vw;
+    --font-btn: 2.6vw;
+    --font-btn-icon: 3.6vw;
+    --font-info: 1.8vw;
+
+    /* Animation */
+    --transition-fast: 0.15s;
+    --transition-normal: 0.25s;
+    --transition-slow: 0.4s;
+}

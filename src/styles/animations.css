@@ -1,0 +1,77 @@
+/* === DEAL ANIMATION === */
+@keyframes steam-reveal {
+    0% {
+        opacity: 0;
+        transform: translateY(-12px) rotateX(15deg);
+        filter: blur(2px) sepia(0.6);
+    }
+
+    50% {
+        filter: blur(0) sepia(0.3);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+        filter: blur(0) sepia(0);
+    }
+}
+
+.dealing .card {
+    animation: steam-reveal 0.4s ease-out backwards;
+}
+
+/* Card landing animation */
+.card-land {
+    animation: card-land 0.25s ease-out;
+}
+
+@keyframes card-land {
+    0% {
+        transform: scale(1.08);
+    }
+
+    50% {
+        transform: scale(0.97);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Spark particles for victory */
+.spark {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: spark-fly 1s ease-out forwards;
+}
+
+@keyframes spark-fly {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(0);
+    }
+}
+
+/* Theme switch flash */
+.theme-flash {
+    animation: theme-flash 0.3s ease;
+}
+
+@keyframes theme-flash {
+    0% {
+        opacity: 0.85;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
