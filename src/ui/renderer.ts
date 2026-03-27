@@ -31,8 +31,10 @@ function renderCard(card: Card, extraClasses: string = '', dataAttrs: string = '
   const roman = ROMAN[card.rank];
   return `<div class="card ${colorClass} ${extraClasses}" data-card-id="${card.id}" ${dataAttrs}>
     <div class="card-inner">
-      <span class="card-value">${rankLabel}</span>
-      <span class="card-suit">${suitSvg(card.suit)}</span>
+      <div class="card-value-and-suit">
+        <span class="card-value">${rankLabel}</span>
+        <span class="card-suit">${suitSvg(card.suit)}</span>
+      </div>
       <span class="card-suit-center">${suitSvg(card.suit)}</span>
       <span class="card-engrave">${roman}</span>
     </div>

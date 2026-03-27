@@ -19,7 +19,7 @@
     border: 1px solid var(--card-border);
     display: flex;
     flex-direction: column;
-    padding: 0.8vw 1.2vw;
+    padding: 1vw 0.8vw;
     position: relative;
     overflow: hidden;
     box-shadow:
@@ -57,6 +57,11 @@
     right: 15%;
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.15), transparent);
+}
+
+.card-value-and-suit {
+    display: flex;
+    justify-content: space-between;
 }
 
 .card-value {
