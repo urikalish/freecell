@@ -93,7 +93,7 @@ export function startSteamPuffs(): void {
     puff.style.width = size + 'px';
     puff.style.height = size + 'px';
     puff.style.left = Math.random() * 100 + '%';
-    puff.style.bottom = '-20px';
+    puff.style.bottom = '0';
     puff.style.animationDuration = 6 + Math.random() * 8 + 's';
     container!.appendChild(puff);
     setTimeout(() => puff.remove(), 14000);

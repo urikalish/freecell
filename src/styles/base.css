@@ -10,7 +10,7 @@ html,
 body {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow: clip;
     font-family: 'Spectral', serif;
     background: var(--mahogany);
     color: var(--parchment);
@@ -111,6 +111,7 @@ body {
     pointer-events: none;
     inset: 0;
     overflow: hidden;
+    contain: paint;
 }
 
 .gear {
@@ -216,6 +217,7 @@ body {
     z-index: 0;
     pointer-events: none;
     overflow: hidden;
+    contain: paint;
 }
 
 .steam-puff {
