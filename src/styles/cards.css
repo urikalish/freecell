@@ -86,7 +86,7 @@
 .card-suit-center {
     position: absolute;
     left: 0;
-    bottom: 2vw;
+    bottom: 1.5vw;
     width: 100%;
     display: flex;
     justify-content: center;
