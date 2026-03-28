@@ -31,7 +31,7 @@
 }
 
 /* Gear watermark on card */
-.card-inner::before {
+/*.card-inner::before {
     content: '';
     position: absolute;
     bottom: 0.5vw;
@@ -46,7 +46,7 @@
     mask-size: contain;
     color: var(--brass);
     transition: color 0.6s ease;
-}
+}*/
 
 /* Top gold highlight line */
 .card-inner::after {
