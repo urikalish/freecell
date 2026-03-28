@@ -176,3 +176,16 @@ export function renderThemeOverlay(themes: Theme[], currentIndex: number): strin
     <div class="theme-grid">${options}</div>
   </div>`;
 }
+
+export function renderConfirmOverlay(): string {
+  return `<div class="confirm-overlay" id="confirm-overlay">
+    <div class="confirm-box">
+      <div class="confirm-title">New Game</div>
+      <div class="confirm-text">Abandon this game?</div>
+      <div class="confirm-buttons">
+        <button class="confirm-btn confirm-yes" id="confirm-yes">Abandon</button>
+        <button class="confirm-btn confirm-no" id="confirm-no">Continue</button>
+      </div>
+    </div>
+  </div>`;
+}

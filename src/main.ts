@@ -13,7 +13,13 @@ import {
   autoMoveToFoundation,
   isGameWon,
 } from './model/moves';
-import { renderGame, renderVictoryOverlay, renderThemeOverlay, formatTime } from './ui/renderer';
+import {
+  renderGame,
+  renderVictoryOverlay,
+  renderThemeOverlay,
+  renderConfirmOverlay,
+  formatTime,
+} from './ui/renderer';
 import { THEMES, loadThemeIndex, saveThemeIndex, applyTheme } from './ui/themes';
 import { getLocationFromElement, getMovableCards } from './ui/interactions';
 import { animateDeal, animateButtonPress, animateVictory, animateLand } from './ui/animations';
@@ -28,12 +34,18 @@ let timerInterval: ReturnType<typeof setInterval> | null = null;
 let isAnimating = false;
 let gameStarted = false;
 let themeOverlayOpen = false;
+let confirmOpen = false;
 
 const app = document.getElementById('app')!;
 
 function render(): void {
   const theme = THEMES[themeIndex];
   app.innerHTML = renderGame(state, selectedCardId, validTargets, theme);
+
+  if (confirmOpen) {
+    app.insertAdjacentHTML('beforeend', renderConfirmOverlay());
+    bindConfirmEvents();
+  }
 
   if (themeOverlayOpen) {
     app.insertAdjacentHTML('beforeend', renderThemeOverlay(THEMES, themeIndex));
@@ -202,7 +214,7 @@ function bindEvents(): void {
 
   document.getElementById('btn-new')?.addEventListener('click', e => {
     animateButtonPress(e.currentTarget as HTMLElement);
-    newGame();
+    requestNewGame();
   });
 
   document.getElementById('btn-undo')?.addEventListener('click', e => {
@@ -223,6 +235,25 @@ function toggleThemeOverlay(): void {
   render();
 }
 
+function requestNewGame(): void {
+  if (!state || state.moveCount === 0) {
+    newGame();
+    return;
+  }
+  confirmOpen = true;
+  render();
+}
+
+function bindConfirmEvents(): void {
+  document.getElementById('confirm-yes')?.addEventListener('click', () => {
+    confirmOpen = false;
+    newGame();
+  });
+  document.getElementById('confirm-no')?.addEventListener('click', () => {
+    confirmOpen = false;
+    render();
+  });
+}
 function newGame(): void {
   stopTimer();
   gameStarted = false;
