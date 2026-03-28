@@ -1,4 +1,6 @@
-import { Suit } from '../model/types';
+import { Suit, FOUNDATION_SUIT_ORDER } from '../model/types';
+
+export { FOUNDATION_SUIT_ORDER };
 
 const SUIT_PATHS: Record<Suit, string> = {
   [Suit.Spades]:
@@ -21,5 +23,4 @@ export function suitSvg(suit: Suit, className: string = ''): string {
 export function gearSvg(): string {
   return `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="${GEAR_PATH}" fill="currentColor"/></svg>`;
 }
-
-export const FOUNDATION_SUIT_ORDER: Suit[] = [Suit.Spades, Suit.Hearts, Suit.Clubs, Suit.Diamonds];
+

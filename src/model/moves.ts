@@ -1,4 +1,4 @@
-import { Card, GameState, Location, MoveCandidate, Suit, suitColor, HistoryEntry } from './types';
+import { Card, GameState, Location, MoveCandidate, Suit, suitColor, HistoryEntry, FOUNDATION_SUIT_ORDER } from './types';
 import { cloneState } from './deck';
 
 function getCardsAt(state: GameState, loc: Location): Card[] {
@@ -48,8 +48,8 @@ export function maxMovableCards(state: GameState, toEmpty: boolean): number {
   return (1 + freeCells) * Math.pow(2, emptyCols);
 }
 
-function canPlaceOnFoundation(card: Card, foundation: Card[]): boolean {
-  if (foundation.length === 0) return card.rank === 1;
+function canPlaceOnFoundation(card: Card, foundation: Card[], foundationIndex: number): boolean {
+  if (foundation.length === 0) return card.rank === 1 && card.suit === FOUNDATION_SUIT_ORDER[foundationIndex];
   const top = foundation[foundation.length - 1];
   return top.suit === card.suit && card.rank === top.rank + 1;
 }
@@ -73,7 +73,7 @@ export function findValidMoves(state: GameState, from: Location): MoveCandidate[
   if (cards.length === 1) {
     // To foundations
     for (let i = 0; i < 4; i++) {
-      if (canPlaceOnFoundation(cards[0], state.foundations[i])) {
+      if (canPlaceOnFoundation(cards[0], state.foundations[i], i)) {
         candidates.push({ from, to: { zone: 'foundation', index: i }, cards: [...cards] });
       }
     }
@@ -183,7 +183,7 @@ export function autoMoveToFoundation(state: GameState): { state: GameState; move
       if (!card) continue;
       if (isSafeAutoMove(current, card)) {
         for (let f = 0; f < 4; f++) {
-          if (canPlaceOnFoundation(card, current.foundations[f])) {
+          if (canPlaceOnFoundation(card, current.foundations[f], f)) {
             current = executeMove(current, {
               from: { zone: 'freecell', index: i },
               to: { zone: 'foundation', index: f },
@@ -204,7 +204,7 @@ export function autoMoveToFoundation(state: GameState): { state: GameState; move
       const card = col[col.length - 1];
       if (isSafeAutoMove(current, card)) {
         for (let f = 0; f < 4; f++) {
-          if (canPlaceOnFoundation(card, current.foundations[f])) {
+          if (canPlaceOnFoundation(card, current.foundations[f], f)) {
             current = executeMove(current, {
               from: { zone: 'tableau', index: i, cardIndex: col.length - 1 },
               to: { zone: 'foundation', index: f },

@@ -45,6 +45,8 @@ export interface MoveCandidate {
   cards: Card[];
 }
 
+export const FOUNDATION_SUIT_ORDER: Suit[] = [Suit.Spades, Suit.Hearts, Suit.Clubs, Suit.Diamonds];
+
 export const RANK_LABELS: Record<Rank, string> = {
   1: 'A',
   2: '2',
