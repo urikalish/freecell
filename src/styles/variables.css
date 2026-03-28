@@ -27,7 +27,7 @@
     --card-height: 14.8vw;
     --card-gap: 1vw;
     --card-radius: 0.8vw;
-    --card-overlap: 8vw;
+    --card-overlap: 9vw;
     --cell-gap: 1vw;
     --hud-height: auto;
     --action-bar-height: auto;
@@ -39,7 +39,7 @@
     --font-stat-value: 3.5vw;
     --font-card-value: 3.6vw;
     --font-card-suit: 3.6vw;
-    --font-card-suit-center: 5vw;
+    --font-card-suit-center: 7vw;
     --font-card-engrave: 1.4vw;
     --font-btn: 2.6vw;
     --font-btn-icon: 3.6vw;
