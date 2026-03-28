@@ -525,3 +525,23 @@
     border-color: var(--brass);
     box-shadow: var(--amber-glow);
 }
+
+/* === LANDSCAPE FALLBACK === */
+@media screen and (orientation: landscape) {
+    #app::before {
+        content: 'Please rotate your device to portrait';
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--mahogany);
+        font-family: 'Cinzel Decorative', serif;
+        font-size: 3vw;
+        color: var(--brass);
+        text-align: center;
+        padding: 4vw;
+        letter-spacing: 1px;
+    }
+}

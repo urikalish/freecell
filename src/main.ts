@@ -265,6 +265,10 @@ function initApp(): void {
   themeIndex = loadThemeIndex();
   applyTheme(THEMES[themeIndex]);
   newGame();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (screen.orientation as any)?.lock?.('portrait').catch(() => {
+    // Not supported or denied (desktop) — CSS fallback handles it
+  });
 }
 
 document.addEventListener('DOMContentLoaded', initApp);
