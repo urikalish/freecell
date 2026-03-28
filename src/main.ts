@@ -64,7 +64,7 @@ function render(): void {
 function update(newState: GameState): void {
   state = newState;
   const autoResult = autoMoveToFoundation(state);
-  if (autoResult.moved) {
+  if (autoResult.movedCards.length > 0) {
     state = autoResult.state;
   }
   render();
@@ -107,12 +107,26 @@ function tryMove(move: MoveCandidate): void {
     .filter((s): s is { id: string; rect: DOMRect } => s.rect !== null);
 
   const newState = executeMove(state, move);
-  clearSelection();
-  update(newState);
-  startTimerIfNeeded();
-  animateCardMove(sourceRects);
-}
 
+  // Peek at auto-moves and capture their source positions before rendering
+  const autoResult = autoMoveToFoundation(newState);
+  const autoSourceRects = autoResult.movedCards
+    .map(card => {
+      const el = document.querySelector(`[data-card-id="${card.id}"]`) as HTMLElement | null;
+      return { id: card.id, rect: el?.getBoundingClientRect() ?? null };
+    })
+    .filter((s): s is { id: string; rect: DOMRect } => s.rect !== null);
+
+  clearSelection();
+  state = autoResult.state;
+  render();
+  startTimerIfNeeded();
+
+  animateCardMove(sourceRects);
+  if (autoSourceRects.length > 0) {
+    setTimeout(() => animateCardMove(autoSourceRects), 200);
+  }
+}
 function handleTap(location: Location, cardId: string | null): void {
   if (isAnimating) return;
 

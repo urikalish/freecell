@@ -169,9 +169,9 @@ export function undoLastMove(state: GameState): GameState | null {
   return newState;
 }
 
-export function autoMoveToFoundation(state: GameState): { state: GameState; moved: boolean } {
+export function autoMoveToFoundation(state: GameState): { state: GameState; movedCards: Card[] } {
   let current = state;
-  let anyMoved = false;
+  const movedCards: Card[] = [];
 
   let moved = true;
   while (moved) {
@@ -190,7 +190,7 @@ export function autoMoveToFoundation(state: GameState): { state: GameState; move
               cards: [card],
             });
             moved = true;
-            anyMoved = true;
+            movedCards.push(card);
             break;
           }
         }
@@ -211,7 +211,7 @@ export function autoMoveToFoundation(state: GameState): { state: GameState; move
               cards: [card],
             });
             moved = true;
-            anyMoved = true;
+            movedCards.push(card);
             break;
           }
         }
@@ -219,7 +219,7 @@ export function autoMoveToFoundation(state: GameState): { state: GameState; move
     }
   }
 
-  return { state: current, moved: anyMoved };
+  return { state: current, movedCards };
 }
 
 function isSafeAutoMove(state: GameState, card: Card): boolean {
