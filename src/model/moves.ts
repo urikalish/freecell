@@ -87,8 +87,8 @@ export function findValidMoves(state: GameState, from: Location): MoveCandidate[
         candidates.push({ from, to: { zone: 'foundation', index: i }, cards: [...cards] });
       }
     }
-    // To free cells
-    for (let i = 0; i < 4; i++) {
+    // To free cells (not allowed from another free cell)
+    if (from.zone !== 'freecell') for (let i = 0; i < 4; i++) {
       if (state.freeCells[i] === null) {
         candidates.push({ from, to: { zone: 'freecell', index: i }, cards: [...cards] });
         break; // Only need one free cell option
