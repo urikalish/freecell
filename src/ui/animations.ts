@@ -45,6 +45,53 @@ export function animateButtonPress(btn: HTMLElement): void {
   setTimeout(() => btn.classList.remove('btn-pressed'), 200);
 }
 
+export function animateCardMove(moves: { id: string; rect: DOMRect }[]): void {
+  const pending: Array<{ clone: HTMLElement; el: HTMLElement; index: number }> = [];
+
+  moves.forEach(({ id, rect: sourceRect }, i) => {
+    const el = document.querySelector(`[data-card-id="${id}"]`) as HTMLElement | null;
+    if (!el) return;
+    const destRect = el.getBoundingClientRect();
+    const dx = sourceRect.left - destRect.left;
+    const dy = sourceRect.top - destRect.top;
+    if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
+
+    const clone = el.cloneNode(true) as HTMLElement;
+    clone.style.cssText = [
+      'position: fixed',
+      `left: ${destRect.left}px`,
+      `top: ${destRect.top}px`,
+      `width: ${destRect.width}px`,
+      `height: ${destRect.height}px`,
+      'z-index: 9999',
+      'pointer-events: none',
+      'margin: 0',
+      'animation: none',
+      'transition: none',
+      `transform: translate(${dx}px, ${dy}px)`,
+    ].join('; ');
+    document.body.appendChild(clone);
+    el.style.visibility = 'hidden';
+    pending.push({ clone, el, index: i });
+  });
+
+  if (pending.length === 0) return;
+
+  requestAnimationFrame(() => {
+    pending.forEach(({ clone, el, index }) => {
+      const delay = index * 30;
+      setTimeout(() => {
+        clone.style.transition = 'transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        clone.style.transform = 'translate(0, 0)';
+        setTimeout(() => {
+          document.body.removeChild(clone);
+          el.style.visibility = '';
+        }, 300);
+      }, delay);
+    });
+  });
+}
+
 export function animateVictory(): void {
   const overlay = document.getElementById('victory-overlay');
   if (!overlay) return;

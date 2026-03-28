@@ -22,7 +22,7 @@ import {
 } from './ui/renderer';
 import { THEMES, loadThemeIndex, saveThemeIndex, applyTheme } from './ui/themes';
 import { getLocationFromElement, getMovableCards } from './ui/interactions';
-import { animateDeal, animateButtonPress, animateVictory, animateLand } from './ui/animations';
+import { animateDeal, animateButtonPress, animateVictory, animateCardMove } from './ui/animations';
 
 let state: GameState;
 let themeIndex: number;
@@ -98,16 +98,19 @@ function selectCard(location: Location, cardId: string): void {
 
 function tryMove(move: MoveCandidate): void {
   if (isAnimating) return;
+
+  const sourceRects = move.cards
+    .map(card => {
+      const el = document.querySelector(`[data-card-id="${card.id}"]`) as HTMLElement | null;
+      return { id: card.id, rect: el?.getBoundingClientRect() ?? null };
+    })
+    .filter((s): s is { id: string; rect: DOMRect } => s.rect !== null);
+
   const newState = executeMove(state, move);
   clearSelection();
   update(newState);
   startTimerIfNeeded();
-
-  setTimeout(() => {
-    const lastCard = move.cards[move.cards.length - 1];
-    const el = document.querySelector(`[data-card-id="${lastCard.id}"]`) as HTMLElement;
-    if (el) animateLand(el);
-  }, 10);
+  animateCardMove(sourceRects);
 }
 
 function handleTap(location: Location, cardId: string | null): void {
