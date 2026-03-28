@@ -179,7 +179,7 @@
 }
 
 .card.movable {
-    cursor: grab;
+    cursor: pointer;
 }
 
 /* Cards in cells */
