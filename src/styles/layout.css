@@ -271,10 +271,11 @@
 }
 
 .action-btn {
+    width: 15vw;
     background: var(--panel-bg);
     border: 1px solid var(--brass-dark);
     border-radius: 4px;
-    padding: 1.8vw 3.2vw;
+    padding: 1.5vw;
     color: var(--parchment-dim);
     font-family: 'Spectral', serif;
     font-weight: 400;
