@@ -1,4 +1,4 @@
-/* === HUD BAR === */
+﻿/* === HUD BAR === */
 .hud-bar {
     display: flex;
     align-items: center;
@@ -130,6 +130,7 @@
 
 .free-cell.valid-target,
 .foundation-cell.valid-target {
+    border-style: dashed;
     border-color: var(--emerald-light);
     box-shadow:
         inset 0 0 12px rgba(0, 0, 0, 0.3),
@@ -172,6 +173,12 @@
 .foundation-cell.filled {
     border-style: solid;
     border-color: var(--card-border);
+}
+
+.free-cell.filled.valid-target,
+.foundation-cell.filled.valid-target {
+    border-style: dashed;
+    border-color: var(--emerald-light);
 }
 
 /* === SEPARATOR === */
