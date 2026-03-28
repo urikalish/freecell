@@ -67,10 +67,10 @@ export function renderGame(
       const filled = topCard ? 'filled' : '';
       const validClass = isValid ? 'valid-target' : '';
       const suit = FOUNDATION_SUIT_ORDER[i];
-      const colorClass = suitColor(suit) === Color.Red ? 's-ruby' : 's-emerald';
+      //const colorClass = suitColor(suit) === Color.Red ? 's-ruby' : 's-emerald';
       const inner = topCard
         ? renderCard(topCard)
-        : `<span class="foundation-suit-icon ${colorClass}">${suitSvg(suit)}</span>`;
+        : `<span class="foundation-suit-icon">${suitSvg(suit)}</span>`;
       return `<div class="foundation-cell ${filled} ${validClass}" data-zone="foundation" data-index="${i}">${inner}</div>`;
     })
     .join('');

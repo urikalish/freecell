@@ -22,4 +22,4 @@ export function gearSvg(): string {
   return `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="${GEAR_PATH}" fill="currentColor"/></svg>`;
 }
 
-export const FOUNDATION_SUIT_ORDER: Suit[] = [Suit.Hearts, Suit.Diamonds, Suit.Clubs, Suit.Spades];
+export const FOUNDATION_SUIT_ORDER: Suit[] = [Suit.Spades, Suit.Hearts, Suit.Clubs, Suit.Diamonds];
