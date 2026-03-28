@@ -4,16 +4,7 @@ import './styles/layout.css';
 import './styles/cards.css';
 import './styles/animations.css';
 
-import {
-  GameState,
-  Location,
-  MoveCandidate,
-  Card,
-  suitColor,
-  Color,
-  RANK_LABELS,
-  Rank,
-} from './model/types';
+import { GameState, Location, MoveCandidate, Card } from './model/types';
 import { createNewGame } from './model/deck';
 import {
   findValidMoves,
@@ -24,31 +15,8 @@ import {
 } from './model/moves';
 import { renderGame, renderVictoryOverlay, renderThemeOverlay, formatTime } from './ui/renderer';
 import { THEMES, loadThemeIndex, saveThemeIndex, applyTheme } from './ui/themes';
-import {
-  createDragState,
-  getLocationFromElement,
-  findDropTarget,
-  canStartDrag,
-  DragState,
-} from './ui/interactions';
+import { getLocationFromElement, getMovableCards } from './ui/interactions';
 import { animateDeal, animateButtonPress, animateVictory, animateLand } from './ui/animations';
-import { suitSvg } from './ui/suits';
-
-const ROMAN: Record<Rank, string> = {
-  1: 'I',
-  2: 'II',
-  3: 'III',
-  4: 'IV',
-  5: 'V',
-  6: 'VI',
-  7: 'VII',
-  8: 'VIII',
-  9: 'IX',
-  10: 'X',
-  11: 'XI',
-  12: 'XII',
-  13: 'XIII',
-};
 
 let state: GameState;
 let themeIndex: number;
@@ -59,7 +27,6 @@ let tapCycleIndex = -1;
 let timerInterval: ReturnType<typeof setInterval> | null = null;
 let isAnimating = false;
 let gameStarted = false;
-let dragState: DragState = createDragState();
 let themeOverlayOpen = false;
 
 const app = document.getElementById('app')!;
@@ -84,12 +51,10 @@ function render(): void {
 
 function update(newState: GameState): void {
   state = newState;
-
   const autoResult = autoMoveToFoundation(state);
   if (autoResult.moved) {
     state = autoResult.state;
   }
-
   render();
 }
 
@@ -148,8 +113,7 @@ function handleTap(location: Location, cardId: string | null): void {
 
   if (selectedCardId && cardId === selectedCardId && tapCycleTargets.length > 0) {
     tapCycleIndex = (tapCycleIndex + 1) % tapCycleTargets.length;
-    const move = tapCycleTargets[tapCycleIndex];
-    tryMove(move);
+    tryMove(tapCycleTargets[tapCycleIndex]);
     return;
   }
 
@@ -172,7 +136,7 @@ function handleTap(location: Location, cardId: string | null): void {
       const card = state.freeCells[location.index];
       if (card) cards = [card];
     } else if (location.zone === 'tableau') {
-      cards = canStartDrag(state, location);
+      cards = getMovableCards(state, location);
     }
     if (cards && cards.length > 0) {
       selectCard(location, cardId);
@@ -180,142 +144,12 @@ function handleTap(location: Location, cardId: string | null): void {
   }
 }
 
-function createGhost(cards: Card[]): HTMLElement {
-  const ghost = document.createElement('div');
-  ghost.className = 'drag-ghost';
-  cards.forEach((card, i) => {
-    const colorClass = suitColor(card.suit) === Color.Red ? 'ruby' : 'emerald';
-    const rankLabel = RANK_LABELS[card.rank];
-    const roman = ROMAN[card.rank];
-    const cardHtml = `<div class="card-slot" style="--card-index: ${i}">
-      <div class="card ${colorClass}" data-card-id="${card.id}">
-        <div class="card-inner">
-          <div class="card-value-and-suit">
-            <span class="card-value">${rankLabel}</span>
-            <span class="card-suit">${suitSvg(card.suit)}</span>
-          </div>
-          <span class="card-suit-center">${suitSvg(card.suit)}</span>
-          <span class="card-engrave">${roman}</span>
-        </div>
-      </div>
-    </div>`;
-    ghost.insertAdjacentHTML('beforeend', cardHtml);
-  });
-  document.body.appendChild(ghost);
-  return ghost;
-}
-
-function startDrag(x: number, y: number, location: Location): void {
-  const cards = canStartDrag(state, location);
-  if (!cards) return;
-
-  dragState = {
-    ...createDragState(),
-    cards,
-    from: location,
-    startX: x,
-    startY: y,
-    isDragging: false,
-    ghostEl: null,
-    offsetX: 0,
-    offsetY: 0,
-  };
-
-  const cardId = cards[0].id;
-  const cardEl = document.querySelector(`[data-card-id="${cardId}"]`) as HTMLElement;
-  if (cardEl) {
-    const rect = cardEl.getBoundingClientRect();
-    dragState.offsetX = x - rect.left;
-    dragState.offsetY = y - rect.top;
-  }
-}
-
-function moveDrag(x: number, y: number): void {
-  if (!dragState.cards.length) return;
-
-  const dx = x - dragState.startX;
-  const dy = y - dragState.startY;
-
-  if (!dragState.isDragging && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
-    dragState.isDragging = true;
-    dragState.ghostEl = createGhost(dragState.cards);
-    clearSelection();
-
-    for (const card of dragState.cards) {
-      const el = document.querySelector(`[data-card-id="${card.id}"]`) as HTMLElement;
-      if (el) el.style.opacity = '0.3';
-    }
-
-    const moves = findValidMoves(state, dragState.from);
-    validTargets.clear();
-    for (const m of moves) {
-      validTargets.add(`${m.to.zone}-${m.to.index}`);
-    }
-    for (const m of moves) {
-      const selector =
-        m.to.zone === 'tableau'
-          ? `.column[data-index="${m.to.index}"]`
-          : `.${m.to.zone === 'freecell' ? 'free-cell' : 'foundation-cell'}[data-index="${m.to.index}"]`;
-      const el = document.querySelector(selector) as HTMLElement;
-      if (el) el.classList.add('valid-target');
-    }
-  }
-
-  if (dragState.isDragging && dragState.ghostEl) {
-    dragState.ghostEl.style.left = `${x - dragState.offsetX}px`;
-    dragState.ghostEl.style.top = `${y - dragState.offsetY}px`;
-  }
-}
-
-function endDrag(x: number, y: number): void {
-  if (!dragState.cards.length) return;
-
-  if (dragState.isDragging) {
-    const move = findDropTarget(state, dragState, x, y);
-
-    if (dragState.ghostEl) {
-      dragState.ghostEl.remove();
-      dragState.ghostEl = null;
-    }
-
-    for (const card of dragState.cards) {
-      const el = document.querySelector(`[data-card-id="${card.id}"]`) as HTMLElement;
-      if (el) el.style.opacity = '';
-    }
-
-    validTargets.clear();
-
-    if (move) {
-      tryMove(move);
-    } else {
-      render();
-    }
-  }
-
-  dragState = createDragState();
-}
-
-function cancelDrag(): void {
-  if (dragState.ghostEl) {
-    dragState.ghostEl.remove();
-    dragState.ghostEl = null;
-  }
-  for (const card of dragState.cards) {
-    const el = document.querySelector(`[data-card-id="${card.id}"]`) as HTMLElement;
-    if (el) el.style.opacity = '';
-  }
-  validTargets.clear();
-  dragState = createDragState();
-  render();
-}
-
 function bindThemeOverlayEvents(): void {
   const overlay = document.getElementById('theme-overlay');
   if (!overlay) return;
 
   overlay.addEventListener('click', (e: MouseEvent) => {
-    const target = e.target as HTMLElement;
-    const option = target.closest('.theme-option') as HTMLElement;
+    const option = (e.target as HTMLElement).closest('.theme-option') as HTMLElement;
     if (option) {
       const idx = parseInt(option.dataset.themeIndex || '0', 10);
       themeIndex = idx;
@@ -326,7 +160,6 @@ function bindThemeOverlayEvents(): void {
       setTimeout(() => app.classList.remove('theme-flash'), 300);
       render();
     } else {
-      // click outside options closes overlay
       themeOverlayOpen = false;
       render();
     }
@@ -337,75 +170,52 @@ function bindEvents(): void {
   const area = app.querySelector('.playing-area') as HTMLElement;
   if (!area) return;
 
-  let touchStartLoc: { location: Location; cardId: string | null } | null = null;
+  let pointerDownLoc: { location: Location; cardId: string | null } | null = null;
 
   area.addEventListener(
     'pointerdown',
     (e: PointerEvent) => {
       if (isAnimating) return;
-      const target = e.target as HTMLElement;
-      const info = getLocationFromElement(target);
+      const info = getLocationFromElement(e.target as HTMLElement);
       if (!info) return;
-
-      touchStartLoc = info;
-
-      if (info.location.zone === 'freecell' || info.location.zone === 'tableau') {
-        startDrag(e.clientX, e.clientY, info.location);
-      }
-    },
-    { passive: true },
-  );
-
-  area.addEventListener(
-    'pointermove',
-    (e: PointerEvent) => {
-      moveDrag(e.clientX, e.clientY);
+      pointerDownLoc = info;
     },
     { passive: true },
   );
 
   area.addEventListener('pointerup', (e: PointerEvent) => {
-    if (dragState.isDragging) {
-      endDrag(e.clientX, e.clientY);
-      return;
+    if (!pointerDownLoc) return;
+    const upInfo = getLocationFromElement(e.target as HTMLElement);
+    if (
+      upInfo &&
+      upInfo.location.zone === pointerDownLoc.location.zone &&
+      upInfo.location.index === pointerDownLoc.location.index
+    ) {
+      handleTap(pointerDownLoc.location, pointerDownLoc.cardId);
     }
-
-    if (touchStartLoc) {
-      handleTap(touchStartLoc.location, touchStartLoc.cardId);
-    }
-
-    dragState = createDragState();
-    touchStartLoc = null;
+    pointerDownLoc = null;
   });
 
   area.addEventListener('pointercancel', () => {
-    cancelDrag();
-    touchStartLoc = null;
+    pointerDownLoc = null;
   });
 
-  const btnNew = document.getElementById('btn-new');
-  const btnUndo = document.getElementById('btn-undo');
-  const btnTheme = document.getElementById('btn-theme');
-  const btnNewGame = document.getElementById('btn-new-game');
-
-  btnNew?.addEventListener('click', () => {
-    animateButtonPress(btnNew);
+  document.getElementById('btn-new')?.addEventListener('click', e => {
+    animateButtonPress(e.currentTarget as HTMLElement);
     newGame();
   });
 
-  btnUndo?.addEventListener('click', () => {
-    animateButtonPress(btnUndo);
+  document.getElementById('btn-undo')?.addEventListener('click', e => {
+    animateButtonPress(e.currentTarget as HTMLElement);
     undo();
   });
 
-  btnTheme?.addEventListener('click', () => {
-    animateButtonPress(btnTheme);
+  document.getElementById('btn-theme')?.addEventListener('click', e => {
+    animateButtonPress(e.currentTarget as HTMLElement);
     toggleThemeOverlay();
   });
 
-  btnNewGame?.addEventListener('click', () => {
-    newGame();
-  });
+  document.getElementById('btn-new-game')?.addEventListener('click', () => newGame());
 }
 
 function toggleThemeOverlay(): void {

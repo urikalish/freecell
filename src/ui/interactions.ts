@@ -1,29 +1,5 @@
-import { GameState, Location, Card, MoveCandidate } from '../model/types';
-import { findValidMoves, getMovableSequenceLength } from '../model/moves';
-
-export interface DragState {
-  cards: Card[];
-  from: Location;
-  startX: number;
-  startY: number;
-  offsetX: number;
-  offsetY: number;
-  ghostEl: HTMLElement | null;
-  isDragging: boolean;
-}
-
-export function createDragState(): DragState {
-  return {
-    cards: [],
-    from: { zone: 'tableau', index: 0 },
-    startX: 0,
-    startY: 0,
-    offsetX: 0,
-    offsetY: 0,
-    ghostEl: null,
-    isDragging: false,
-  };
-}
+import { GameState, Location, Card } from '../model/types';
+import { getMovableSequenceLength } from '../model/moves';
 
 export function getLocationFromElement(
   el: HTMLElement,
@@ -75,26 +51,7 @@ export function getLocationFromElement(
   return null;
 }
 
-export function findDropTarget(
-  state: GameState,
-  dragState: DragState,
-  x: number,
-  y: number,
-): MoveCandidate | null {
-  const el = document.elementFromPoint(x, y) as HTMLElement;
-  if (!el) return null;
-
-  const target = getLocationFromElement(el);
-  if (!target) return null;
-
-  const moves = findValidMoves(state, dragState.from);
-  return (
-    moves.find(m => m.to.zone === target.location.zone && m.to.index === target.location.index) ||
-    null
-  );
-}
-
-export function canStartDrag(state: GameState, location: Location): Card[] | null {
+export function getMovableCards(state: GameState, location: Location): Card[] | null {
   if (location.zone === 'freecell') {
     const card = state.freeCells[location.index];
     return card ? [card] : null;

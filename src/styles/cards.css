@@ -189,25 +189,3 @@
     top: 0;
     left: 0;
 }
-
-/* Drag ghost */
-.drag-ghost {
-    position: fixed;
-    pointer-events: none;
-    z-index: 10000;
-    opacity: 0.9;
-    transform: scale(1.05);
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
-}
-
-.drag-ghost .card-slot {
-    margin-bottom: calc(var(--card-overlap) * -1);
-}
-
-.drag-ghost .card-slot:last-child {
-    margin-bottom: 0;
-}
-
-.drag-ghost .card-inner {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-}
