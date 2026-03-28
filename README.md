@@ -155,7 +155,7 @@ Typography uses two Google Fonts loaded in `index.html`:
 
 - **No test suite** — correctness is enforced by TypeScript strict mode and ESLint.
 - `isAnimating` flag gates all input during the deal animation only; card-move animations do not block input.
-- `autoMoveToFoundation` is called inside `update()` — it fires after every move including undo.
+- `autoMoveToFoundation` is called inside `update()` — it fires after every regular move but is intentionally skipped during undo, so undone cards are not immediately re-sent to foundations.
 - Foundation suit order is fixed (defined in `suits.ts` as `FOUNDATION_SUIT_ORDER`) and must match the order foundations are stored in `GameState.foundations`.
 - Card IDs are derived as `${suit}-${rank}` and are stable across clones — safe to use as DOM `data-card-id` keys.
 

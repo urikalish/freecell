@@ -1,4 +1,13 @@
-import { Card, GameState, Location, MoveCandidate, Suit, suitColor, HistoryEntry, FOUNDATION_SUIT_ORDER } from './types';
+import {
+  Card,
+  GameState,
+  Location,
+  MoveCandidate,
+  Suit,
+  suitColor,
+  HistoryEntry,
+  FOUNDATION_SUIT_ORDER,
+} from './types';
 import { cloneState } from './deck';
 
 function getCardsAt(state: GameState, loc: Location): Card[] {
@@ -49,7 +58,8 @@ export function maxMovableCards(state: GameState, toEmpty: boolean): number {
 }
 
 function canPlaceOnFoundation(card: Card, foundation: Card[], foundationIndex: number): boolean {
-  if (foundation.length === 0) return card.rank === 1 && card.suit === FOUNDATION_SUIT_ORDER[foundationIndex];
+  if (foundation.length === 0)
+    return card.rank === 1 && card.suit === FOUNDATION_SUIT_ORDER[foundationIndex];
   const top = foundation[foundation.length - 1];
   return top.suit === card.suit && card.rank === top.rank + 1;
 }

@@ -1,4 +1,4 @@
-import './styles/variables.css';
+﻿import './styles/variables.css';
 import './styles/base.css';
 import './styles/layout.css';
 import './styles/cards.css';
@@ -61,14 +61,14 @@ function render(): void {
   bindEvents();
 }
 
-function update(newState: GameState): void {
+/*function update(newState: GameState): void {
   state = newState;
   const autoResult = autoMoveToFoundation(state);
   if (autoResult.movedCards.length > 0) {
     state = autoResult.state;
   }
   render();
-}
+}*/
 
 function clearSelection(): void {
   selectedCardId = null;
@@ -288,7 +288,8 @@ function undo(): void {
   const prev = undoLastMove(state);
   if (prev) {
     clearSelection();
-    update(prev);
+    state = prev;
+    render();
   }
 }
 
