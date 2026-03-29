@@ -45,7 +45,6 @@ export function renderGame(
   state: GameState,
   selectedCardId: string | null,
   validTargets: Set<string>,
-  theme: Theme,
 ): string {
   const freeCellsHtml = state.freeCells
     .map((card, i) => {
