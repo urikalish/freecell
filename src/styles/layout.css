@@ -188,7 +188,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url(./img/separator1.svg);
+    background-image: url(/img/separator1.svg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center -58px; 
