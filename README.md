@@ -29,7 +29,7 @@ src/
   model/
     types.ts            # Core types: Card, GameState, Location, MoveCandidate
     deck.ts             # Deck creation, shuffle, state cloning
-    moves.ts            # Move validation, execution, undo, auto-move logic
+    moves.ts            # Move validation, execution, undo
   ui/
     renderer.ts         # renderGame, overlay renderers (victory/theme/confirm), formatTime
     interactions.ts     # DOM hit-testing → Location / Card resolution
@@ -84,10 +84,6 @@ pointerup → handleTap → tryMove
 ```
 
 **FLIP animation** (`animateCardMove`): captures source positions before render, reads destination positions after render, then clones each card at its destination offset by `translate(dx, dy)` and transitions it to `translate(0, 0)`. The real cards are hidden during flight and revealed on completion.
-
-### Auto-move
-
-After every `update()`, `autoMoveToFoundation` runs synchronously. It repeatedly scans free cells and tableau bottoms, auto-moving cards to foundations when it is provably safe (the card's rank ≤ 2, or all lower-ranked opposite-colour cards are already on foundations).
 
 ### Tap Cycle
 
@@ -153,7 +149,6 @@ Two Google Fonts are loaded in `index.html`:
 
 - **No test suite** — correctness is enforced by TypeScript strict mode and ESLint.
 - `isAnimating` flag gates all input during the deal animation only; card-move animations do not block input.
-- `autoMoveToFoundation` is called inside `update()` — it fires after every regular move but is intentionally skipped during undo, so undone cards are not immediately re-sent to foundations.
 - Foundation suit order is fixed (defined in `types.ts` as `FOUNDATION_SUIT_ORDER`, re-exported from `suits.ts`) and must match the order foundations are stored in `GameState.foundations`.
 - Card IDs are derived as `${suit}-${rank}` and are stable across clones — safe to use as DOM `data-card-id` keys.
 

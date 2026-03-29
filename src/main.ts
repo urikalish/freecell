@@ -6,13 +6,7 @@ import './styles/animations.css';
 
 import { GameState, Location, MoveCandidate, Card } from './model/types';
 import { createNewGame } from './model/deck';
-import {
-  findValidMoves,
-  executeMove,
-  undoLastMove,
-  autoMoveToFoundation,
-  isGameWon,
-} from './model/moves';
+import { findValidMoves, executeMove, undoLastMove, isGameWon } from './model/moves';
 import { renderGame, renderVictoryOverlay, renderConfirmOverlay, formatTime } from './ui/renderer';
 import { THEMES, loadThemeIndex, saveThemeIndex, applyTheme } from './ui/themes';
 import { getLocationFromElement, getMovableCards } from './ui/interactions';
@@ -47,15 +41,6 @@ function render(): void {
 
   bindEvents();
 }
-
-/*function update(newState: GameState): void {
-  state = newState;
-  const autoResult = autoMoveToFoundation(state);
-  if (autoResult.movedCards.length > 0) {
-    state = autoResult.state;
-  }
-  render();
-}*/
 
 function clearSelection(): void {
   selectedCardId = null;
@@ -95,33 +80,12 @@ function tryMove(move: MoveCandidate): void {
     })
     .filter((s): s is { id: string; rect: DOMRect } => s.rect !== null);
 
-  const newState = executeMove(state, move);
-
-  // Peek at auto-moves and capture their source positions before rendering
-  const autoResult = autoMoveToFoundation(
-    newState,
-    move.to.zone === 'freecell' ? move.to.index : -1,
-  );
-  const autoSourceRects = autoResult.movedCards
-    .map(card => {
-      const el = document.querySelector(`[data-card-id="${card.id}"]`) as HTMLElement | null;
-      return { id: card.id, rect: el?.getBoundingClientRect() ?? null };
-    })
-    .filter((s): s is { id: string; rect: DOMRect } => s.rect !== null);
-
   clearSelection();
-  state = autoResult.state;
+  state = executeMove(state, move);
   render();
   startTimerIfNeeded();
 
   animateCardMove(sourceRects);
-  if (autoSourceRects.length > 0) {
-    autoSourceRects.forEach(({ id }) => {
-      const el = document.querySelector(`[data-card-id="${id}"]`) as HTMLElement | null;
-      if (el) el.style.visibility = 'hidden';
-    });
-    setTimeout(() => animateCardMove(autoSourceRects), 200);
-  }
 }
 function handleTap(location: Location, cardId: string | null): void {
   if (isAnimating) return;

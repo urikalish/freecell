@@ -3,7 +3,6 @@ import {
   GameState,
   Location,
   MoveCandidate,
-  Suit,
   suitColor,
   HistoryEntry,
   FOUNDATION_SUIT_ORDER,
@@ -179,77 +178,6 @@ export function undoLastMove(state: GameState): GameState | null {
 
   newState.moveCount = Math.max(0, newState.moveCount - 1);
   return newState;
-}
-
-export function autoMoveToFoundation(
-  state: GameState,
-  skipFreecellIndex = -1,
-): { state: GameState; movedCards: Card[] } {
-  let current = state;
-  const movedCards: Card[] = [];
-
-  let moved = true;
-  while (moved) {
-    moved = false;
-
-    // Check free cells
-    for (let i = 0; i < 4; i++) {
-      if (i === skipFreecellIndex) continue;
-      const card = current.freeCells[i];
-      if (!card) continue;
-      if (isSafeAutoMove(current, card)) {
-        for (let f = 0; f < 4; f++) {
-          if (canPlaceOnFoundation(card, current.foundations[f], f)) {
-            current = executeMove(current, {
-              from: { zone: 'freecell', index: i },
-              to: { zone: 'foundation', index: f },
-              cards: [card],
-            });
-            moved = true;
-            movedCards.push(card);
-            break;
-          }
-        }
-      }
-    }
-
-    // Check tableau bottoms
-    for (let i = 0; i < 8; i++) {
-      const col = current.tableau[i];
-      if (col.length === 0) continue;
-      const card = col[col.length - 1];
-      if (isSafeAutoMove(current, card)) {
-        for (let f = 0; f < 4; f++) {
-          if (canPlaceOnFoundation(card, current.foundations[f], f)) {
-            current = executeMove(current, {
-              from: { zone: 'tableau', index: i, cardIndex: col.length - 1 },
-              to: { zone: 'foundation', index: f },
-              cards: [card],
-            });
-            moved = true;
-            movedCards.push(card);
-            break;
-          }
-        }
-      }
-    }
-  }
-
-  return { state: current, movedCards };
-}
-
-function isSafeAutoMove(state: GameState, card: Card): boolean {
-  if (card.rank <= 2) return true;
-  const oppositeColor = suitColor(card.suit) === 'black' ? 'red' : 'black';
-  const oppositeSuits = [Suit.Spades, Suit.Hearts, Suit.Diamonds, Suit.Clubs].filter(
-    s => suitColor(s) === oppositeColor,
-  );
-  for (const s of oppositeSuits) {
-    const foundation = state.foundations.find(f => f.length > 0 && f[0].suit === s);
-    const topRank = foundation ? foundation[foundation.length - 1].rank : 0;
-    if (topRank < card.rank - 1) return false;
-  }
-  return true;
 }
 
 export function isGameWon(state: GameState): boolean {
