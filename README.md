@@ -133,9 +133,8 @@ All sizing and colour tokens are declared in `variables.css`. Key groups:
 | `--font-*` | Responsive font sizes (all in `vw`) |
 | `--cell-gap`, `--card-gap` | Spacing between cells and columns |
 
-Typography uses two Google Fonts loaded in `index.html`:
-- **Cinzel Decorative** — titles, card values
-- **Spectral** — labels, subtitles, engraved rank
+Typography uses a single Google Font loaded in `index.html`:
+- **Libre Bodoni** — all text: titles, subtitles, card values, stat labels, engraved rank
 
 ---
 

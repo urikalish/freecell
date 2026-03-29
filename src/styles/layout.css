@@ -44,7 +44,7 @@
 }
 
 .hud-title {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Libre Bodoni', serif;
     font-weight: 700;
     font-size: var(--font-title);
     letter-spacing: 2px;
@@ -57,7 +57,7 @@
 }
 
 .hud-title-sub {
-    font-family: 'Spectral', serif;
+    font-family: 'Libre Bodoni', serif;
     font-style: italic;
     font-weight: 300;
     font-size: var(--font-title-sub);
@@ -80,7 +80,7 @@
 }
 
 .hud-stat-label {
-    font-family: 'Spectral', serif;
+    font-family: 'Libre Bodoni', serif;
     font-style: italic;
     font-weight: 300;
     font-size: var(--font-stat-label);
@@ -91,7 +91,7 @@
 }
 
 .hud-stat-value {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Libre Bodoni', serif;
     font-weight: 400;
     font-size: var(--font-stat-value);
     color: var(--brass-light);
@@ -285,7 +285,7 @@
     border-radius: 4px;
     padding: 1.5vw;
     color: var(--parchment-dim);
-    font-family: 'Spectral', serif;
+    font-family: 'Libre Bodoni', serif;
     font-weight: 400;
     font-style: italic;
     font-size: var(--font-btn);
@@ -333,7 +333,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 3.5vw;
-    font-family: 'Spectral', serif;
+    font-family: 'Libre Bodoni', serif;
     font-style: italic;
     font-weight: 300;
     font-size: var(--font-info);
@@ -388,7 +388,7 @@
 }
 
 .theme-overlay-title {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Libre Bodoni', serif;
     font-size: 2.5vw;
     letter-spacing: 3px;
     color: var(--brass);
@@ -438,7 +438,7 @@
 }
 
 .theme-name {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Libre Bodoni', serif;
     font-size: 2vw;
     letter-spacing: 0.5px;
     color: var(--parchment);
@@ -447,7 +447,7 @@
 }
 
 .theme-desc {
-    font-family: 'Spectral', serif;
+    font-family: 'Libre Bodoni', serif;
     font-style: italic;
     font-weight: 300;
     font-size: 1.8vw;
@@ -495,7 +495,7 @@
 }
 
 .victory-title {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Libre Bodoni', serif;
     font-size: 8vw;
     font-weight: 700;
     color: var(--brass);
@@ -506,7 +506,7 @@
 }
 
 .victory-subtitle {
-    font-family: 'Spectral', serif;
+    font-family: 'Libre Bodoni', serif;
     font-style: italic;
     font-size: 4vw;
     color: var(--parchment);
@@ -517,7 +517,7 @@
     margin-top: 3vw;
     padding: 2vw 6vw;
     font-size: 3.5vw;
-    font-family: 'Spectral', serif;
+    font-family: 'Libre Bodoni', serif;
     font-style: italic;
     background: var(--panel-bg);
     border: 1px solid var(--brass-dark);
@@ -545,7 +545,7 @@
         align-items: center;
         justify-content: center;
         background: var(--mahogany);
-        font-family: 'Cinzel Decorative', serif;
+        font-family: 'Libre Bodoni', serif;
         font-size: 3vw;
         color: var(--brass);
         text-align: center;
@@ -578,7 +578,7 @@
 }
 
 .confirm-title {
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Libre Bodoni', serif;
     font-size: 3.5vw;
     color: var(--brass);
     letter-spacing: 1px;
@@ -586,7 +586,7 @@
 }
 
 .confirm-text {
-    font-family: 'Spectral', serif;
+    font-family: 'Libre Bodoni', serif;
     font-style: italic;
     font-size: 2.8vw;
     color: var(--parchment-dim);
@@ -605,7 +605,7 @@
     border-radius: 4px;
     padding: 1.8vw 4vw;
     color: var(--parchment-dim);
-    font-family: 'Spectral', serif;
+    font-family: 'Libre Bodoni', serif;
     font-style: italic;
     font-size: 3vw;
     cursor: pointer;
