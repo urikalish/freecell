@@ -69,7 +69,7 @@ State is **immutable across moves** — `executeMove` and `undoLastMove` both ca
 
 ### Rendering
 
-`renderer.ts` exports pure render functions. `main.ts` calls `app.innerHTML = renderGame(state, selectedCardId, validTargets, theme)` on every state change — a full synchronous re-render. There is no virtual DOM or diffing. Three additional exports render overlays on demand: `renderVictoryOverlay()`, `renderThemeOverlay(themes, currentIndex)`, and `renderConfirmOverlay()`.
+`renderer.ts` exports pure render functions. `main.ts` calls `app.innerHTML = renderGame(state, selectedCardId, validTargets)` on every state change — a full synchronous re-render. There is no virtual DOM or diffing. Two additional exports render overlays on demand: `renderVictoryOverlay()` and `renderConfirmOverlay()`.
 
 After re-render, animation hooks run in `setTimeout(..., 0)` / `requestAnimationFrame` callbacks so they operate on the freshly painted DOM.
 
@@ -104,15 +104,13 @@ interface Theme {
   id: string;
   name: string;
   desc: string;
-  subtitle: string;          // shown in HUD bar
-  dots: [string, string, string]; // colour preview swatches
   vars: Record<string, string>;   // CSS custom property overrides
 }
 ```
 
 `applyTheme(theme)` writes each `vars` entry onto `document.documentElement.style`, overriding the base values from `variables.css`. The selected theme index is persisted to `localStorage`.
 
-**Available themes:** Original Brass · Amber & Ivory · Midnight Brass · Copper Patina · Rose Gold · Antique Silver · Burgundy Velvet · Daguerreotype · Emerald Night · Twilight Amber
+**Available themes:** Ashes of the Colosseum · Sunfall Over Babylon · The Alchemist's Last Night · The Forest Oracle · Patina of Lost Empires · The Ice Meridian · Dusk Over the Iron Sea · Nightfall Over the Last City · The Hour the Orchids Burned · The Velvet Apocalypse
 
 To add a theme, append an entry to the `THEMES` array in `themes.ts` — no other changes needed.
 
@@ -145,7 +143,7 @@ Two Google Fonts are loaded in `index.html`:
 |---|---|---|
 | `animateDeal` | New game | CSS `steam-reveal` keyframe with JS-computed per-card delays; `isAnimating` blocks input |
 | `animateCardMove` | Every move | FLIP: fixed-position clones fly from source to destination via CSS `transition` |
-| `animateLand` | (legacy, removed) | `.card-land` scale bounce keyframe |
+| `animateLand` | Card land (internal) | `.card-land` scale bounce keyframe |
 | `animateButtonPress` | Action button tap | `.btn-pressed` CSS class, 200 ms |
 | `animateVictory` | Game won | Spark particles burst from random positions in `#victory-fireworks` |
 
@@ -156,7 +154,7 @@ Two Google Fonts are loaded in `index.html`:
 - **No test suite** — correctness is enforced by TypeScript strict mode and ESLint.
 - `isAnimating` flag gates all input during the deal animation only; card-move animations do not block input.
 - `autoMoveToFoundation` is called inside `update()` — it fires after every regular move but is intentionally skipped during undo, so undone cards are not immediately re-sent to foundations.
-- Foundation suit order is fixed (defined in `suits.ts` as `FOUNDATION_SUIT_ORDER`) and must match the order foundations are stored in `GameState.foundations`.
+- Foundation suit order is fixed (defined in `types.ts` as `FOUNDATION_SUIT_ORDER`, re-exported from `suits.ts`) and must match the order foundations are stored in `GameState.foundations`.
 - Card IDs are derived as `${suit}-${rank}` and are stable across clones — safe to use as DOM `data-card-id` keys.
 
 ---
