@@ -182,48 +182,17 @@
 
 /* === SEPARATOR === */
 .separator {
-    height: 2px;
+    height: 24px;
     margin: 1vw 1.5vw 2vw;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.separator::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--brass-dark), transparent);
-    opacity: 0.3;
-}
-
-.separator-ornament {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    gap: 1.5vw;
-    background: var(--mahogany);
-    padding: 0 2vw;
-    opacity: 0.4;
-    transition: background 0.6s ease;
-}
-
-.separator-ornament svg {
-    width: 2.5vw;
-    height: 2.5vw;
-    fill: var(--brass-dark);
-    transition: fill 0.6s ease;
-}
-
-.separator-ornament .sep-star {
-    width: 2vw;
-    height: 2vw;
-    fill: var(--brass);
-    transition: fill 0.6s ease;
+    background-image: url(./img/separator1.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center -58px; 
+    opacity: 0.25;   
 }
 
 /* === TABLEAU === */
