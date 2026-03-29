@@ -2,18 +2,26 @@ import { Suit, FOUNDATION_SUIT_ORDER } from '../model/types';
 
 export { FOUNDATION_SUIT_ORDER };
 
-const SUIT_PATHS: Record<Suit, string> = {
-  [Suit.Spades]:
-    'M12 2C12 2 4 10 4 15c0 3 2.5 5 5.5 4.5C8 20.5 7 23 6 24h12c-1-1-2-3.5-3.5-4.5C17.5 20 20 18 20 15 20 10 12 2 12 2z',
-  [Suit.Hearts]:
-    'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z',
-  [Suit.Diamonds]: 'M12 2L4 12l8 10 8-10z',
-  [Suit.Clubs]:
-    'M12 2c-2.5 0-4.5 2-4.5 4.5 0 1.5.7 2.8 1.8 3.7C7.2 10.7 5.5 12.5 5.5 14.8 5.5 17.1 7.4 19 9.7 19c1 0 1.8-.3 2.3-.7-.5 2-1.5 3.7-3 4.7h6c-1.5-1-2.5-2.7-3-4.7.5.4 1.3.7 2.3.7 2.3 0 4.2-1.9 4.2-4.2 0-2.3-1.7-4.1-3.8-4.6 1.1-.9 1.8-2.2 1.8-3.7C16.5 4 14.5 2 12 2z',
-};
-
-
-export function suitSvg(suit: Suit, className: string = ''): string {
-  const path = SUIT_PATHS[suit];
-  return `<svg class="suit-icon ${className}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="${path}" fill="currentColor"/></svg>`;
+export function suitSvg(suit: Suit): string {
+  if (suit === Suit.Spades) {
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+    <path d="m271.45 410.63c0 10.357-16.019 17.3-16.188 25.781 0 4.653 3.6576 8.4242 8.1681 8.4242 3.3919 0 6.2997-2.1329 7.5339-5.1695-1.9944 8.7938-9.7438 8.7061-9.7438 8.7061h20.417s-7.7123-0.0486-9.7296-8.6951c1.2368 3.0307 4.1426 5.1584 7.5303 5.1584 4.5106 0 8.1663-3.7712 8.1663-8.4242 0.01-8.8183-16.154-15.425-16.154-25.781z" style="stroke-linejoin:round;stroke:currentColor;stroke-linecap:round;stroke-width:0.0338;fill:currentColor" transform="translate(-146.2200,-238.3586) scale(0.582906)" />
+  </svg>`;
+  }
+  if (suit === Suit.Hearts) {
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <path d="m375.26 419.93c0-5.1337 3.6572-9.2945 8.1674-9.2945 3.9514 0 7.247 3.1941 8.003 7.4381 0.756-4.2437 4.0516-7.4381 8.003-7.4381 4.5102 0 8.1656 4.1608 8.1656 9.2945 0.01 9.7294-16.153 17.018-16.153 28.444 0-11.427-16.017-19.087-16.186-28.444z" style="stroke-linejoin:round;stroke:currentColor;stroke-linecap:round;stroke-width:0.0356;fill:currentColor" transform="translate(-216.1874,-238.3837) scale(0.582959)" />
+</svg>`;
+  }
+  if (suit === Suit.Clubs) {
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <path d="m351.32 410.63c-4.5104 0-8.1679 3.8757-8.1679 8.6553 0 3.5526 2.0215 6.6049 4.9111 7.9378 1.2068 1.2709 2.2688 3.0657 2.8709 5.5998-1.2517-3.0772-4.1401-5.2307-7.5033-5.2307-4.5104 0-8.1679 3.8757-8.1679 8.6553s3.6575 8.6534 8.1679 8.6534c3.3728 0 6.2682-2.1659 7.5141-5.2572-2.0691 8.816-9.6954 8.7273-9.6954 8.7273h20.416s-7.3995-0.0484-9.5989-8.396c1.3144 2.9133 4.1205 4.9259 7.3711 4.9259 4.5105 0 8.1662-3.8738 8.1662-8.6534s-3.6557-8.6553-8.1662-8.6553c-3.2373 0-6.0338 1.9959-7.355 4.8899 0.7033-2.6318 1.9236-4.4349 3.2639-5.668 0.0007-0.00061 0-0.001 0-0.002 2.4705-1.4878 4.1376-4.3002 4.1376-7.527 0-4.7796-3.6557-8.6553-8.1662-8.6553z" style="stroke-linejoin:round;stroke:currentColor;stroke-linecap:round;stroke-width:0.0343;fill:currentColor" transform="translate(-192.8564,-238.3630) scale(0.582917)" />
+</svg>`;
+  }
+  if (suit === Suit.Diamonds) {
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <path d="m311.43 448.37s-4.6103-7.1709-7.3173-10.33c-2.707-3.159-8.8518-8.5392-8.8518-8.5392s6.1448-5.3802 8.8518-8.5392 7.3173-10.33 7.3173-10.33 4.6103 7.1709 7.3173 10.33c2.7069 3.159 8.8518 8.5392 8.8518 8.5392s-6.1449 5.3802-8.8518 8.5392c-2.707 3.159-7.3173 10.33-7.3173 10.33z" style="stroke-linejoin:round;stroke:currentColor;stroke-linecap:round;stroke-width:0.0361;fill:currentColor" transform="translate(-169.5514,-238.3820) scale(0.582961)" />
+</svg>`;
+  }
+  return '';
 }

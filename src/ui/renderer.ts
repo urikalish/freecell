@@ -51,9 +51,7 @@ export function renderGame(
       const isValid = validTargets.has(`freecell-${i}`);
       const filled = card ? 'filled' : '';
       const validClass = isValid ? 'valid-target' : '';
-      const inner = card
-        ? renderCard(card, isSelected ? 'selected' : '')
-        : '';
+      const inner = card ? renderCard(card, isSelected ? 'selected' : '') : '';
       return `<div class="free-cell ${filled} ${validClass}" data-zone="freecell" data-index="${i}">${inner}</div>`;
     })
     .join('');
