@@ -103,7 +103,7 @@ export function renderGame(
     <div class="hud-bar">
       <div>
         <div class="hud-title">FreeCell</div>
-        <div class="hud-title-sub" id="subtitle">${theme.subtitle}</div>
+        <div class="hud-title-sub" id="subtitle">A Dance of Cards Between Chaos and Order</div>
       </div>
       <div class="hud-stats">
         <div class="hud-stat">
@@ -141,7 +141,6 @@ export function renderGame(
       </button>
     </div>
     <div class="info-bar">
-      <span>${theme.subtitle}</span>
       <span>FreeCell</span>
     </div>
   `;

@@ -330,8 +330,8 @@
     border-top: 1px solid var(--brass-dark);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 3.5vw;
+    justify-content: end;
+    padding: 0 1.5vw;
     font-family: 'Federo', sans-serif;
     font-style: italic;
     font-weight: 300;
