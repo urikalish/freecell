@@ -70,7 +70,7 @@ export function renderGame(
       const prevCard = pile.length > 1 ? pile[pile.length - 2] : null;
       const prevLayer = prevCard ? renderCard(prevCard, 'foundation-prev', '') : '';
       const inner = topCard
-        ? prevLayer + renderCard(topCard)
+        ? `<span class="foundation-suit-icon foundation-suit-bg">${suitSvg(suit)}</span>` + prevLayer + renderCard(topCard)
         : `<span class="foundation-suit-icon">${suitSvg(suit)}</span>`;
       return `<div class="foundation-cell ${filled} ${validClass}" data-zone="foundation" data-index="${i}">${inner}</div>`;
     })

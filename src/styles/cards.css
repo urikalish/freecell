@@ -187,3 +187,12 @@
     z-index: 0;
     pointer-events: none;
 }
+
+.foundation-cell .foundation-suit-icon.foundation-suit-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+}

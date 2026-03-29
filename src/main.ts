@@ -116,6 +116,10 @@ function tryMove(move: MoveCandidate): void {
 
   animateCardMove(sourceRects);
   if (autoSourceRects.length > 0) {
+    autoSourceRects.forEach(({ id }) => {
+      const el = document.querySelector(`[data-card-id="${id}"]`) as HTMLElement | null;
+      if (el) el.style.visibility = 'hidden';
+    });
     setTimeout(() => animateCardMove(autoSourceRects), 200);
   }
 }
