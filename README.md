@@ -78,8 +78,8 @@ After re-render, animation hooks run in `setTimeout(..., 0)` / `requestAnimation
 ```
 pointerup → handleTap → tryMove
   1. Capture source DOMRects for all moving cards
-  2. executeMove(state, move) → newState
-  3. clearSelection() + update(newState) → re-render
+  2. `state = executeMove(state, move)` → newState applied in-place
+  3. `clearSelection()` + `render()` — full re-render
   4. animateCardMove(sourceRects) — FLIP animation
 ```
 

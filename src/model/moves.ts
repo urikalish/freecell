@@ -183,7 +183,3 @@ export function undoLastMove(state: GameState): GameState | null {
 export function isGameWon(state: GameState): boolean {
   return state.foundations.every(f => f.length === 13);
 }
-
-export function findAllValidMovesFrom(state: GameState, from: Location): MoveCandidate[] {
-  return findValidMoves(state, from);
-}
