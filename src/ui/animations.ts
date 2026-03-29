@@ -70,22 +70,20 @@ export function animateCardMove(moves: { id: string; rect: DOMRect }[]): void {
       'transition: none',
       `transform: translate(${dx}px, ${dy}px)`,
     ].join('; ');
-    document.body.appendChild(clone);
-    el.style.visibility = 'hidden';
+    document.body.appendChild(clone);
     pending.push({ clone, el, index: i });
   });
 
   if (pending.length === 0) return;
 
   requestAnimationFrame(() => {
-    pending.forEach(({ clone, el, index }) => {
+    pending.forEach(({ clone, index }) => {
       const delay = index * 30;
       setTimeout(() => {
         clone.style.transition = 'transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         clone.style.transform = 'translate(0, 0)';
         setTimeout(() => {
-          document.body.removeChild(clone);
-          el.style.visibility = '';
+          document.body.removeChild(clone);
         }, 300);
       }, delay);
     });
