@@ -52,7 +52,7 @@ export function renderGame(
       const filled = card ? 'filled' : '';
       const validClass = isValid ? 'valid-target' : '';
       const inner = card
-        ? renderCard(card, isSelected ? 'selected' : '')
+        ? `<span class="cell-icon freecell-bg">${gearSvg()}</span>` + renderCard(card, isSelected ? 'selected' : '')
         : `<span class="cell-icon">${gearSvg()}</span>`;
       return `<div class="free-cell ${filled} ${validClass}" data-zone="freecell" data-index="${i}">${inner}</div>`;
     })
@@ -66,8 +66,10 @@ export function renderGame(
       const validClass = isValid ? 'valid-target' : '';
       const suit = FOUNDATION_SUIT_ORDER[i];
       //const colorClass = suitColor(suit) === Color.Red ? 's-ruby' : 's-emerald';
+      const prevCard = pile.length > 1 ? pile[pile.length - 2] : null;
+      const prevLayer = prevCard ? renderCard(prevCard, 'foundation-prev', '') : '';
       const inner = topCard
-        ? renderCard(topCard)
+        ? prevLayer + renderCard(topCard)
         : `<span class="foundation-suit-icon">${suitSvg(suit)}</span>`;
       return `<div class="foundation-cell ${filled} ${validClass}" data-zone="foundation" data-index="${i}">${inner}</div>`;
     })

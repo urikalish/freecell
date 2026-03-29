@@ -157,7 +157,12 @@ function handleTap(location: Location, cardId: string | null): void {
       cards = getMovableCards(state, location);
     }
     if (cards && cards.length > 0) {
-      selectCard(location, cardId);
+      const moves = findValidMoves(state, location);
+      if (moves.length === 1) {
+        tryMove(moves[0]);
+      } else {
+        selectCard(location, cardId);
+      }
     }
   }
 }
