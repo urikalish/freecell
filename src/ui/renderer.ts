@@ -102,7 +102,7 @@ export function renderGame(
   return `
     <div class="hud-bar">
       <div>
-        <div class="hud-title">Freecell</div>
+        <div class="hud-title">FreeCell</div>
         <div class="hud-title-sub" id="subtitle">${theme.subtitle}</div>
       </div>
       <div class="hud-stats">

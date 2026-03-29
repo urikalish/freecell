@@ -31,7 +31,7 @@ src/
     deck.ts             # Deck creation, shuffle, state cloning
     moves.ts            # Move validation, execution, undo, auto-move logic
   ui/
-    renderer.ts         # Pure functions: GameState → HTML strings
+    renderer.ts         # renderGame, overlay renderers (victory/theme/confirm), formatTime
     interactions.ts     # DOM hit-testing → Location / Card resolution
     animations.ts       # Deal, card-move FLIP, land, victory, button press
     suits.ts            # SVG helpers for suit icons; foundation suit order
@@ -69,7 +69,7 @@ State is **immutable across moves** — `executeMove` and `undoLastMove` both ca
 
 ### Rendering
 
-`renderer.ts` exports pure functions that accept state and return HTML strings. `main.ts` calls `app.innerHTML = renderGame(...)` on every state change — a full synchronous re-render. There is no virtual DOM or diffing.
+`renderer.ts` exports pure render functions. `main.ts` calls `app.innerHTML = renderGame(state, selectedCardId, validTargets, theme)` on every state change — a full synchronous re-render. There is no virtual DOM or diffing. Three additional exports render overlays on demand: `renderVictoryOverlay()`, `renderThemeOverlay(themes, currentIndex)`, and `renderConfirmOverlay()`.
 
 After re-render, animation hooks run in `setTimeout(..., 0)` / `requestAnimationFrame` callbacks so they operate on the freshly painted DOM.
 
@@ -133,8 +133,9 @@ All sizing and colour tokens are declared in `variables.css`. Key groups:
 | `--font-*` | Responsive font sizes (all in `vw`) |
 | `--cell-gap`, `--card-gap` | Spacing between cells and columns |
 
-Typography uses a single Google Font loaded in `index.html`:
-- **Libre Bodoni** — all text: titles, subtitles, card values, stat labels, engraved rank
+Two Google Fonts are loaded in `index.html`:
+- **Libre Bodoni** (italic, wght 400–700) — titles, subtitles, card values, engraved rank; base body font
+- **Federo** — stat labels, stat values, buttons, overlays
 
 ---
 
