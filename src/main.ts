@@ -71,8 +71,10 @@ function selectCard(location: Location, cardId: string): void {
     return;
   }
 
+    const moves = findValidMoves(state, location);
+  if (moves.length === 0) return;
+
   selectedCardId = cardId;
-  const moves = findValidMoves(state, location);
   validTargets.clear();
   for (const m of moves) {
     validTargets.add(`${m.to.zone}-${m.to.index}`);
