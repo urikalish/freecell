@@ -71,7 +71,7 @@ function selectCard(location: Location, cardId: string): void {
     return;
   }
 
-    const moves = findValidMoves(state, location);
+  const moves = findValidMoves(state, location);
   if (moves.length === 0) return;
 
   selectedCardId = cardId;
@@ -98,7 +98,10 @@ function tryMove(move: MoveCandidate): void {
   const newState = executeMove(state, move);
 
   // Peek at auto-moves and capture their source positions before rendering
-  const autoResult = autoMoveToFoundation(newState);
+  const autoResult = autoMoveToFoundation(
+    newState,
+    move.to.zone === 'freecell' ? move.to.index : -1,
+  );
   const autoSourceRects = autoResult.movedCards
     .map(card => {
       const el = document.querySelector(`[data-card-id="${card.id}"]`) as HTMLElement | null;

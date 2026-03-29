@@ -181,7 +181,10 @@ export function undoLastMove(state: GameState): GameState | null {
   return newState;
 }
 
-export function autoMoveToFoundation(state: GameState): { state: GameState; movedCards: Card[] } {
+export function autoMoveToFoundation(
+  state: GameState,
+  skipFreecellIndex = -1,
+): { state: GameState; movedCards: Card[] } {
   let current = state;
   const movedCards: Card[] = [];
 
@@ -191,6 +194,7 @@ export function autoMoveToFoundation(state: GameState): { state: GameState; move
 
     // Check free cells
     for (let i = 0; i < 4; i++) {
+      if (i === skipFreecellIndex) continue;
       const card = current.freeCells[i];
       if (!card) continue;
       if (isSafeAutoMove(current, card)) {

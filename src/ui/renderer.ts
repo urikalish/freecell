@@ -52,7 +52,8 @@ export function renderGame(
       const filled = card ? 'filled' : '';
       const validClass = isValid ? 'valid-target' : '';
       const inner = card
-        ? `<span class="cell-icon freecell-bg">${gearSvg()}</span>` + renderCard(card, isSelected ? 'selected' : '')
+        ? `<span class="cell-icon freecell-bg">${gearSvg()}</span>` +
+          renderCard(card, isSelected ? 'selected' : '')
         : `<span class="cell-icon">${gearSvg()}</span>`;
       return `<div class="free-cell ${filled} ${validClass}" data-zone="freecell" data-index="${i}">${inner}</div>`;
     })
