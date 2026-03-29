@@ -1,6 +1,6 @@
 import { Card, GameState, Rank, RANK_LABELS, suitColor, Color } from '../model/types';
 import { getMovableSequenceLength } from '../model/moves';
-import { suitSvg, FOUNDATION_SUIT_ORDER, gearSvg } from './suits';
+import { suitSvg, FOUNDATION_SUIT_ORDER } from './suits';
 
 const ROMAN: Record<Rank, string> = {
   1: 'I',
@@ -52,9 +52,8 @@ export function renderGame(
       const filled = card ? 'filled' : '';
       const validClass = isValid ? 'valid-target' : '';
       const inner = card
-        ? `<span class="cell-icon freecell-bg">${gearSvg()}</span>` +
-          renderCard(card, isSelected ? 'selected' : '')
-        : `<span class="cell-icon">${gearSvg()}</span>`;
+        ? renderCard(card, isSelected ? 'selected' : '')
+        : '';
       return `<div class="free-cell ${filled} ${validClass}" data-zone="freecell" data-index="${i}">${inner}</div>`;
     })
     .join('');
@@ -124,9 +123,7 @@ export function renderGame(
         <div class="cell-group">${freeCellsHtml}</div>
         <div class="cell-group">${foundationsHtml}</div>
       </div>
-      <div class="separator">
-        <span class="separator-ornament">${gearSvg()}<svg class="sep-star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>${gearSvg()}</span>
-      </div>
+      <div class="separator"></div>
       <div class="tableau">${tableauHtml}</div>
     </div>
     <div class="action-bar">
