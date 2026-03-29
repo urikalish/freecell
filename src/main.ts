@@ -39,8 +39,7 @@ let confirmOpen = false;
 const app = document.getElementById('app')!;
 
 function render(): void {
-  const theme = THEMES[themeIndex];
-  app.innerHTML = renderGame(state, selectedCardId, validTargets, theme);
+  app.innerHTML = renderGame(state, selectedCardId, validTargets);
 
   if (confirmOpen) {
     app.insertAdjacentHTML('beforeend', renderConfirmOverlay());
