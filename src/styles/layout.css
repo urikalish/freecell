@@ -103,7 +103,6 @@
     display: flex;
     justify-content: space-between;
     gap: 4px;
-    margin-bottom: 1.5vw;
     padding: 0 1.5vw;
 }
 
@@ -182,8 +181,8 @@
 
 /* === SEPARATOR === */
 .separator {
-    height: 24px;
-    margin: 1vw 1.5vw 2vw;
+    height: 25px;
+    margin: 1.5vw;
     position: relative;
     display: flex;
     align-items: center;
