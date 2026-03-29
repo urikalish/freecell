@@ -1,7 +1,6 @@
 import { Card, GameState, Rank, RANK_LABELS, suitColor, Color } from '../model/types';
 import { getMovableSequenceLength } from '../model/moves';
 import { suitSvg, FOUNDATION_SUIT_ORDER, gearSvg } from './suits';
-import { Theme } from './themes';
 
 const ROMAN: Record<Rank, string> = {
   1: 'I',
@@ -153,25 +152,6 @@ export function renderVictoryOverlay(): string {
       <div class="victory-fireworks" id="victory-fireworks"></div>
       <button class="btn-new-game" id="btn-new-game">New Game</button>
     </div>
-  </div>`;
-}
-
-export function renderThemeOverlay(themes: Theme[], currentIndex: number): string {
-  const options = themes
-    .map(
-      (t, i) => `
-    <div class="theme-option ${i === currentIndex ? 'active' : ''}" data-theme-index="${i}">
-      <div class="theme-dots">
-        ${t.dots.map(c => `<div class="theme-dot" style="background:${c}"></div>`).join('')}
-      </div>
-      <div class="theme-name">${t.name}</div>
-      <div class="theme-desc">${t.desc}</div>
-    </div>`,
-    )
-    .join('');
-  return `<div class="theme-overlay open" id="theme-overlay">
-    <div class="theme-overlay-title">Select Theme</div>
-    <div class="theme-grid">${options}</div>
   </div>`;
 }
 

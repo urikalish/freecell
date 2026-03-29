@@ -10,16 +10,11 @@
     --ruby-light: #d4364f;
     --emerald: #1a6b4a;
     --emerald-light: #2a9b6a;
-    --ink-dark: #1a1208;
     --panel-bg: rgba(30, 18, 8, 0.92);
     --card-bg: linear-gradient(145deg, #2a1e10, #1e1408);
     --card-border: rgba(139, 105, 20, 0.2);
     --selected-bg: linear-gradient(145deg, #34240e, #2a1c0c);
     --bg-gradient: linear-gradient(170deg, #1e1208 0%, #2a1a0e 30%, #1a1008 60%, #0e0a04 100%);
-    --bg-accent1: rgba(184, 115, 51, 0.08);
-    --bg-accent2: rgba(201, 168, 76, 0.06);
-    --steam-color: rgba(200, 190, 170, 0.06);
-    --gear-opacity: 0.06;
     --info-bg: rgba(14, 10, 4, 0.94);
     --amber-glow: 0 0 12px rgba(201, 168, 76, 0.3), 0 0 30px rgba(201, 168, 76, 0.1);
 

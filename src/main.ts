@@ -1,4 +1,4 @@
-﻿import './styles/variables.css';
+import './styles/variables.css';
 import './styles/base.css';
 import './styles/layout.css';
 import './styles/cards.css';
@@ -13,13 +13,7 @@ import {
   autoMoveToFoundation,
   isGameWon,
 } from './model/moves';
-import {
-  renderGame,
-  renderVictoryOverlay,
-  renderThemeOverlay,
-  renderConfirmOverlay,
-  formatTime,
-} from './ui/renderer';
+import { renderGame, renderVictoryOverlay, renderConfirmOverlay, formatTime } from './ui/renderer';
 import { THEMES, loadThemeIndex, saveThemeIndex, applyTheme } from './ui/themes';
 import { getLocationFromElement, getMovableCards } from './ui/interactions';
 import { animateDeal, animateButtonPress, animateVictory, animateCardMove } from './ui/animations';
@@ -33,7 +27,6 @@ let tapCycleIndex = -1;
 let timerInterval: ReturnType<typeof setInterval> | null = null;
 let isAnimating = false;
 let gameStarted = false;
-let themeOverlayOpen = false;
 let confirmOpen = false;
 
 const app = document.getElementById('app')!;
@@ -44,11 +37,6 @@ function render(): void {
   if (confirmOpen) {
     app.insertAdjacentHTML('beforeend', renderConfirmOverlay());
     bindConfirmEvents();
-  }
-
-  if (themeOverlayOpen) {
-    app.insertAdjacentHTML('beforeend', renderThemeOverlay(THEMES, themeIndex));
-    bindThemeOverlayEvents();
   }
 
   if (isGameWon(state)) {
@@ -172,28 +160,6 @@ function handleTap(location: Location, cardId: string | null): void {
   }
 }
 
-function bindThemeOverlayEvents(): void {
-  const overlay = document.getElementById('theme-overlay');
-  if (!overlay) return;
-
-  overlay.addEventListener('click', (e: MouseEvent) => {
-    const option = (e.target as HTMLElement).closest('.theme-option') as HTMLElement;
-    if (option) {
-      const idx = parseInt(option.dataset.themeIndex || '0', 10);
-      themeIndex = idx;
-      saveThemeIndex(themeIndex);
-      applyTheme(THEMES[themeIndex]);
-      themeOverlayOpen = false;
-      app.classList.add('theme-flash');
-      setTimeout(() => app.classList.remove('theme-flash'), 300);
-      render();
-    } else {
-      themeOverlayOpen = false;
-      render();
-    }
-  });
-}
-
 function bindEvents(): void {
   const area = app.querySelector('.playing-area') as HTMLElement;
   if (!area) return;
@@ -240,15 +206,14 @@ function bindEvents(): void {
 
   document.getElementById('btn-theme')?.addEventListener('click', e => {
     animateButtonPress(e.currentTarget as HTMLElement);
-    toggleThemeOverlay();
+    themeIndex = (themeIndex + 1) % THEMES.length;
+    saveThemeIndex(themeIndex);
+    applyTheme(THEMES[themeIndex]);
+    app.classList.add('theme-flash');
+    setTimeout(() => app.classList.remove('theme-flash'), 300);
   });
 
   document.getElementById('btn-new-game')?.addEventListener('click', () => newGame());
-}
-
-function toggleThemeOverlay(): void {
-  themeOverlayOpen = !themeOverlayOpen;
-  render();
 }
 
 function requestNewGame(): void {
@@ -273,7 +238,6 @@ function bindConfirmEvents(): void {
 function newGame(): void {
   stopTimer();
   gameStarted = false;
-  themeOverlayOpen = false;
   clearSelection();
   state = createNewGame();
   render();
