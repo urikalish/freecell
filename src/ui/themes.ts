@@ -7,12 +7,6 @@ export interface Theme {
 
 export const THEMES: Theme[] = [
   {
-    id: '72',
-    vars: {
-      '--surface-bg': 'hsl(72, 22%, 10%)',
-    },
-  },
-  {
     id: '108',
     vars: {
       '--surface-bg': 'hsl(108, 22%, 10%)',
@@ -64,6 +58,12 @@ export const THEMES: Theme[] = [
     id: '36',
     vars: {
       '--surface-bg': 'hsl(36, 22%, 11%)',
+    },
+  },
+  {
+    id: '72',
+    vars: {
+      '--surface-bg': 'hsl(72, 22%, 10%)',
     },
   },
 ];
