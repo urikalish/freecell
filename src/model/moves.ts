@@ -65,6 +65,7 @@ function canPlaceOnFoundation(card: Card, foundation: Card[], foundationIndex: n
 
 function canPlaceOnTableau(cards: Card[], col: Card[]): boolean {
   if (col.length === 0) return true;
+  if (cards[0].rank === 1) return false;
   const top = col[col.length - 1];
   return cards[0].rank === top.rank - 1 && suitColor(cards[0].suit) !== suitColor(top.suit);
 }
@@ -95,7 +96,7 @@ export function findValidMoves(state: GameState, from: Location): MoveCandidate[
       if (from.zone === 'tableau' && from.index === i) continue;
       const col = state.tableau[i];
       if (col.length === 0) {
-        if (cards.length <= maxMovableCards(state, true)) {
+        if (cards[0].rank !== 1 && cards.length <= maxMovableCards(state, true)) {
           candidates.push({ from, to: { zone: 'tableau', index: i }, cards: [...cards] });
         }
       } else if (canPlaceOnTableau(cards, col)) {
@@ -105,7 +106,7 @@ export function findValidMoves(state: GameState, from: Location): MoveCandidate[
   }
 
   // To free cells (not allowed from another free cell, and only single cards)
-  if (from.zone !== 'freecell' && cards.length === 1)
+  if (from.zone !== 'freecell' && cards.length === 1 && cards[0].rank !== 1)
     for (let i = 0; i < 4; i++) {
       if (state.freeCells[i] === null) {
         candidates.push({ from, to: { zone: 'freecell', index: i }, cards: [...cards] });
