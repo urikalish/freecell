@@ -6,6 +6,8 @@
     position: relative;
     flex-shrink: 0;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
     transition:
         transform 0.2s ease,
         box-shadow 0.2s ease;
