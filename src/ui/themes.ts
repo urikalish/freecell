@@ -71,6 +71,7 @@ export const THEMES: Theme[] = [
 const THEME_STORAGE_KEY = 'freecell-theme-index';
 
 export function loadThemeIndex(): number {
+  return '72';
   const stored = localStorage.getItem(THEME_STORAGE_KEY);
   if (stored !== null) {
     const idx = parseInt(stored, 10);
