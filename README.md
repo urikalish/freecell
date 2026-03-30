@@ -31,7 +31,7 @@ src/
     deck.ts             # Deck creation, shuffle, state cloning
     moves.ts            # Move validation, execution, undo
   ui/
-    renderer.ts         # renderGame, overlay renderers (victory/theme/confirm), formatTime
+    renderer.ts         # renderGame, overlay renderers (victory/confirm), formatTime
     interactions.ts     # DOM hit-testing → Location / Card resolution
     animations.ts       # Deal, card-move FLIP, land, victory, button press
     suits.ts            # SVG helpers for suit icons; foundation suit order
@@ -106,7 +106,18 @@ interface Theme {
 
 `applyTheme(theme)` writes each `vars` entry onto `document.documentElement.style`, overriding the base values from `variables.css`. The selected theme index is persisted to `localStorage`.
 
-**Available themes:** Ashes of the Colosseum · Sunfall Over Babylon · The Alchemist's Last Night · The Forest Oracle · Patina of Lost Empires · The Ice Meridian · Dusk Over the Iron Sea · Nightfall Over the Last City · The Hour the Orchids Burned · The Velvet Apocalypse
+| Theme name | Description |
+|---|---|
+| Ashes of the Colosseum | Moonlit pewter & steel |
+| Sunfall Over Babylon | Rich wine & antique gold |
+| The Alchemist's Last Night | Oxidised verdigris & copper |
+| The Forest Oracle | Photographic sepia tones |
+| Patina of Lost Empires | Aged manuscript & foxed paper |
+| The Ice Meridian | Dim workshop & cool ash |
+| Dusk Over the Iron Sea | Belle Epoque elegance |
+| Nightfall Over the Last City | Warm charcoal & amber smoke |
+| The Hour the Orchids Burned | Warm dusk & glowing embers |
+| The Velvet Apocalypse | Dark jade & antique brass |
 
 To add a theme, append an entry to the `THEMES` array in `themes.ts` — no other changes needed.
 
@@ -119,8 +130,8 @@ All sizing and colour tokens are declared in `variables.css`. Key groups:
 | Prefix | Purpose |
 |---|---|
 | `--brass*` | Primary accent colour family |
-| `--ruby*` | Red card / decoration colour |
-| `--emerald*` | Black card / decoration colour |
+| `--ruby` | Red card |
+| `--emerald` | Black card |
 | `--surface-bg` | Table surface background |
 | `--parchment*` | Text / UI element colours |
 | `--card-*` | Card dimensions (`--card-height`, `--card-radius`, `--card-overlap`) |
