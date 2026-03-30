@@ -9,7 +9,7 @@ export const THEMES: Theme[] = [
   {
     id: '108',
     vars: {
-      '--surface-bg': 'hsl(90, 22%, 10%)',
+      '--surface-bg': 'hsl(108, 22%, 10%)',
     },
   },
   {
