@@ -37,10 +37,10 @@
     content: '';
     position: absolute;
     top: 0;
-    left: 15%;
-    right: 15%;
+    left: 0;
+    right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.15), transparent);
+    background: #fff;
 }
 
 .card-value-and-suit {
@@ -70,11 +70,10 @@
 .card-suit-center {
     position: absolute;
     left: 0;
-    bottom: 1.5vw;
+    bottom: 1.3vw;
     width: 100%;
     display: flex;
     justify-content: center;
-    opacity: 0.2;
     transition: color 0.6s ease;
 }
 
@@ -91,20 +90,20 @@
     font-style: italic;
     font-weight: 300;
     font-size: var(--font-card-engrave);
-    color: var(--brass-dark);
+    color: var(--black-suit);
     letter-spacing: 0.5px;
     transition: color 0.6s ease;
 }
 
 /* Ruby (red) cards */
 .card.ruby .card-value {
-    color: var(--ruby);
+    color: var(--red-suit);
     text-shadow: 0 0 4px rgba(164, 36, 59, 0.2);
 }
 
 .card.ruby .card-suit,
 .card.ruby .card-suit-center {
-    color: var(--ruby);
+    color: var(--red-suit);
 }
 
 .card.ruby .card-inner {
@@ -113,13 +112,13 @@
 
 /* Emerald (black) cards */
 .card.emerald .card-value {
-    color: var(--emerald);
+    color: var(--black-suit);
     text-shadow: 0 0 4px rgba(26, 107, 74, 0.2);
 }
 
 .card.emerald .card-suit,
 .card.emerald .card-suit-center {
-    color: var(--emerald);
+    color: var(--black-suit);
 }
 
 .card.emerald .card-inner {
@@ -133,7 +132,7 @@
         inset 0 1px 0 rgba(201, 168, 76, 0.1),
         0 0 12px rgba(201, 168, 76, 0.25),
         0 0 30px rgba(201, 168, 76, 0.08);
-    background: var(--selected-bg);
+    background: var(--selected-card-bg);
 }
 
 .card.selected {
@@ -146,7 +145,7 @@
     box-shadow:
         inset 0 1px 0 rgba(201, 168, 76, 0.08),
         0 0 8px rgba(201, 168, 76, 0.15);
-    background: var(--selected-bg);
+    background: var(--selected-card-bg);
 }
 
 .card.in-selected-group {

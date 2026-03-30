@@ -98,8 +98,8 @@ Themes live in `ui/themes.ts` as objects implementing `Theme`:
 ```ts
 interface Theme {
   id: string;
-  name: string;
-  desc: string;
+  name?: string;
+  desc?: string;
   vars: Record<string, string>;   // CSS custom property overrides
 }
 ```
@@ -130,8 +130,8 @@ All sizing and colour tokens are declared in `variables.css`. Key groups:
 | Prefix | Purpose |
 |---|---|
 | `--brass*` | Primary accent colour family |
-| `--ruby` | Red card |
-| `--emerald` | Black card |
+| `--red-suit` | Red card |
+| `--black-suit` | Black card |
 | `--surface-bg` | Table surface background |
 | `--parchment*` | Text / UI element colours |
 | `--card-*` | Card dimensions (`--card-height`, `--card-radius`, `--card-overlap`) |
