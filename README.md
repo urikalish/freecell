@@ -110,7 +110,7 @@ interface Theme {
 |---|---|
 | Ashes of the Colosseum | Moonlit pewter & steel |
 | Sunfall Over Babylon | Rich wine & antique gold |
-| The Alchemist's Last Night | Oxidised verdigris & copper |
+| Nightshade Laboratory | Oxidised verdigris & copper |
 | The Forest Oracle | Photographic sepia tones |
 | Patina of Lost Empires | Aged manuscript & foxed paper |
 | The Ice Meridian | Dim workshop & cool ash |

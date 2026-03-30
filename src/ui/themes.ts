@@ -54,7 +54,7 @@ export const THEMES: Theme[] = [
   },
   {
     id: 'patina',
-    name: "The Alchemist's Last Night",
+    name: 'Nightshade Laboratory',
     desc: 'Oxidised verdigris & copper',
     vars: {
       '--brass': '#b0a080',
