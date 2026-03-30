@@ -12,7 +12,7 @@ body {
     height: 100%;
     overflow: clip;
     font-family: 'Libre Bodoni', serif;
-    background: var(--mahogany);
+    background: var(--surface-bg);
     color: var(--parchment);
     touch-action: manipulation;
     -webkit-user-select: none;

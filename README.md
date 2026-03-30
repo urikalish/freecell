@@ -121,7 +121,7 @@ All sizing and colour tokens are declared in `variables.css`. Key groups:
 | `--brass*` | Primary accent colour family |
 | `--ruby*` | Red card / decoration colour |
 | `--emerald*` | Black card / decoration colour |
-| `--mahogany` | Table surface background |
+| `--surface-bg` | Table surface background |
 | `--parchment*` | Text / UI element colours |
 | `--card-*` | Card dimensions (`--card-height`, `--card-radius`, `--card-overlap`) |
 | `--font-*` | Responsive font sizes (all in `vw`) |

@@ -403,7 +403,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--mahogany);
+        background: var(--surface-bg);
         font-family: 'Federo', sans-serif;
         font-size: 3vw;
         color: var(--brass);
