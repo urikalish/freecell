@@ -98,7 +98,7 @@
 
 /* Ruby (red) cards */
 .card.ruby .card-value {
-    color: var(--ruby-light);
+    color: var(--ruby);
     text-shadow: 0 0 4px rgba(164, 36, 59, 0.2);
 }
 
@@ -113,7 +113,7 @@
 
 /* Emerald (black) cards */
 .card.emerald .card-value {
-    color: var(--emerald-light);
+    color: var(--emerald);
     text-shadow: 0 0 4px rgba(26, 107, 74, 0.2);
 }
 
