@@ -148,7 +148,7 @@ Two Google Fonts are loaded in `index.html`:
 
 | Function | Trigger | Mechanism |
 |---|---|---|
-| `animateDeal` | New game | CSS `steam-reveal` keyframe with JS-computed per-card delays; `isAnimating` blocks input |
+| `animateDeal` | New game | CSS `reveal` keyframe with JS-computed per-card delays; `isAnimating` blocks input |
 | `animateCardMove` | Every move | FLIP: fixed-position clones fly from source to destination via CSS `transition` |
 | `animateLand` | Card land (internal) | `.card-land` scale bounce keyframe |
 | `animateButtonPress` | Action button tap | `.btn-pressed` CSS class, 200 ms |

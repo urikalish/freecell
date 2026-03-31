@@ -1,24 +1,18 @@
 /* === DEAL ANIMATION === */
-@keyframes steam-reveal {
+@keyframes reveal {
     0% {
         opacity: 0;
-        transform: translateY(-12px) rotateX(15deg);
-        filter: blur(2px) sepia(0.6);
-    }
-
-    50% {
-        filter: blur(0) sepia(0.3);
+        transform: translateY(-10px);
     }
 
     100% {
         opacity: 1;
-        transform: translateY(0) rotateX(0deg);
-        filter: blur(0) sepia(0);
+        transform: translateY(0);
     }
 }
 
 .dealing .card {
-    animation: steam-reveal 0.4s ease-out backwards;
+    animation: reveal 0.4s ease-out backwards;
 }
 
 /* Card landing animation */
