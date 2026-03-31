@@ -23,10 +23,10 @@
     --panel-bg: hsla(0, 0%, 0%, 0.2);
 
     /* Sizing - mobile portrait */
-    --card-height: 14.8vw;
+    --card-height: 15.7vw;
     --card-gap: 1vw;
     --card-radius: 0.8vw;
-    --card-overlap: 9vw;
+    --card-overlap: 9.6vw;
     --cell-gap: 1vw;
     --hud-height: auto;
     --action-bar-height: auto;
@@ -36,8 +36,8 @@
     --font-title-sub: 2vw;
     --font-stat-label: 1.8vw;
     --font-stat-value: 3.5vw;
-    --font-card-value: 4.3vw;
-    --font-card-suit: 3.6vw;
+    --font-card-value: 5vw;
+    --font-card-suit: 4vw;
     --font-card-suit-center: 7vw;
     --font-card-engrave: 1.4vw;
     --font-btn: 2.6vw;
