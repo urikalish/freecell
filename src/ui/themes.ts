@@ -9,61 +9,61 @@ export const THEMES: Theme[] = [
   {
     id: '108',
     vars: {
-      '--surface-bg': 'hsl(108, 22%, 10%)',
+      '--surface-bg': 'hsl(108, 22%, 12%)',
     },
   },
   {
     id: '144',
     vars: {
-      '--surface-bg': 'hsl(144, 22%, 10%)',
+      '--surface-bg': 'hsl(144, 22%, 12%)',
     },
   },
   {
     id: '180',
     vars: {
-      '--surface-bg': 'hsl(180, 22%, 10%)',
+      '--surface-bg': 'hsl(180, 22%, 12%)',
     },
   },
   {
     id: '216',
     vars: {
-      '--surface-bg': 'hsl(216, 22%, 12%)',
+      '--surface-bg': 'hsl(216, 22%, 14%)',
     },
   },
   {
     id: '252',
     vars: {
-      '--surface-bg': 'hsl(252, 22%, 13%)',
+      '--surface-bg': 'hsl(252, 22%, 15%)',
     },
   },
   {
     id: '288',
     vars: {
-      '--surface-bg': 'hsl(288, 22%, 12%)',
+      '--surface-bg': 'hsl(288, 22%, 14%)',
     },
   },
   {
     id: '324',
     vars: {
-      '--surface-bg': 'hsl(324, 22%, 12%)',
+      '--surface-bg': 'hsl(324, 22%, 14%)',
     },
   },
   {
     id: '0',
     vars: {
-      '--surface-bg': 'hsl(0, 22%, 13%)',
+      '--surface-bg': 'hsl(0, 22%, 15%)',
     },
   },
   {
     id: '36',
     vars: {
-      '--surface-bg': 'hsl(36, 22%, 11%)',
+      '--surface-bg': 'hsl(36, 22%, 13%)',
     },
   },
   {
     id: '72',
     vars: {
-      '--surface-bg': 'hsl(72, 22%, 10%)',
+      '--surface-bg': 'hsl(72, 22%, 12%)',
     },
   },
 ];
