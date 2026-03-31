@@ -33,8 +33,9 @@ export function createNewGame(): GameState {
     freeCells: [null, null, null, null],
     foundations: [[], [], [], []],
     tableau,
-    moveCount: 0,
+    gameStartTime: 0,
     elapsedSeconds: 0,
+    moveCount: 0,
     history: [],
   };
 }
@@ -44,8 +45,9 @@ export function cloneState(state: GameState): GameState {
     freeCells: [...state.freeCells],
     foundations: state.foundations.map(f => [...f]),
     tableau: state.tableau.map(col => [...col]),
-    moveCount: state.moveCount,
     elapsedSeconds: state.elapsedSeconds,
+    gameStartTime: state.gameStartTime,
+    moveCount: state.moveCount,
     history: [...state.history],
   };
 }

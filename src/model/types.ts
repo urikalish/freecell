@@ -22,9 +22,9 @@ export interface GameState {
   freeCells: (Card | null)[];
   foundations: Card[][];
   tableau: Card[][];
-  moveCount: number;
   gameStartTime: number;
   elapsedSeconds: number;
+  moveCount: number;
   history: HistoryEntry[];
 }
 
