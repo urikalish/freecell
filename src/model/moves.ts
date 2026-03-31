@@ -85,6 +85,7 @@ export function findValidMoves(state: GameState, from: Location): MoveCandidate[
     for (let i = 0; i < 4; i++) {
       if (canPlaceOnFoundation(cards[0], state.foundations[i], i)) {
         candidates.push({ from, to: { zone: 'foundation', index: i }, cards: [...cards] });
+        if ([1, 2].includes(cards[0].rank)) return candidates; // Aces and Twos can only go to foundation
       }
     }
   }
@@ -96,7 +97,7 @@ export function findValidMoves(state: GameState, from: Location): MoveCandidate[
       if (from.zone === 'tableau' && from.index === i) continue;
       const col = state.tableau[i];
       if (col.length === 0) {
-        if (cards[0].rank !== 1 && cards.length <= maxMovableCards(state, true)) {
+        if (cards.length <= maxMovableCards(state, true)) {
           candidates.push({ from, to: { zone: 'tableau', index: i }, cards: [...cards] });
         }
       } else if (canPlaceOnTableau(cards, col)) {
@@ -106,7 +107,7 @@ export function findValidMoves(state: GameState, from: Location): MoveCandidate[
   }
 
   // To free cells (not allowed from another free cell, and only single cards)
-  if (from.zone !== 'freecell' && cards.length === 1 && cards[0].rank !== 1)
+  if (from.zone !== 'freecell' && cards.length === 1)
     for (let i = 0; i < 4; i++) {
       if (state.freeCells[i] === null) {
         candidates.push({ from, to: { zone: 'freecell', index: i }, cards: [...cards] });
