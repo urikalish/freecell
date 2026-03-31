@@ -70,6 +70,81 @@ function canPlaceOnTableau(cards: Card[], col: Card[]): boolean {
   return cards[0].rank === top.rank - 1 && suitColor(cards[0].suit) !== suitColor(top.suit);
 }
 
+export function isSafeForFoundation(card: Card, state: GameState): boolean {
+  // Aces and twos are always safe
+  if (card.rank <= 2) return true;
+
+  const oppositeColor = suitColor(card.suit) === 'red' ? 'black' : 'red';
+  const neededRank = card.rank - 1;
+
+  // Check that every foundation pile of the opposite color has reached
+  // at least the needed rank (card.rank - 1)
+  for (let i = 0; i < 4; i++) {
+    const suit = FOUNDATION_SUIT_ORDER[i];
+    if (suitColor(suit) !== oppositeColor) continue;
+    if (state.foundations[i].length < neededRank) return false;
+  }
+
+  return true;
+}
+
+export function findSafeFoundationMoves(state: GameState): MoveCandidate[] {
+  const moves: MoveCandidate[] = [];
+  let currentState = state;
+  let found = true;
+
+  while (found) {
+    found = false;
+
+    // Check free cells
+    for (let i = 0; i < 4; i++) {
+      const card = currentState.freeCells[i];
+      if (!card) continue;
+      for (let fi = 0; fi < 4; fi++) {
+        if (
+          canPlaceOnFoundation(card, currentState.foundations[fi], fi) &&
+          isSafeForFoundation(card, currentState)
+        ) {
+          const move: MoveCandidate = {
+            from: { zone: 'freecell', index: i },
+            to: { zone: 'foundation', index: fi },
+            cards: [card],
+          };
+          moves.push(move);
+          currentState = executeMove(currentState, move);
+          found = true;
+          break;
+        }
+      }
+    }
+
+    // Check tableau columns (bottom card only)
+    for (let i = 0; i < 8; i++) {
+      const col = currentState.tableau[i];
+      if (col.length === 0) continue;
+      const card = col[col.length - 1];
+      for (let fi = 0; fi < 4; fi++) {
+        if (
+          canPlaceOnFoundation(card, currentState.foundations[fi], fi) &&
+          isSafeForFoundation(card, currentState)
+        ) {
+          const move: MoveCandidate = {
+            from: { zone: 'tableau', index: i, cardIndex: col.length - 1 },
+            to: { zone: 'foundation', index: fi },
+            cards: [card],
+          };
+          moves.push(move);
+          currentState = executeMove(currentState, move);
+          found = true;
+          break;
+        }
+      }
+    }
+  }
+
+  return moves;
+}
+
 export function findValidMoves(state: GameState, from: Location): MoveCandidate[] {
   const candidates: MoveCandidate[] = [];
   const cards = getCardsAt(state, from);

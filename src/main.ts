@@ -6,7 +6,13 @@ import './styles/animations.css';
 
 import { GameState, Location, MoveCandidate, Card } from './model/types';
 import { createNewGame } from './model/deck';
-import { findValidMoves, executeMove, undoLastMove, isGameWon } from './model/moves';
+import {
+  findValidMoves,
+  executeMove,
+  undoLastMove,
+  isGameWon,
+  findSafeFoundationMoves,
+} from './model/moves';
 import { renderGame, renderVictoryOverlay, renderConfirmOverlay, formatTime } from './ui/renderer';
 import { THEMES, loadThemeIndex, saveThemeIndex, applyTheme } from './ui/themes';
 import { getLocationFromElement, getMovableCards } from './ui/interactions';
@@ -24,6 +30,13 @@ let gameStarted = false;
 let confirmOpen = false;
 
 const app = document.getElementById('app')!;
+
+function autoMoveToFoundations(): void {
+  const safeMoves = findSafeFoundationMoves(state);
+  for (const safeMove of safeMoves) {
+    state = executeMove(state, safeMove);
+  }
+}
 
 function render(): void {
   app.innerHTML = renderGame(state, selectedCardId, validTargets);
@@ -82,6 +95,10 @@ function tryMove(move: MoveCandidate): void {
 
   clearSelection();
   state = executeMove(state, move);
+
+  // Auto-move safe cards to foundations
+  autoMoveToFoundations();
+
   render();
   startTimerIfNeeded();
 
@@ -218,6 +235,10 @@ function newGame(): void {
   gameStarted = false;
   clearSelection();
   state = createNewGame();
+
+  // Auto-move any initially safe cards
+  autoMoveToFoundations();
+
   render();
   isAnimating = true;
   animateDeal(() => {
