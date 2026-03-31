@@ -21,7 +21,7 @@
     border: 1px solid var(--card-border);
     display: flex;
     flex-direction: column;
-    padding: 0.5vw;
+    padding: 0.5vw 1vw;
     position: relative;
     overflow: hidden;
     box-shadow:
