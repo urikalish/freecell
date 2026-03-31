@@ -49,7 +49,7 @@
 }
 
 .card-value {
-    font-family: 'Federo', serif;
+    font-family: 'Federo', sans-serif;
     font-weight: 400;
     font-size: var(--font-card-value);
     line-height: 1;
