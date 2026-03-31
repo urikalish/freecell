@@ -371,29 +371,6 @@
     margin-bottom: 2vw;
 }
 
-.btn-new-game {
-    background-color: var(--panel-bg);
-    margin-top: 3vw;
-    padding: 2vw 6vw;
-    font-size: 3.5vw;
-    font-family: 'Federo', sans-serif;
-    font-style: italic;
-    border: 1px solid var(--brass-dark);
-    color: var(--brass-light);
-    border-radius: 4px;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    -webkit-tap-highlight-color: transparent;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-.btn-new-game:active {
-    transform: scale(0.96);
-    border-color: var(--brass);
-    box-shadow: var(--gold-glow);
-}
-
 /* === LANDSCAPE FALLBACK === */
 @media screen and (orientation: landscape) {
     #app::before {
