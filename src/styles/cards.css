@@ -39,7 +39,7 @@
     left: 0;
     bottom: 0;
     width: 1px;
-    background-color: hsl(45, 40%, 95%);
+    background-color: var(--card-highlight);
 }
 
 .card-inner::after {
@@ -49,7 +49,7 @@
     left: 0;
     right: 0;
     height: 1px;
-    background-color: hsl(45, 40%, 95%);
+    background-color: var(--card-highlight);
 }
 
 .card-value-and-suit {
