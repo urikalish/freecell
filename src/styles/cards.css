@@ -80,8 +80,8 @@
 }
 
 .card-suit-center svg {
-    width: var(--font-card-suit-center);
-    height: var(--font-card-suit-center);
+    width: var(--large-suit-size);
+    height: var(--large-suit-size);
 }
 
 .card-engrave {

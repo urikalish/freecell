@@ -150,13 +150,14 @@
 }
 
 .foundation-suit-icon {
-    height: 4.5vw;
+    width: var(--large-suit-size);
+    height: var(--large-suit-size);
     color: rgba(201, 168, 76, 0.2);
 }
 
 .foundation-suit-icon svg {
-    width: 4.5vw;
-    height: 4.5vw;
+    width: 100%;
+    height: 100%;
 }
 
 .foundation-suit-icon.s-ruby {

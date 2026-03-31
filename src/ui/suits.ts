@@ -6,7 +6,7 @@ export function suitSvg(suit: Suit): string {
   if (suit === Suit.Spades) {
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
     <path d="m271.45 410.63c0 10.357-16.019 17.3-16.188 25.781 0 4.653 3.6576 8.4242 8.1681 8.4242 3.3919 0 6.2997-2.1329 7.5339-5.1695-1.9944 8.7938-9.7438 8.7061-9.7438 8.7061h20.417s-7.7123-0.0486-9.7296-8.6951c1.2368 3.0307 4.1426 5.1584 7.5303 5.1584 4.5106 0 8.1663-3.7712 8.1663-8.4242 0.01-8.8183-16.154-15.425-16.154-25.781z" style="stroke-linejoin:round;stroke:currentColor;stroke-linecap:round;stroke-width:0.0338;fill:currentColor" transform="translate(-146.2200,-238.3586) scale(0.582906)" />
-  </svg>`;
+</svg>`;
   }
   if (suit === Suit.Hearts) {
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">

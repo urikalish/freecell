@@ -212,7 +212,7 @@ function bindEvents(): void {
 }
 
 function requestNewGame(): void {
-  if (!state || state.moveCount === 0) {
+  if (!state || state.elapsedSeconds === 0) {
     newGame();
     return;
   }
