@@ -258,11 +258,12 @@ function undo(): void {
 function startTimerIfNeeded(): void {
   if (gameStarted) return;
   gameStarted = true;
+  state.gameStartTime = Date.now();
   timerInterval = setInterval(() => {
-    state.elapsedSeconds++;
+    state.elapsedSeconds = Math.floor((Date.now() - state.gameStartTime) / 1000);
     const timerEl = document.getElementById('timer');
     if (timerEl) timerEl.textContent = formatTime(state.elapsedSeconds);
-  }, 1000);
+  }, 250);
 }
 
 function stopTimer(): void {

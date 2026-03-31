@@ -23,6 +23,7 @@ export interface GameState {
   foundations: Card[][];
   tableau: Card[][];
   moveCount: number;
+  gameStartTime: number;
   elapsedSeconds: number;
   history: HistoryEntry[];
 }
