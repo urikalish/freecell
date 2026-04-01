@@ -13,7 +13,7 @@ body {
     overflow: clip;
     font-family: 'Federo', sans-serif;
     background: var(--surface-bg);
-    color: var(--parchment);
+    color: var(--color-parchment);
     touch-action: manipulation;
     -webkit-user-select: none;
     user-select: none;

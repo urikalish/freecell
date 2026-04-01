@@ -129,11 +129,11 @@ All sizing and colour tokens are declared in `variables.css`. Key groups:
 
 | Prefix | Purpose |
 |---|---|
-| `--brass*` | Primary accent colour family |
-| `--red-suit` | Red card |
-| `--black-suit` | Black card |
+| `--color-brass*` | Primary accent colour family |
+| `--color-suit-red` | Red card |
+| `--color-suit-black` | Black card |
 | `--surface-bg` | Table surface background |
-| `--parchment*` | Text / UI element colours |
+| `--color-parchment*` | Text / UI element colours |
 | `--card-*` | Card dimensions (`--card-height`, `--card-radius`, `--card-overlap`) |
 | `--font-*` | Responsive font sizes (all in `vw`) |
 | `--cell-gap`, `--card-gap` | Spacing between cells and columns |

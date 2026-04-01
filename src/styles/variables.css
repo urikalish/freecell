@@ -1,40 +1,30 @@
 :root {
-    /* Default theme fallbacks (Original Brass) */
+    /* Default theme fallbacks */
+    --color-brass: #b0a080;
+    --color-brass-light: hsl(43, 38%, 71%);
+    --color-brass-dark: hsl(40, 27%, 34%);
+    --color-parchment: hsl(40, 33%, 83%);
+    --color-parchment-dim: hsl(44, 24%, 70%);
+    --color-suit-red: #c33;
+    --color-suit-black: #333;
+    --glow-gold: 0 0 12px rgba(176, 160, 128, 0.25), 0 0 30px rgba(176, 160, 128, 0.08);
     --surface-bg: #000;
-    --brass: #b0a080;
-    --brass-light: hsl(43, 38%, 71%);
-    --brass-dark: hsl(40, 27%, 34%);
-    --parchment: hsl(40, 33%, 83%);
-    --parchment-dim: hsl(44, 24%, 70%);
-    --red-suit: #c33;
-    --black-suit: #333;
+    --info-bg: hsla(0, 0%, 0%, 0.2);
     --card-bg: linear-gradient(145deg, hsl(45, 40%, 90%), hsl(45, 40%, 70%));
-    --card-bg--movable: linear-gradient(145deg, hsl(45, 40%, 95%), hsl(45, 40%, 75%));
-    --selected-card-bg: linear-gradient(145deg, hsl(45, 40%, 100%), hsl(45, 40%, 80%));
+    --card-bg-movable: linear-gradient(145deg, hsl(45, 40%, 95%), hsl(45, 40%, 75%));
+    --card-bg-selected: linear-gradient(145deg, hsl(45, 40%, 100%), hsl(45, 40%, 80%));
     --card-highlight: hsl(45, 40%, 95%);
     --card-border: rgba(112, 96, 64, 0.2);
-    --bg-gradient: linear-gradient(
-        170deg,
-        hsl(324, 22%, 6%) 0%,
-        hsl(324, 22%, 10%) 30%,
-        hsl(324, 22%, 7%) 60%,
-        hsl(324, 22%, 4%) 100%
-    );
-    --info-bg: hsla(0, 0%, 0%, 0.2);
-    --gold-glow: 0 0 12px rgba(176, 160, 128, 0.25), 0 0 30px rgba(176, 160, 128, 0.08);
-    --panel-bg: hsla(0, 0%, 0%, 0.2);
 
-    /* Sizing - mobile portrait */
     --card-height: 15.7vw;
     --card-gap: 1vw;
     --card-radius: 0.8vw;
     --card-overlap: 9.6vw;
-    --large-suit-size: 7vw;
+    --img-size-suit-large: 7vw;
     --cell-gap: 1vw;
     --hud-height: auto;
     --action-bar-height: auto;
 
-    /* Typography */
     --font-title: 3.5vw;
     --font-title-sub: 2vw;
     --font-stat-label: 1.8vw;
@@ -46,10 +36,9 @@
     --font-btn-icon: 3.6vw;
     --font-info: 1.8vw;
 
-    /* Animation */
-    --transition-fast: 0.15s;
-    --transition-normal: 0.25s;
-    --transition-slow: 0.4s;
+    --animation-fast: 0.15s;
+    --animation-normal: 0.25s;
+    --animation-slow: 0.4s;
 
     --card-index: 0;
 }

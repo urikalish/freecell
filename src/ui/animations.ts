@@ -102,11 +102,11 @@ export function animateVictory(): void {
   if (!container) return;
 
   const colors = [
-    'var(--brass)',
-    'var(--red-suit)',
-    'var(--black-suit)',
-    'var(--brass-light)',
-    'var(--parchment)',
+    'var(--color-brass)',
+    'var(--color-suit-red)',
+    'var(--color-suit-black)',
+    'var(--color-brass-light)',
+    'var(--color-parchment)',
   ];
 
   for (let burst = 0; burst < 6; burst++) {
