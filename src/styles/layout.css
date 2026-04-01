@@ -371,6 +371,24 @@
     margin-bottom: 2vw;
 }
 
+.btn-new-game {
+    background-color: var(--panel-bg);
+    border: 1px solid var(--brass-dark);
+    border-radius: 4px;
+    padding: 1.8vw 4vw;
+    color: var(--parchment-dim);
+    font-family: 'Federo', sans-serif;
+    font-style: italic;
+    font-size: 3vw;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn-new-game:active {
+    transform: scale(0.96);
+}
+
 /* === LANDSCAPE FALLBACK === */
 @media screen and (orientation: landscape) {
     #app::before {
