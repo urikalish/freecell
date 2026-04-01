@@ -5,8 +5,8 @@
     --color-brass-dark: hsl(40, 27%, 34%);
     --color-parchment: hsl(40, 33%, 83%);
     --color-parchment-dim: hsl(44, 24%, 70%);
-    --color-suit-red: #c33;
-    --color-suit-black: #333;
+    --color-suit-red: #a00;
+    --color-suit-black: #111;
     --glow-gold: 0 0 12px rgba(176, 160, 128, 0.25), 0 0 30px rgba(176, 160, 128, 0.08);
     --surface-bg: #000;
     --info-bg: hsla(0, 0%, 0%, 0.2);
