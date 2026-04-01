@@ -10,10 +10,10 @@
     --glow-gold: 0 0 12px rgba(176, 160, 128, 0.25), 0 0 30px rgba(176, 160, 128, 0.08);
     --surface-bg: #000;
     --info-bg: hsla(0, 0%, 0%, 0.2);
-    --card-bg: linear-gradient(145deg, hsl(45, 40%, 90%), hsl(45, 40%, 70%));
-    --card-bg-movable: linear-gradient(145deg, hsl(45, 40%, 95%), hsl(45, 40%, 75%));
-    --card-bg-selected: linear-gradient(145deg, hsl(45, 40%, 100%), hsl(45, 40%, 80%));
-    --card-highlight: hsl(45, 40%, 95%);
+    --card-bg-dark: linear-gradient(145deg, hsl(45, 40%, 85%), hsl(45, 40%, 75%));
+    --card-bg-regular: linear-gradient(145deg, hsl(45, 40%, 95%), hsl(45, 40%, 85%));
+    --card-bg-light: linear-gradient(145deg, hsl(45, 40%, 100%), hsl(45, 40%, 90%));
+    --card-highlight: hsl(45, 40%, 100%);
     --card-border: rgba(112, 96, 64, 0.2);
 
     --card-height: 15.7vw;
