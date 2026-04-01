@@ -189,8 +189,7 @@
     justify-content: center;
     background: url(/img/separator.svg) no-repeat center -8px;
     background-size: cover;
-    filter: sepia(1);
-    opacity: 0.2;
+    opacity: 0.3;
 }
 
 /* === TABLEAU === */
