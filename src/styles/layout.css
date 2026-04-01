@@ -159,11 +159,11 @@
     height: 100%;
 }
 
-.foundation-suit-icon.s-ruby {
+.foundation-suit-icon.s-red {
     color: var(--color-suit-red);
 }
 
-.foundation-suit-icon.s-emerald {
+.foundation-suit-icon.s-black {
     color: var(--color-suit-black);
 }
 

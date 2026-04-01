@@ -105,7 +105,7 @@ interface Theme {
 }
 ```
 
-`applyTheme(theme)` writes each `vars` entry onto `document.documentElement.style`, overriding the base values from `variables.css`, and updates the `meta[name="theme-color"]` tag. The selected theme index is persisted to `localStorage`.
+`applyTheme(theme)` writes each `vars` entry onto `document.documentElement.style`, overriding the base values from `variables.css`, and updates the `meta[name="theme-color"]` tag. The selected theme index is persisted to `localStorage` but currently unused when loading.
 
 Themes are identified by hue angle and each override only `--surface-bg` via `hsl(hue, 22%, lightness)`. The lightness value is fine-tuned per hue so perceived brightness stays consistent across the chromatic wheel.
 
@@ -146,7 +146,7 @@ All sizing and colour tokens are declared in `variables.css`. Key groups:
 | `--cell-gap`, `--card-gap` | Spacing between cells and columns |
 
 Two Google Fonts are loaded in `index.html`:
-- **Libre Bodoni** (italic, wght 400–700) — titles, subtitles, card values, engraved rank; base body font
+- **Libre Bodoni** (italic, wght 400–700) — titles, subtitles, card values, roman rank; base body font
 - **Federo** — stat labels, stat values, buttons, overlays
 
 ---

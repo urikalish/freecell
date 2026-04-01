@@ -25,7 +25,7 @@ export function formatTime(seconds: number): string {
 }
 
 function renderCard(card: Card, extraClasses: string = '', dataAttrs: string = ''): string {
-  const colorClass = suitColor(card.suit) === Color.Red ? 'ruby' : 'emerald';
+  const colorClass = suitColor(card.suit) === Color.Red ? 'red' : 'black';
   const rankLabel = RANK_LABELS[card.rank];
   const roman = ROMAN[card.rank];
   return `<div class="card ${colorClass} ${extraClasses}" data-card-id="${card.id}" ${dataAttrs}>
@@ -35,7 +35,7 @@ function renderCard(card: Card, extraClasses: string = '', dataAttrs: string = '
         <span class="card-suit">${suitSvg(card.suit)}</span>
       </div>
       <span class="card-suit-center">${suitSvg(card.suit)}</span>
-      <span class="card-engrave">${roman}</span>
+      <span class="card-roman">${roman}</span>
     </div>
   </div>`;
 }
@@ -63,7 +63,7 @@ export function renderGame(
       const filled = topCard ? 'filled' : '';
       const validClass = isValid ? 'valid-target' : '';
       const suit = FOUNDATION_SUIT_ORDER[i];
-      //const colorClass = suitColor(suit) === Color.Red ? 's-ruby' : 's-emerald';
+      //const colorClass = suitColor(suit) === Color.Red ? 's-red' : 's-black';
       const prevCard = pile.length > 1 ? pile[pile.length - 2] : null;
       const prevLayer = prevCard ? renderCard(prevCard, 'foundation-prev', '') : '';
       const inner = topCard
