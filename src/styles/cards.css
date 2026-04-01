@@ -31,6 +31,9 @@
         background 0.6s ease,
         border-color 0.6s ease;
 }
+.card.movable .card-inner {
+    background: var(--card-bg--movable);
+}
 
 .card-inner::before {
     content: '';
