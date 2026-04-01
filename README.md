@@ -62,6 +62,7 @@ index.html              # Shell — Google Fonts, #app mount point
 | `foundations` | `Card[][]` | 4 foundation piles, ordered by `FOUNDATION_SUIT_ORDER` |
 | `tableau` | `Card[][]` | 8 tableau columns |
 | `moveCount` | `number` | Incremented on every `executeMove` call |
+| `gameStartTime` | `number` | Unix timestamp (ms) set on the first move; used to compute `elapsedSeconds` |
 | `elapsedSeconds` | `number` | Mutated in place by the timer interval |
 | `history` | `HistoryEntry[]` | Full move history enabling unbounded undo |
 
@@ -104,20 +105,22 @@ interface Theme {
 }
 ```
 
-`applyTheme(theme)` writes each `vars` entry onto `document.documentElement.style`, overriding the base values from `variables.css`. The selected theme index is persisted to `localStorage`.
+`applyTheme(theme)` writes each `vars` entry onto `document.documentElement.style`, overriding the base values from `variables.css`, and updates the `meta[name="theme-color"]` tag. The selected theme index is persisted to `localStorage`.
 
-| Theme name | Description |
+Themes are identified by hue angle and each override only `--surface-bg` via `hsl(hue, 22%, lightness)`. The lightness value is fine-tuned per hue so perceived brightness stays consistent across the chromatic wheel.
+
+| Theme ID | Hue angle |
 |---|---|
-| Ashes of the Colosseum | Moonlit pewter & steel |
-| Sunfall Over Babylon | Rich wine & antique gold |
-| Nightshade Laboratory | Oxidised verdigris & copper |
-| The Forest Oracle | Photographic sepia tones |
-| Patina of Lost Empires | Aged manuscript & foxed paper |
-| The Ice Meridian | Dim workshop & cool ash |
-| Dusk Over the Iron Sea | Belle Epoque elegance |
-| Nightfall Over the Last City | Warm charcoal & amber smoke |
-| The Hour the Orchids Burned | Warm dusk & glowing embers |
-| The Velvet Apocalypse | Dark jade & antique brass |
+| `108` | 108° |
+| `144` | 144° |
+| `180` | 180° |
+| `216` | 216° |
+| `252` | 252° |
+| `288` | 288° |
+| `324` | 324° |
+| `0` | 0° |
+| `36` | 36° |
+| `72` | 72° |
 
 To add a theme, append an entry to the `THEMES` array in `themes.ts` — no other changes needed.
 
@@ -129,13 +132,17 @@ All sizing and colour tokens are declared in `variables.css`. Key groups:
 
 | Prefix | Purpose |
 |---|---|
-| `--color-brass*` | Primary accent colour family |
-| `--color-suit-red` | Red card |
-| `--color-suit-black` | Black card |
-| `--surface-bg` | Table surface background |
+| `--color-brass*` | Primary accent colour family (`brass`, `brass-light`, `brass-dark`) |
+| `--color-suit-red` | Red card suit colour |
+| `--color-suit-black` | Black card suit colour |
 | `--color-parchment*` | Text / UI element colours |
+| `--glow-gold` | Gold box-shadow glow |
+| `--surface-bg` | Table surface background |
+| `--card-bg*` | Card background gradients (default, `movable`, `selected`) |
 | `--card-*` | Card dimensions (`--card-height`, `--card-radius`, `--card-overlap`) |
+| `--img-size-suit-large` | Large suit icon size |
 | `--font-*` | Responsive font sizes (all in `vw`) |
+| `--animation-*` | Animation durations (`fast`, `normal`, `slow`) |
 | `--cell-gap`, `--card-gap` | Spacing between cells and columns |
 
 Two Google Fonts are loaded in `index.html`:
@@ -159,6 +166,7 @@ Two Google Fonts are loaded in `index.html`:
 ## Key Invariants
 
 - **No test suite** — correctness is enforced by TypeScript strict mode and ESLint.
+- After every `executeMove` call (and after `newGame`), `autoMoveToFoundations` runs `findSafeFoundationMoves` to automatically advance unambiguous cards to foundations.
 - `isAnimating` flag gates all input during the deal animation only; card-move animations do not block input.
 - Foundation suit order is fixed (defined in `types.ts` as `FOUNDATION_SUIT_ORDER`, re-exported from `suits.ts`) and must match the order foundations are stored in `GameState.foundations`.
 - Card IDs are derived as `${suit}-${rank}` and are stable across clones — safe to use as DOM `data-card-id` keys.

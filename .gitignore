@@ -1,5 +1,6 @@
+.env
 .history/
 .idea/
+_debug_*
 dist/
 node_modules/
-.env
