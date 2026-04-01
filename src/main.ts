@@ -96,13 +96,22 @@ function tryMove(move: MoveCandidate): void {
   clearSelection();
   state = executeMove(state, move);
 
-  // Auto-move safe cards to foundations
-  autoMoveToFoundations();
+  // Capture source rects for auto-moves before re-render, then execute them
+  const safeMoves = findSafeFoundationMoves(state);
+  const autoSourceRects: { id: string; rect: DOMRect }[] = [];
+  for (const safeMove of safeMoves) {
+    for (const card of safeMove.cards) {
+      const el = document.querySelector(`[data-card-id="${card.id}"]`) as HTMLElement | null;
+      const rect = el?.getBoundingClientRect() ?? null;
+      if (rect) autoSourceRects.push({ id: card.id, rect });
+    }
+    state = executeMove(state, safeMove);
+  }
 
   render();
   startTimerIfNeeded();
 
-  animateCardMove(sourceRects);
+  animateCardMove([...sourceRects, ...autoSourceRects]);
 }
 function handleTap(location: Location, cardId: string | null): void {
   if (isAnimating) return;
