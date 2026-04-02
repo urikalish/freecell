@@ -131,6 +131,7 @@ Two Google Fonts are loaded in `index.html`:
 ## Key Invariants
 
 - **No test suite** — correctness is enforced by TypeScript strict mode and ESLint.
+- `isGameWon` returns `true` when all four foundations contain exactly 13 cards (`foundations.every(f => f.length === 13)`).
 - After every `executeMove` call (and after `newGame`), `autoMoveToFoundations` runs `findSafeFoundationMoves` to automatically advance unambiguous cards to foundations.
 - `isAnimating` flag gates all input during the deal animation only; card-move animations do not block input.
 - Foundation suit order is fixed (defined in `types.ts` as `FOUNDATION_SUIT_ORDER`, re-exported from `suits.ts`) and must match the order foundations are stored in `GameState.foundations`.
@@ -138,11 +139,19 @@ Two Google Fonts are loaded in `index.html`:
 
 ---
 
+## Browser Support
+
+Targets modern evergreen browsers. Tested on desktop Chrome / Firefox / Safari and mobile Chrome / Safari.
+
+> **SVG assets** (`public/img/*.svg`) must not contain an XML declaration or external DOCTYPE — both can cause mobile Chrome to silently refuse to render the file as a CSS `background-image`.
+
+---
+
 ## Tooling
 
 | Tool | Config |
 |---|---|
-| TypeScript 5.9 | `tsconfig.json` — strict, `noUnusedLocals`, `noUnusedParameters` |
+| TypeScript 5.9 | `tsconfig.json` — strict, `noUnusedLocals`, `noUnusedParameters`, `rootDir: ./src` |
 | Vite 8 | `vite.config.ts` — root `.`, output `dist/` |
 | ESLint 10 + typescript-eslint | `eslint.config.js` |
 | Prettier 3.8 | `.prettierrc` |
