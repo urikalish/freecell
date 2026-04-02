@@ -61,7 +61,7 @@ export function getMovableCards(state: GameState, location: Location): Card[] | 
     const col = state.tableau[location.index];
     if (col.length === 0) return null;
     const cardIndex = location.cardIndex ?? col.length - 1;
-    const movableLen = getMovableSequenceLength(col);
+    const movableLen = getMovableSequenceLength(col, state);
     const firstMovable = col.length - movableLen;
     if (cardIndex < firstMovable) return null;
     return col.slice(cardIndex);

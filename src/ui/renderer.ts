@@ -78,7 +78,7 @@ export function renderGame(
   const tableauHtml = state.tableau
     .map((col, i) => {
       const isValid = validTargets.has(`tableau-${i}`);
-      const movableLen = getMovableSequenceLength(col);
+      const movableLen = getMovableSequenceLength(col, state);
       const selectedIdx = col.findIndex(c => c.id === selectedCardId);
       const cardsHtml = col
         .map((card, ci) => {

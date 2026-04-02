@@ -31,7 +31,7 @@ function isDescendingAlternating(cards: Card[]): boolean {
   return true;
 }
 
-export function getMovableSequenceLength(col: Card[]): number {
+export function getMovableSequenceLength(col: Card[], state: GameState): number {
   if (col.length === 0) return 0;
   let len = 1;
   for (let i = col.length - 2; i >= 0; i--) {
@@ -39,7 +39,7 @@ export function getMovableSequenceLength(col: Card[]): number {
     if (suitColor(col[i].suit) === suitColor(col[i + 1].suit)) break;
     len++;
   }
-  return len;
+  return Math.min(len, maxMovableCards(state, false));
 }
 
 function emptyFreeCellCount(state: GameState): number {
