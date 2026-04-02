@@ -30,4 +30,5 @@ body {
     z-index: 10;
     max-width: 420px;
     margin: 0 auto;
+    background: url(img/vine.svg) no-repeat -23vw bottom / 80vw;
 }
