@@ -96,7 +96,7 @@ function render(): void {
 
   if (isGameWon(state)) {
     app.insertAdjacentHTML('beforeend', renderVictoryOverlay());
-    setTimeout(() => animateVictory(), 1000);
+    setTimeout(() => animateVictory(), 2000);
     stopTimer();
   }
 
