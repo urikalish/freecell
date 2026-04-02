@@ -193,7 +193,7 @@ export function findValidMoves(state: GameState, from: Location): MoveCandidate[
   return candidates;
 }
 
-export function executeMove(state: GameState, move: MoveCandidate): GameState {
+export function executeMove(state: GameState, move: MoveCandidate, countMove = true): GameState {
   const newState = cloneState(state);
 
   // Remove cards from source
@@ -215,7 +215,7 @@ export function executeMove(state: GameState, move: MoveCandidate): GameState {
     newState.tableau[move.to.index].push(...move.cards);
   }
 
-  newState.moveCount++;
+  if (countMove) newState.moveCount++;
   const historyEntry: HistoryEntry = {
     from: move.from,
     to: move.to,

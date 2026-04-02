@@ -34,7 +34,7 @@ const app = document.getElementById('app')!;
 function autoMoveToFoundations(): void {
   const safeMoves = findSafeFoundationMoves(state);
   for (const safeMove of safeMoves) {
-    state = executeMove(state, safeMove);
+    state = executeMove(state, safeMove, false);
   }
 }
 
@@ -105,7 +105,7 @@ function tryMove(move: MoveCandidate): void {
       const rect = el?.getBoundingClientRect() ?? null;
       if (rect) autoSourceRects.push({ id: card.id, rect });
     }
-    state = executeMove(state, safeMove);
+    state = executeMove(state, safeMove, false);
   }
 
   render();
