@@ -32,6 +32,6 @@ body {
     margin: 0 auto;
     background-image: url(/img/vine.svg);
     background-repeat: no-repeat;
-    background-position: left 1vw bottom;
+    background-position: left 1vw bottom -7vw;
     background-size: 80vw;
 }
