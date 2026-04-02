@@ -229,7 +229,7 @@
 /* === ACTION BAR === */
 .action-bar {
     display: flex;
-    justify-content: center;
+    justify-content: end;
     gap: 2.5vw;
     padding: 1.5vw 2vw 2.5vw;
     margin-top: auto;
