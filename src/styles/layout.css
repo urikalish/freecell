@@ -106,13 +106,13 @@
 
 .cell-group {
     display: flex;
-    gap: 0.5vw;
+    gap: 1vw;
 }
 
 .free-cell,
 .foundation-cell {
-    width: calc(10.5vw + 2px);
-    height: calc((10.5vw / 2.5 * 3.5) + 2px);
+    width: 10.6vw;
+    height: calc(10.6vw / 2.5 * 3.5);
     padding: 1.5vw;
     border-radius: var(--card-radius);
     background: rgba(201, 168, 76, 0.03);
@@ -167,8 +167,7 @@
 
 .free-cell.filled,
 .foundation-cell.filled {
-    border-style: solid;
-    border-color: var(--card-border);
+    border: none;
 }
 
 /* === SEPARATOR === */
