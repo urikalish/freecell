@@ -7,6 +7,7 @@
     --color-parchment-dim: hsl(44, 24%, 70%);
     --color-suit-red: #a00;
     --color-suit-black: #111;
+    --color-slot: #555533;
     --glow-gold: 0 0 12px rgba(176, 160, 128, 0.25), 0 0 30px rgba(176, 160, 128, 0.08);
     --surface-bg: #000;
     --panel-bg: hsla(0, 0%, 0%, 0.2);
