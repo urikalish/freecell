@@ -258,6 +258,5 @@ export function undoLastMove(state: GameState): GameState | null {
 }
 
 export function isGameWon(state: GameState): boolean {
-  return true;
   return state.foundations.every(f => f.length === 13);
 }
