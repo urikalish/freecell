@@ -25,14 +25,13 @@ yarn full     # format + lint + build (run before committing)
 
 ```
 src/
-  main.ts               # App entry — state, event loop, game lifecycle
+  main.ts               # App entry — state, event loop, game lifecycle, DOM hit-testing
   model/
     types.ts            # Core types: Card, GameState, Location, MoveCandidate
     deck.ts             # Deck creation, shuffle, state cloning
-    moves.ts            # Move validation, execution, undo
+    moves.ts            # Move validation, execution, undo, getMovableCards
   ui/
     renderer.ts         # renderGame, overlay renderers (victory/confirm), formatTime
-    interactions.ts     # DOM hit-testing → Location / Card resolution
     animations.ts       # Deal, card-move FLIP, land, victory, button press
     suits.ts            # SVG helpers for suit icons; foundation suit order
   styles/

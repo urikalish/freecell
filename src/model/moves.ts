@@ -260,3 +260,21 @@ export function undoLastMove(state: GameState): GameState | null {
 export function isGameWon(state: GameState): boolean {
   return state.foundations.every(f => f.length === 13);
 }
+
+export function getMovableCards(state: GameState, location: Location): Card[] | null {
+  if (location.zone === 'freecell') {
+    const card = state.freeCells[location.index];
+    return card ? [card] : null;
+  }
+  if (location.zone === 'foundation') return null;
+  if (location.zone === 'tableau') {
+    const col = state.tableau[location.index];
+    if (col.length === 0) return null;
+    const cardIndex = location.cardIndex ?? col.length - 1;
+    const movableLen = getMovableSequenceLength(col, state);
+    const firstMovable = col.length - movableLen;
+    if (cardIndex < firstMovable) return null;
+    return col.slice(cardIndex);
+  }
+  return null;
+}

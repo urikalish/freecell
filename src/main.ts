@@ -12,9 +12,9 @@ import {
   undoLastMove,
   isGameWon,
   findSafeFoundationMoves,
+  getMovableCards,
 } from './model/moves';
 import { renderGame, renderVictoryOverlay, renderConfirmOverlay, formatTime } from './ui/renderer';
-import { getLocationFromElement, getMovableCards } from './ui/interactions';
 import { animateDeal, animateButtonPress, animateVictory, animateCardMove } from './ui/animations';
 
 let state: GameState;
@@ -28,6 +28,56 @@ let gameStarted = false;
 let confirmOpen = false;
 
 const app = document.getElementById('app')!;
+
+function getLocationFromElement(
+  el: HTMLElement,
+): { location: Location; cardId: string | null } | null {
+  const cardEl = el.closest('.card') as HTMLElement | null;
+  const freeCellEl = el.closest('.free-cell') as HTMLElement | null;
+  const foundationEl = el.closest('.foundation-cell') as HTMLElement | null;
+  const colEl = el.closest('.column') as HTMLElement | null;
+
+  if (cardEl) {
+    const zone = cardEl.dataset.zone || cardEl.parentElement?.dataset.zone;
+    const cardId = cardEl.dataset.cardId || null;
+
+    if (zone === 'freecell') {
+      const cell = cardEl.closest('.free-cell') as HTMLElement;
+      const index = parseInt(cell?.dataset.index || '0', 10);
+      return { location: { zone: 'freecell', index }, cardId };
+    }
+    if (zone === 'foundation') {
+      const cell = cardEl.closest('.foundation-cell') as HTMLElement;
+      const index = parseInt(cell?.dataset.index || '0', 10);
+      return { location: { zone: 'foundation', index }, cardId };
+    }
+    if (zone === 'tableau') {
+      const col = parseInt(cardEl.dataset.col || cardEl.parentElement?.dataset.col || '0', 10);
+      const cardIndex = parseInt(
+        cardEl.dataset.cardIndex || cardEl.parentElement?.dataset.cardIndex || '0',
+        10,
+      );
+      return { location: { zone: 'tableau', index: col, cardIndex }, cardId };
+    }
+  }
+
+  if (freeCellEl) {
+    const index = parseInt(freeCellEl.dataset.index || '0', 10);
+    return { location: { zone: 'freecell', index }, cardId: null };
+  }
+
+  if (foundationEl) {
+    const index = parseInt(foundationEl.dataset.index || '0', 10);
+    return { location: { zone: 'foundation', index }, cardId: null };
+  }
+
+  if (colEl) {
+    const index = parseInt(colEl.dataset.index || '0', 10);
+    return { location: { zone: 'tableau', index }, cardId: null };
+  }
+
+  return null;
+}
 
 function autoMoveToFoundations(): void {
   const safeMoves = findSafeFoundationMoves(state);
