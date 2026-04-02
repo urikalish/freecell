@@ -1,7 +1,7 @@
 /* === CARDS === */
 .card {
-    width: 100%;
-    height: var(--card-height);
+    width: 11vw;
+    aspect-ratio: 2.5 / 3.5;
     border-radius: var(--card-radius);
     position: relative;
     flex-shrink: 0;
@@ -184,11 +184,10 @@
 /* Cards in cells */
 .free-cell .card,
 .foundation-cell .card {
-    width: 100%;
-    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
+    width: 10.5vw;
     z-index: 1;
 }
 

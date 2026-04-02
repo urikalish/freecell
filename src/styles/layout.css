@@ -101,19 +101,18 @@
 .cells-row {
     display: flex;
     justify-content: space-between;
-    gap: 4px;
     padding: 0 1.5vw;
 }
 
 .cell-group {
     display: flex;
-    gap: var(--cell-gap);
+    gap: 0.5vw;
 }
 
 .free-cell,
 .foundation-cell {
-    width: calc((11.2vw + 2px) * 0.92);
-    height: calc((var(--card-height) + 2px) * 0.92);
+    width: calc(10.5vw + 2px);
+    height: calc((10.5vw / 2.5 * 3.5) + 2px);
     padding: 1.5vw;
     border-radius: var(--card-radius);
     background: rgba(201, 168, 76, 0.03);
@@ -194,7 +193,7 @@
 
 .tableau {
     display: flex;
-    gap: var(--card-gap);
+    justify-content: space-between;
     flex: 1;
     padding: 0 1.5vw;
     min-height: 0;
@@ -216,7 +215,8 @@
 }
 
 .card-slot {
-    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
     margin-bottom: calc(var(--card-overlap) * -1);
     position: relative;
     z-index: var(--card-index, 0);

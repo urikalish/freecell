@@ -107,7 +107,6 @@ All sizing and colour tokens are declared in `variables.css`. Key groups:
 | `--img-size-suit-large` | Large suit icon size |
 | `--font-*` | Responsive font sizes (all in `vw`) |
 | `--animation-*` | Animation durations (`fast`, `normal`, `slow`) |
-| `--cell-gap`, `--card-gap` | Spacing between cells and columns |
 
 Two Google Fonts are loaded in `index.html`:
 - **Libre Bodoni** (italic, wght 400–700) — titles, subtitles, card values, roman rank; base body font
