@@ -54,18 +54,3 @@
         transform: translate(var(--tx), var(--ty)) scale(0);
     }
 }
-
-/* Theme switch flash */
-.theme-flash {
-    animation: theme-flash 0.3s ease;
-}
-
-@keyframes theme-flash {
-    0% {
-        opacity: 0.85;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}

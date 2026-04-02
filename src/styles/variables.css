@@ -1,5 +1,4 @@
 :root {
-    /* Default theme fallbacks */
     --color-brass: #b0a080;
     --color-brass-light: hsl(43, 38%, 71%);
     --color-brass-dark: hsl(40, 27%, 34%);
@@ -9,7 +8,7 @@
     --color-suit-black: #111;
     --color-slot: #555533;
     --glow-gold: 0 0 12px rgba(176, 160, 128, 0.25), 0 0 30px rgba(176, 160, 128, 0.08);
-    --surface-bg: #000;
+    --surface-bg: hsl(108, 22%, 13.99%);
     --panel-bg: hsla(0, 0%, 0%, 0.2);
     --info-bg: hsla(0, 0%, 0%, 0.2);
     --card-bg-dark: linear-gradient(145deg, hsl(45, 30%, 80%), hsl(45, 30%, 70%));

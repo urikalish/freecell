@@ -14,12 +14,10 @@ import {
   findSafeFoundationMoves,
 } from './model/moves';
 import { renderGame, renderVictoryOverlay, renderConfirmOverlay, formatTime } from './ui/renderer';
-import { THEMES, loadThemeIndex, saveThemeIndex, applyTheme } from './ui/themes';
 import { getLocationFromElement, getMovableCards } from './ui/interactions';
 import { animateDeal, animateButtonPress, animateVictory, animateCardMove } from './ui/animations';
 
 let state: GameState;
-let themeIndex: number;
 let selectedCardId: string | null = null;
 const validTargets = new Set<string>();
 let tapCycleTargets: MoveCandidate[] = [];
@@ -208,15 +206,6 @@ function bindEvents(): void {
     undo();
   });
 
-  document.getElementById('btn-theme')?.addEventListener('click', e => {
-    animateButtonPress(e.currentTarget as HTMLElement);
-    themeIndex = (themeIndex + 1) % THEMES.length;
-    saveThemeIndex(themeIndex);
-    applyTheme(THEMES[themeIndex]);
-    app.classList.add('theme-flash');
-    setTimeout(() => app.classList.remove('theme-flash'), 300);
-  });
-
   document.getElementById('btn-new-game')?.addEventListener('click', () => newGame());
 }
 
@@ -283,8 +272,6 @@ function stopTimer(): void {
 }
 
 function initApp(): void {
-  themeIndex = loadThemeIndex();
-  applyTheme(THEMES[themeIndex]);
   newGame();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (screen.orientation as any)?.lock?.('portrait').catch(() => {

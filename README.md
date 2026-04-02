@@ -1,6 +1,6 @@
 # FreeCell
 
-A steampunk-themed FreeCell card game built as a mobile-first PWA.
+A FreeCell card game built as a mobile-first PWA.
 
 - **Stack:** TypeScript · Vite · Vanilla CSS (no frameworks)
 - **Author:** Uri Kalish
@@ -35,7 +35,6 @@ src/
     interactions.ts     # DOM hit-testing → Location / Card resolution
     animations.ts       # Deal, card-move FLIP, land, victory, button press
     suits.ts            # SVG helpers for suit icons; foundation suit order
-    themes.ts           # Theme definitions + localStorage persistence
   styles/
     variables.css       # All CSS custom properties (colours, sizes, spacing)
     base.css            # Reset, body, background layers
@@ -89,40 +88,6 @@ pointerup → handleTap → tryMove
 ### Tap Cycle
 
 Tapping a card once selects it and computes `tapCycleTargets` (all valid `MoveCandidate`s). Tapping the same card again cycles through those targets automatically, executing each move in turn. Tapping a valid target directly moves there immediately.
-
----
-
-## Theming
-
-Themes live in `ui/themes.ts` as objects implementing `Theme`:
-
-```ts
-interface Theme {
-  id: string;
-  name?: string;
-  desc?: string;
-  vars: Record<string, string>;   // CSS custom property overrides
-}
-```
-
-`applyTheme(theme)` writes each `vars` entry onto `document.documentElement.style`, overriding the base values from `variables.css`, and updates the `meta[name="theme-color"]` tag. The selected theme index is persisted to `localStorage` but currently unused when loading.
-
-Themes are identified by hue angle and each override only `--surface-bg` via `hsl(hue, 22%, lightness)`. The lightness value is fine-tuned per hue so perceived brightness stays consistent across the chromatic wheel.
-
-| Theme ID | Hue angle |
-|---|---|
-| `108` | 108° |
-| `144` | 144° |
-| `180` | 180° |
-| `216` | 216° |
-| `252` | 252° |
-| `288` | 288° |
-| `324` | 324° |
-| `0` | 0° |
-| `36` | 36° |
-| `72` | 72° |
-
-To add a theme, append an entry to the `THEMES` array in `themes.ts` — no other changes needed.
 
 ---
 
