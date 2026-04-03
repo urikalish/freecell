@@ -121,9 +121,7 @@ function render(): void {
   if (difficultyOpen) {
     app.insertAdjacentHTML('beforeend', renderDifficultyOverlay(getSavedDifficulty()));
     bindDifficultyEvents();
-  }
-
-  if (isGameWon(state)) {
+  } else if (isGameWon(state)) {
     app.insertAdjacentHTML('beforeend', renderVictoryOverlay());
     setTimeout(() => animateVictory(), 1500);
     stopTimer();
