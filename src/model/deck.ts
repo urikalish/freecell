@@ -1,35 +1,42 @@
 import { Card, Suit, Rank, GameState } from './types';
 
-function createDeck(): Card[] {
-  const suits = [Suit.Spades, Suit.Hearts, Suit.Diamonds, Suit.Clubs];
+// Suit order used by Microsoft FreeCell LCG: Clubs=0, Diamonds=1, Hearts=2, Spades=3
+const MS_SUITS: Suit[] = [Suit.Clubs, Suit.Diamonds, Suit.Hearts, Suit.Spades];
+
+function msFreeCellTableau(dealNumber: number): Card[][] {
+  let seed = dealNumber;
+  function msRandom(): number {
+    seed = (seed * 214013 + 2531011) & 0x7fffffff;
+    return (seed >> 16) & 0x7fff;
+  }
+
   const deck: Card[] = [];
-  for (const suit of suits) {
-    for (let r = 1; r <= 13; r++) {
-      const rank = r as Rank;
-      deck.push({ suit, rank, id: `${suit}-${rank}` });
+  for (let rank = 0; rank < 13; rank++) {
+    for (let suit = 0; suit < 4; suit++) {
+      const r = (rank + 1) as Rank;
+      deck.push({ suit: MS_SUITS[suit], rank: r, id: `${MS_SUITS[suit]}-${r}` });
     }
   }
-  return deck;
-}
 
-function shuffleDeck(deck: Card[]): Card[] {
-  const shuffled = [...deck];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  for (let i = 51; i > 0; i--) {
+    const j = msRandom() % (i + 1);
+    [deck[i], deck[j]] = [deck[j], deck[i]];
   }
-  return shuffled;
+
+  const tableau: Card[][] = Array.from({ length: 8 }, () => []);
+  for (let i = 0; i < 52; i++) {
+    tableau[i % 8].push(deck[51 - i]);
+  }
+
+  return tableau;
 }
 
 export function createNewGame(): GameState {
-  const deck = shuffleDeck(createDeck());
-  const tableau: Card[][] = Array.from({ length: 8 }, () => []);
-
-  for (let i = 0; i < deck.length; i++) {
-    tableau[i % 8].push(deck[i]);
-  }
+  const dealNumber = Math.floor(Math.random() * 32000) + 1;
+  const tableau = msFreeCellTableau(dealNumber);
 
   return {
+    dealNumber,
     freeCells: [null, null, null, null],
     foundations: [[], [], [], []],
     tableau,
@@ -42,6 +49,7 @@ export function createNewGame(): GameState {
 
 export function cloneState(state: GameState): GameState {
   return {
+    dealNumber: state.dealNumber,
     freeCells: [...state.freeCells],
     foundations: state.foundations.map(f => [...f]),
     tableau: state.tableau.map(col => [...col]),

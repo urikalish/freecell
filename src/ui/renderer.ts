@@ -103,7 +103,7 @@ export function renderGame(
     <div class="header-bar">
       <div>
         <div class="header-title">FreeCell</div>
-        <div class="header-title-sub" id="subtitle">A Dance of Cards Between Chaos and Order</div>
+        <div class="header-title-sub" id="subtitle">A Dance of Cards Between Chaos & Order</div>
       </div>
       <div class="header-stats">
         <div class="header-stat">
@@ -135,7 +135,7 @@ export function renderGame(
       </button>
     </div>
     <div class="footer">
-      <span>FreeCell</span>
+      <span>Deal ${state.dealNumber}</span>
     </div>
   `;
 }
