@@ -2,7 +2,7 @@
   {
     "freecells_needed": 0,
     "number_of_deals": 69,
-    "deal_ids": [
+    "ms_deal_ids": [
       164,
       892,
       1012,
@@ -77,7 +77,7 @@
   {
     "freecells_needed": 1,
     "number_of_deals": 6220,
-    "deal_ids": [
+    "ms_deal_ids": [
       2,
       5,
       7,
@@ -6303,7 +6303,7 @@
   {
     "freecells_needed": 2,
     "number_of_deals": 19092,
-    "deal_ids": [
+    "ms_deal_ids": [
       3,
       4,
       9,
@@ -25401,7 +25401,7 @@
   {
     "freecells_needed": 3,
     "number_of_deals": 6420,
-    "deal_ids": [
+    "ms_deal_ids": [
       1,
       6,
       21,
@@ -31827,7 +31827,7 @@
   {
     "freecells_needed": 4,
     "number_of_deals": 198,
-    "deal_ids": [
+    "ms_deal_ids": [
       169,
       178,
       285,
@@ -32031,6 +32031,6 @@
   {
     "freecells_needed": 5,
     "number_of_deals": 1,
-    "deal_ids": [11982]
+    "ms_deal_ids": [11982]
   }
 ]
