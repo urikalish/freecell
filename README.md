@@ -69,7 +69,7 @@ index.html              # Shell — Google Fonts, #app mount point
 | `freeCells` | `(Card \| null)[]` | 4 free-cell slots |
 | `foundations` | `Card[][]` | 4 foundation piles, ordered by `FOUNDATION_SUIT_ORDER` |
 | `tableau` | `Card[][]` | 8 tableau columns |
-| `dealNumber` | `number` | MS FreeCell deal number (1-32000) used to reproduce the exact deal |
+| `dealId` | `number` | MS FreeCell deal id (1-32000) used to reproduce the exact deal |
 | `moveCount` | `number` | Incremented on every `executeMove` call |
 | `gameStartTime` | `number` | Unix timestamp (ms) set on the first move; used to compute `elapsedSeconds` |
 | `elapsedSeconds` | `number` | Mutated in place by the timer interval |

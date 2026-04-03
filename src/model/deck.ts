@@ -3,8 +3,8 @@ import { Card, Suit, Rank, GameState } from './types';
 // Suit order used by Microsoft FreeCell LCG: Clubs=0, Diamonds=1, Hearts=2, Spades=3
 const MS_SUITS: Suit[] = [Suit.Clubs, Suit.Diamonds, Suit.Hearts, Suit.Spades];
 
-function msFreeCellTableau(dealNumber: number): Card[][] {
-  let seed = dealNumber;
+function msFreeCellTableau(dealId: number): Card[][] {
+  let seed = dealId;
   function msRandom(): number {
     seed = (seed * 214013 + 2531011) & 0x7fffffff;
     return (seed >> 16) & 0x7fff;
@@ -32,11 +32,11 @@ function msFreeCellTableau(dealNumber: number): Card[][] {
 }
 
 export function createNewGame(): GameState {
-  const dealNumber = Math.floor(Math.random() * 32000) + 1;
-  const tableau = msFreeCellTableau(dealNumber);
+  const dealId = Math.floor(Math.random() * 32000) + 1;
+  const tableau = msFreeCellTableau(dealId);
 
   return {
-    dealNumber,
+    dealId,
     freeCells: [null, null, null, null],
     foundations: [[], [], [], []],
     tableau,
@@ -49,7 +49,7 @@ export function createNewGame(): GameState {
 
 export function cloneState(state: GameState): GameState {
   return {
-    dealNumber: state.dealNumber,
+    dealId: state.dealId,
     freeCells: [...state.freeCells],
     foundations: state.foundations.map(f => [...f]),
     tableau: state.tableau.map(col => [...col]),

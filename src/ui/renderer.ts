@@ -135,7 +135,7 @@ export function renderGame(
       </button>
     </div>
     <div class="footer">
-      <span>${state.dealNumber}</span>
+      <span>${state.dealId}</span>
     </div>
   `;
 }

@@ -22,7 +22,7 @@ export interface GameState {
   freeCells: (Card | null)[];
   foundations: Card[][];
   tableau: Card[][];
-  dealNumber: number;
+  dealId: number;
   gameStartTime: number;
   elapsedSeconds: number;
   moveCount: number;
