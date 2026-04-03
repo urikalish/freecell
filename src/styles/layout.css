@@ -111,8 +111,8 @@
 
 .free-cell,
 .foundation-cell {
-    width: 10.6vw;
-    height: calc(10.6vw / 2.5 * 3.5);
+    width: var(--card-width);
+    height: calc(var(--card-width) / 2.5 * 3.5);
     padding: 1.5vw;
     border-radius: var(--card-radius);
     background: rgba(201, 168, 76, 0.03);

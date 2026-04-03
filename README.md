@@ -103,7 +103,7 @@ All sizing and colour tokens are declared in `variables.css`. Key groups:
 | `--glow-gold` | Gold box-shadow glow |
 | `--surface-bg` | Table surface background |
 | `--card-bg*` | Card background gradients (default, `movable`, `selected`) |
-| `--card-*` | Card dimensions (`--card-height`, `--card-radius`, `--card-overlap`) |
+| `--card-*` | Card dimensions (`--card-width`, `--card-radius`, `--card-overlap`) |
 | `--img-size-suit-large` | Large suit icon size |
 | `--font-*` | Responsive font sizes (all in `vw`) |
 | `--animation-*` | Animation durations (`fast`, `normal`, `slow`) |
