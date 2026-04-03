@@ -1,5 +1,6 @@
 [
   {
+    "difficulty_level": "Beginner",
     "freecells_needed": 0,
     "number_of_deals": 69,
     "ms_deal_ids": [
@@ -75,6 +76,7 @@
     ]
   },
   {
+    "difficulty_level": "Easy",
     "freecells_needed": 1,
     "number_of_deals": 6220,
     "ms_deal_ids": [
@@ -6301,6 +6303,7 @@
     ]
   },
   {
+    "difficulty_level": "Medium",
     "freecells_needed": 2,
     "number_of_deals": 19092,
     "ms_deal_ids": [
@@ -25399,6 +25402,7 @@
     ]
   },
   {
+    "difficulty_level": "Hard",
     "freecells_needed": 3,
     "number_of_deals": 6420,
     "ms_deal_ids": [
@@ -31825,6 +31829,7 @@
     ]
   },
   {
+    "difficulty_level": "Expert",
     "freecells_needed": 4,
     "number_of_deals": 198,
     "ms_deal_ids": [
@@ -32029,6 +32034,7 @@
     ]
   },
   {
+    "difficulty_level": "Impossible",
     "freecells_needed": 5,
     "number_of_deals": 1,
     "ms_deal_ids": [11982]
