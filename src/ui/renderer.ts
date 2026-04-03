@@ -1,4 +1,13 @@
-import { Card, GameState, Rank, RANK_LABELS, suitColor, Color } from '../model/types';
+import {
+  Card,
+  GameState,
+  Rank,
+  RANK_LABELS,
+  suitColor,
+  Color,
+  DifficultyLevel,
+  DIFFICULTY_LEVELS,
+} from '../model/types';
 import { getMovableSequenceLength } from '../model/moves';
 import { suitSvg, FOUNDATION_SUIT_ORDER } from './suits';
 
@@ -135,7 +144,8 @@ export function renderGame(
       </button>
     </div>
     <div class="footer">
-      <span>${state.dealId}</span>
+    <span>${state.dealId}</span>
+    <span>${state.difficulty}</span>
     </div>
   `;
 }
@@ -160,6 +170,20 @@ export function renderConfirmOverlay(): string {
         <button class="confirm-btn confirm-yes" id="confirm-yes">Abandon</button>
         <button class="confirm-btn confirm-no" id="confirm-no">Continue</button>
       </div>
+    </div>
+  </div>`;
+}
+
+export function renderDifficultyOverlay(currentDifficulty: DifficultyLevel): string {
+  const buttonsHtml = DIFFICULTY_LEVELS.map(level => {
+    const activeClass = level === currentDifficulty ? ' active' : '';
+    return `<button class="difficulty-btn${activeClass}" data-difficulty="${level}">${level}</button>`;
+  }).join('');
+  return `<div class="difficulty-overlay" id="difficulty-overlay">
+    <div class="difficulty-box">
+      <div class="difficulty-title">New Game</div>
+      <div class="difficulty-buttons">${buttonsHtml}</div>
+      <button class="difficulty-cancel" id="difficulty-cancel">Cancel</button>
     </div>
   </div>`;
 }

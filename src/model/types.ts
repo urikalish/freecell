@@ -19,6 +19,7 @@ export interface Card {
 }
 
 export interface GameState {
+  difficulty: DifficultyLevel;
   freeCells: (Card | null)[];
   foundations: Card[][];
   tableau: Card[][];
@@ -68,3 +69,15 @@ export const RANK_LABELS: Record<Rank, string> = {
 export function suitColor(suit: Suit): Color {
   return suit === Suit.Hearts || suit === Suit.Diamonds ? Color.Red : Color.Black;
 }
+
+export type DifficultyLevel = 'Beginner' | 'Easy' | 'Medium' | 'Hard' | 'Expert';
+
+export const DIFFICULTY_LEVELS: DifficultyLevel[] = [
+  'Beginner',
+  'Easy',
+  'Medium',
+  'Hard',
+  'Expert',
+];
+
+export const DEFAULT_DIFFICULTY: DifficultyLevel = 'Beginner';

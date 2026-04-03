@@ -11,7 +11,14 @@ import './styles/victory.css';
 import './styles/cards.css';
 import './styles/footer.css';
 
-import { GameState, Location, MoveCandidate, Card } from './model/types';
+import {
+  GameState,
+  Location,
+  MoveCandidate,
+  Card,
+  DifficultyLevel,
+  DEFAULT_DIFFICULTY,
+} from './model/types';
 import { createNewGame } from './model/deck';
 import {
   findValidMoves,
@@ -21,7 +28,13 @@ import {
   findSafeFoundationMoves,
   getMovableCards,
 } from './model/moves';
-import { renderGame, renderVictoryOverlay, renderConfirmOverlay, formatTime } from './ui/renderer';
+import {
+  renderGame,
+  renderVictoryOverlay,
+  renderConfirmOverlay,
+  renderDifficultyOverlay,
+  formatTime,
+} from './ui/renderer';
 import { animateDeal, animateButtonPress, animateVictory, animateCardMove } from './ui/animations';
 
 let state: GameState;
@@ -33,6 +46,17 @@ let timerInterval: ReturnType<typeof setInterval> | null = null;
 let isAnimating = false;
 let gameStarted = false;
 let confirmOpen = false;
+let difficultyOpen = false;
+
+const DIFFICULTY_KEY = 'freecell-difficulty';
+
+function getSavedDifficulty(): DifficultyLevel {
+  return (localStorage.getItem(DIFFICULTY_KEY) as DifficultyLevel) || DEFAULT_DIFFICULTY;
+}
+
+function saveDifficulty(difficulty: DifficultyLevel): void {
+  localStorage.setItem(DIFFICULTY_KEY, difficulty);
+}
 
 const app = document.getElementById('app')!;
 
@@ -99,6 +123,11 @@ function render(): void {
   if (confirmOpen) {
     app.insertAdjacentHTML('beforeend', renderConfirmOverlay());
     bindConfirmEvents();
+  }
+
+  if (difficultyOpen) {
+    app.insertAdjacentHTML('beforeend', renderDifficultyOverlay(getSavedDifficulty()));
+    bindDifficultyEvents();
   }
 
   if (isGameWon(state)) {
@@ -263,12 +292,16 @@ function bindEvents(): void {
     undo();
   });
 
-  document.getElementById('btn-new-game')?.addEventListener('click', () => newGame());
+  document.getElementById('btn-new-game')?.addEventListener('click', () => {
+    difficultyOpen = true;
+    render();
+  });
 }
 
 function requestNewGame(): void {
   if (!state || state.elapsedSeconds === 0) {
-    newGame();
+    difficultyOpen = true;
+    render();
     return;
   }
   confirmOpen = true;
@@ -278,18 +311,33 @@ function requestNewGame(): void {
 function bindConfirmEvents(): void {
   document.getElementById('confirm-yes')?.addEventListener('click', () => {
     confirmOpen = false;
-    newGame();
+    difficultyOpen = true;
+    render();
   });
   document.getElementById('confirm-no')?.addEventListener('click', () => {
     confirmOpen = false;
     render();
   });
 }
-function newGame(): void {
+function bindDifficultyEvents(): void {
+  document.querySelectorAll<HTMLButtonElement>('.difficulty-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const difficulty = btn.dataset.difficulty as DifficultyLevel;
+      saveDifficulty(difficulty);
+      difficultyOpen = false;
+      newGame(difficulty);
+    });
+  });
+  document.getElementById('difficulty-cancel')?.addEventListener('click', () => {
+    difficultyOpen = false;
+    render();
+  });
+}
+function newGame(difficulty?: DifficultyLevel): void {
   stopTimer();
   gameStarted = false;
   clearSelection();
-  state = createNewGame();
+  state = createNewGame(difficulty ?? getSavedDifficulty());
 
   // Auto-move any initially safe cards
   autoMoveToFoundations();

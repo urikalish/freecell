@@ -1,7 +1,22 @@
-import { Card, Suit, Rank, GameState } from './types';
+import { Card, Suit, Rank, GameState, DifficultyLevel } from './types';
+import msDeals from '../data/ms-deals.json';
 
 // Suit order used by Microsoft FreeCell LCG: Clubs=0, Diamonds=1, Hearts=2, Spades=3
 const MS_SUITS: Suit[] = [Suit.Clubs, Suit.Diamonds, Suit.Hearts, Suit.Spades];
+
+type DealEntry = { difficulty_level: string; ms_deal_ids: number[] };
+
+const DIFFICULTY_DEAL_IDS: Record<DifficultyLevel, number[]> = (() => {
+  const find = (level: string) =>
+    (msDeals as DealEntry[]).find(d => d.difficulty_level === level)!.ms_deal_ids;
+  return {
+    Beginner: find('Beginner'),
+    Easy: find('Easy'),
+    Medium: find('Medium'),
+    Hard: find('Hard'),
+    Expert: find('Expert'),
+  };
+})();
 
 function msFreeCellTableau(dealId: number): Card[][] {
   let seed = dealId;
@@ -31,11 +46,13 @@ function msFreeCellTableau(dealId: number): Card[][] {
   return tableau;
 }
 
-export function createNewGame(): GameState {
-  const dealId = Math.floor(Math.random() * 32000) + 1;
+export function createNewGame(difficulty: DifficultyLevel = 'Easy'): GameState {
+  const ids = DIFFICULTY_DEAL_IDS[difficulty];
+  const dealId = ids[Math.floor(Math.random() * ids.length)];
   const tableau = msFreeCellTableau(dealId);
 
   return {
+    difficulty,
     dealId,
     freeCells: [null, null, null, null],
     foundations: [[], [], [], []],
@@ -49,6 +66,7 @@ export function createNewGame(): GameState {
 
 export function cloneState(state: GameState): GameState {
   return {
+    difficulty: state.difficulty,
     dealId: state.dealId,
     freeCells: [...state.freeCells],
     foundations: state.foundations.map(f => [...f]),

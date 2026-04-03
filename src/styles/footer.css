@@ -6,7 +6,7 @@
     border-top: 1px solid var(--color-brass-dark);
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: space-between;
     padding: 0 1.5vw;
     font-family: 'Federo', sans-serif;
     font-style: italic;
