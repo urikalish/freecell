@@ -100,19 +100,19 @@ export function renderGame(
     .join('');
 
   return `
-    <div class="hud-bar">
+    <div class="header-bar">
       <div>
-        <div class="hud-title">FreeCell</div>
-        <div class="hud-title-sub" id="subtitle">A Dance of Cards Between Chaos and Order</div>
+        <div class="header-title">FreeCell</div>
+        <div class="header-title-sub" id="subtitle">A Dance of Cards Between Chaos and Order</div>
       </div>
-      <div class="hud-stats">
-        <div class="hud-stat">
-          <span class="hud-stat-label">Moves</span>
-          <span class="hud-stat-value" id="move-count">${state.moveCount}</span>
+      <div class="header-stats">
+        <div class="header-stat">
+          <span class="header-stat-label">Moves</span>
+          <span class="header-stat-value" id="move-count">${state.moveCount}</span>
         </div>
-        <div class="hud-stat">
-          <span class="hud-stat-label">Time</span>
-          <span class="hud-stat-value" id="timer">${formatTime(state.elapsedSeconds)}</span>
+        <div class="header-stat">
+          <span class="header-stat-label">Time</span>
+          <span class="header-stat-value" id="timer">${formatTime(state.elapsedSeconds)}</span>
         </div>
       </div>
     </div>
@@ -134,7 +134,7 @@ export function renderGame(
         New
       </button>
     </div>
-    <div class="info-bar">
+    <div class="footer">
       <span>FreeCell</span>
     </div>
   `;

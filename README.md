@@ -1,4 +1,4 @@
-# FreeCell
+﻿# FreeCell
 
 A FreeCell card game built as a mobile-first PWA.
 
@@ -37,12 +37,22 @@ src/
   styles/
     variables.css       # All CSS custom properties (colours, sizes, spacing)
     base.css            # Reset, body, background layers
-    layout.css          # HUD bar, cells row, tableau, action bar, overlays
+    header.css          # Header bar layout and stats
+    cells-row.css       # Free cells and foundations row
+    tableau.css         # Tableau columns layout
+    actions.css         # Action bar and buttons
+    footer.css          # Footer bar
+    layout.css          # Separator and top-level layout composition
     cards.css           # Card, card-inner, suit colours, selected/locked states
+    confirm.css         # Confirm overlay
+    victory.css         # Victory overlay
     animations.css      # Keyframes: deal reveal, card-land bounce, sparks, flash
 public/
   favicon.svg
   manifest.webmanifest  # PWA manifest (standalone, portrait, 192/512 icons)
+  img/
+    separator.svg       # Decorative separator image
+    vine.svg            # Decorative vine image
 index.html              # Shell — Google Fonts, #app mount point
 ```
 

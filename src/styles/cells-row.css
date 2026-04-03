@@ -1,0 +1,71 @@
+.cells-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1.5vw;
+}
+
+.cell-group {
+    display: flex;
+    gap: 1vw;
+}
+
+.free-cell,
+.foundation-cell {
+    width: var(--card-width);
+    height: calc(var(--card-width) / 2.5 * 3.5);
+    padding: 1.5vw;
+    border-radius: var(--card-radius);
+    background: rgba(201, 168, 76, 0.03);
+    color: var(--color-cell);
+    border: 1px dashed var(--color-cell);
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.6s ease;
+    position: relative;
+}
+
+.free-cell.valid-target,
+.foundation-cell.valid-target {
+    border-style: dashed;
+    border-color: var(--color-cell);
+    box-shadow:
+        inset 0 0 12px rgba(0, 0, 0, 0.25),
+        0 0 8px hsla(154, 22%, 50%, 0.25);
+}
+
+.cell-icon {
+    width: 4vw;
+    height: 4vw;
+    opacity: 0.12;
+    transition: opacity 0.6s ease;
+}
+
+.cell-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--color-brass);
+    transition: fill 0.6s ease;
+}
+
+.foundation-suit-icon {
+    width: var(--img-size-suit-large);
+    height: var(--img-size-suit-large);
+    color: var(--color-cell);
+}
+
+.foundation-suit-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.foundation-suit-icon.s-red {
+    color: var(--color-suit-red);
+}
+
+.foundation-suit-icon.s-black {
+    color: var(--color-suit-black);
+}
+
+.free-cell.filled,
+.foundation-cell.filled {
+    border: none;
+}

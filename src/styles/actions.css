@@ -1,0 +1,51 @@
+.action-bar {
+    display: flex;
+    justify-content: end;
+    gap: 2.5vw;
+    padding: 1.5vw 2vw 2.5vw;
+    margin-top: auto;
+}
+
+.action-btn {
+    width: 15vw;
+    background-color: var(--action-btn-bg);
+    border: 1px solid var(--color-brass-dark);
+    border-radius: 4px;
+    padding: 1.5vw;
+    color: var(--color-parchment-dim);
+    font-family: 'Federo', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: var(--font-btn);
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(201, 168, 76, 0.05);
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+.action-btn:active,
+.action-btn.btn-pressed {
+    color: var(--color-brass-light);
+    border-color: var(--color-brass);
+    box-shadow:
+        var(--glow-gold),
+        0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 6px rgba(201, 168, 76, 0.4);
+    transform: scale(0.96);
+}
+
+.action-btn .btn-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5vw;
+}
+
+.action-btn .btn-icon svg {
+    width: var(--font-btn-icon);
+    height: var(--font-btn-icon);
+    fill: currentColor;
+}

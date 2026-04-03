@@ -1,8 +1,15 @@
 import './styles/variables.css';
+import './styles/animations.css';
 import './styles/base.css';
 import './styles/layout.css';
+import './styles/header.css';
+import './styles/cells-row.css';
+import './styles/tableau.css';
+import './styles/actions.css';
+import './styles/confirm.css';
+import './styles/victory.css';
 import './styles/cards.css';
-import './styles/animations.css';
+import './styles/footer.css';
 
 import { GameState, Location, MoveCandidate, Card } from './model/types';
 import { createNewGame } from './model/deck';

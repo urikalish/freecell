@@ -18,14 +18,12 @@
     --card-bg-light: linear-gradient(145deg, hsl(45, 40%, 95%), hsl(45, 40%, 85%));
     --card-highlight: hsl(45, 40%, 95%);
     --card-border: rgba(112, 96, 64, 0.2);
-    
+
     --card-width: 10.8vw;
     --card-gap: 1vw;
     --card-radius: 0.8vw;
     --card-overlap: 9.4vw;
     --img-size-suit-large: 7vw;
-    --hud-height: auto;
-    --action-bar-height: auto;
 
     --font-title: 3.5vw;
     --font-title-sub: 2vw;

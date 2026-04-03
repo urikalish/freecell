@@ -1,0 +1,68 @@
+.victory-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 10000;
+    pointer-events: none;
+    transition: background-color 0.5s ease;
+}
+
+.victory-overlay.visible {
+    background-color: rgba(0, 0, 0, 0.7);
+    pointer-events: auto;
+}
+
+.victory-content {
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.7);
+    transition:
+        opacity 0.5s ease 0.2s,
+        transform 0.5s ease 0.2s;
+    position: relative;
+}
+
+.victory-overlay.visible .victory-content {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.victory-title {
+    font-family: 'Federo', sans-serif;
+    font-size: 8vw;
+    font-weight: 700;
+    color: var(--color-brass);
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.5),
+        var(--glow-gold);
+    margin-bottom: 2vw;
+}
+
+.victory-subtitle {
+    font-family: 'Federo', sans-serif;
+    font-style: italic;
+    font-size: 4vw;
+    color: var(--color-parchment);
+    margin-bottom: 2vw;
+}
+
+.btn-new-game {
+    background-color: var(--action-btn-bg);
+    border: 1px solid var(--color-brass-dark);
+    border-radius: 4px;
+    padding: 1.8vw 4vw;
+    color: var(--color-parchment-dim);
+    font-family: 'Federo', sans-serif;
+    font-style: italic;
+    font-size: 3vw;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn-new-game:active {
+    transform: scale(0.96);
+}
