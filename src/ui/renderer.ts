@@ -161,19 +161,6 @@ export function renderVictoryOverlay(): string {
   </div>`;
 }
 
-export function renderConfirmOverlay(): string {
-  return `<div class="confirm-overlay" id="confirm-overlay">
-    <div class="confirm-box">
-      <div class="confirm-title">New Game</div>
-      <div class="confirm-text">Abandon this game?</div>
-      <div class="confirm-buttons">
-        <button class="confirm-btn confirm-yes" id="confirm-yes">Abandon</button>
-        <button class="confirm-btn confirm-no" id="confirm-no">Continue</button>
-      </div>
-    </div>
-  </div>`;
-}
-
 export function renderDifficultyOverlay(currentDifficulty: DifficultyLevel): string {
   const buttonsHtml = DIFFICULTY_LEVELS.map(level => {
     const activeClass = level === currentDifficulty ? ' active' : '';

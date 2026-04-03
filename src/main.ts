@@ -6,7 +6,7 @@ import './styles/header.css';
 import './styles/cells-row.css';
 import './styles/tableau.css';
 import './styles/actions.css';
-import './styles/confirm.css';
+import './styles/difficulty.css';
 import './styles/victory.css';
 import './styles/cards.css';
 import './styles/footer.css';
@@ -31,7 +31,6 @@ import {
 import {
   renderGame,
   renderVictoryOverlay,
-  renderConfirmOverlay,
   renderDifficultyOverlay,
   formatTime,
 } from './ui/renderer';
@@ -45,7 +44,6 @@ let tapCycleIndex = -1;
 let timerInterval: ReturnType<typeof setInterval> | null = null;
 let isAnimating = false;
 let gameStarted = false;
-let confirmOpen = false;
 let difficultyOpen = false;
 
 const DIFFICULTY_KEY = 'freecell-difficulty';
@@ -119,11 +117,6 @@ function autoMoveToFoundations(): void {
 
 function render(): void {
   app.innerHTML = renderGame(state, selectedCardId, validTargets);
-
-  if (confirmOpen) {
-    app.insertAdjacentHTML('beforeend', renderConfirmOverlay());
-    bindConfirmEvents();
-  }
 
   if (difficultyOpen) {
     app.insertAdjacentHTML('beforeend', renderDifficultyOverlay(getSavedDifficulty()));
@@ -299,26 +292,10 @@ function bindEvents(): void {
 }
 
 function requestNewGame(): void {
-  if (!state || state.elapsedSeconds === 0) {
-    difficultyOpen = true;
-    render();
-    return;
-  }
-  confirmOpen = true;
+  difficultyOpen = true;
   render();
 }
 
-function bindConfirmEvents(): void {
-  document.getElementById('confirm-yes')?.addEventListener('click', () => {
-    confirmOpen = false;
-    difficultyOpen = true;
-    render();
-  });
-  document.getElementById('confirm-no')?.addEventListener('click', () => {
-    confirmOpen = false;
-    render();
-  });
-}
 function bindDifficultyEvents(): void {
   document.querySelectorAll<HTMLButtonElement>('.difficulty-btn').forEach(btn => {
     btn.addEventListener('click', () => {
