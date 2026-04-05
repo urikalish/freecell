@@ -165,17 +165,20 @@ export function findValidMoves(state: GameState, from: Location): MoveCandidate[
     }
   }
 
-  // To tableau columns
+  // To tableau columns — occupied columns first, empty columns last
   const max = maxMovableCards(state, false);
   if (cards.length <= max) {
     for (let i = 0; i < 8; i++) {
       if (from.zone === 'tableau' && from.index === i) continue;
       const col = state.tableau[i];
-      if (col.length === 0) {
-        if (cards.length <= maxMovableCards(state, true)) {
-          candidates.push({ from, to: { zone: 'tableau', index: i }, cards: [...cards] });
-        }
-      } else if (canPlaceOnTableau(cards, col)) {
+      if (col.length > 0 && canPlaceOnTableau(cards, col)) {
+        candidates.push({ from, to: { zone: 'tableau', index: i }, cards: [...cards] });
+      }
+    }
+    for (let i = 0; i < 8; i++) {
+      if (from.zone === 'tableau' && from.index === i) continue;
+      const col = state.tableau[i];
+      if (col.length === 0 && cards.length <= maxMovableCards(state, true)) {
         candidates.push({ from, to: { zone: 'tableau', index: i }, cards: [...cards] });
       }
     }
