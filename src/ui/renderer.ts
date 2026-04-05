@@ -72,14 +72,13 @@ export function renderGame(
       const filled = topCard ? 'filled' : '';
       const validClass = isValid ? 'valid-target' : '';
       const suit = FOUNDATION_SUIT_ORDER[i];
-      //const colorClass = suitColor(suit) === Color.Red ? 's-red' : 's-black';
       const prevCard = pile.length > 1 ? pile[pile.length - 2] : null;
       const prevLayer = prevCard ? renderCard(prevCard, 'foundation-prev', '') : '';
       const inner = topCard
-        ? `<span class="foundation-suit-icon foundation-suit-bg">${suitSvg(suit)}</span>` +
+        ? `<span class="foundation-suit-icon foundation-suit-bg">${suitSvg(suit, 1, false)}</span>` +
           prevLayer +
           renderCard(topCard)
-        : `<span class="foundation-suit-icon">${suitSvg(suit)}</span>`;
+        : `<span class="foundation-suit-icon">${suitSvg(suit, 1, false)}</span>`;
       return `<div class="foundation-cell ${filled} ${validClass}" data-zone="foundation" data-index="${i}">${inner}</div>`;
     })
     .join('');

@@ -124,14 +124,19 @@
     color: var(--color-suit-black);
 }
 
-.card[data-card-id$="-11"],
-.card[data-card-id$="-12"],
-.card[data-card-id$="-13"] {
+.card[data-card-id$='-11'],
+.card[data-card-id$='-12'],
+.card[data-card-id$='-13'] {
+    &[data-card-id^='clubs-'],
+    &[data-card-id^='diamonds-'] {
+        .card-suit-center > svg {
+            transform: scale(2.5) rotateY(180deg);
+        }
+    }
     .card-suit-center > svg {
         transform: scale(2.5);
     }
 }
-
 
 /* Selected card */
 .card.selected .card-inner {
