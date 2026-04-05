@@ -18,7 +18,7 @@
     border: 1px solid var(--card-border);
     display: flex;
     flex-direction: column;
-    padding: 0.5vw 1vw;
+    padding: 0.3vw 0.6vw;
     position: relative;
     overflow: hidden;
     transition: background 0.6s ease;
@@ -123,6 +123,15 @@
 .card.black .card-suit-center {
     color: var(--color-suit-black);
 }
+
+.card[data-card-id$="-11"],
+.card[data-card-id$="-12"],
+.card[data-card-id$="-13"] {
+    .card-suit-center > svg {
+        transform: scale(2.5);
+    }
+}
+
 
 /* Selected card */
 .card.selected .card-inner {

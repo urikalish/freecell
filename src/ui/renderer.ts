@@ -41,9 +41,9 @@ function renderCard(card: Card, extraClasses: string = '', dataAttrs: string = '
     <div class="card-inner">
       <div class="card-value-and-suit">
         <span class="card-value">${rankLabel}</span>
-        <span class="card-suit">${suitSvg(card.suit)}</span>
+        <span class="card-suit">${suitSvg(card.suit, card.rank, false)}</span>
       </div>
-      <span class="card-suit-center">${suitSvg(card.suit)}</span>
+      <span class="card-suit-center">${suitSvg(card.suit, card.rank, true)}</span>
       <span class="card-roman">${roman}</span>
     </div>
   </div>`;
