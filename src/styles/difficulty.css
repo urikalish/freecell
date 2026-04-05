@@ -55,9 +55,9 @@
 .difficulty-btn::after {
     content: '';
     position: absolute;
-    inset: 0 auto 0 0;
-    width: 2vw;
-    border-radius: 4px 0 0 4px;
+    inset: auto 0 0 0;
+    height: 1vw;
+    border-radius: 0 0 4px 4px;
 }
 .difficulty-btn:nth-of-type(1)::after {
     background: linear-gradient(90deg, #0cc, transparent);
@@ -82,19 +82,21 @@
 .difficulty-btn.active {
     border-color: var(--color-brass);
     color: var(--color-brass-light);
-    background-color: rgba(176, 160, 128, 0.12);
+    background-color: rgba(176, 160, 128, 0.2);
 }
 
 .difficulty-cancel {
+    margin-top: 5vw;
     width: 40vw;
     background: none;
-    border: none;
+    border: 1px solid var(--color-brass-dark);
+    border-radius: 4px;
+    padding: 3vw 4vw;
     color: var(--color-parchment-dim);
     font-family: 'Federo', sans-serif;
     font-style: italic;
     font-size: 2.8vw;
     cursor: pointer;
-    opacity: 0.6;
     padding: 3vw 4vw;
     -webkit-tap-highlight-color: transparent;
 }
