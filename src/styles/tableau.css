@@ -23,7 +23,7 @@
 }
 
 .column.valid-target {
-    box-shadow: 0 0 8px hsla(108, 22%, 50%, 0.25);
+    box-shadow: 0 0 2px hsla(108, 22%, 50%, 0.25);
     background: hsla(108, 22%, 30%, 0.25);
     border-radius: var(--card-radius);
 }
