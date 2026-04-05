@@ -131,11 +131,11 @@
     &[data-card-id^='hearts-'],
     &[data-card-id^='diamonds-'] {
         .card-suit-center > svg {
-            transform: scale(2.6) rotateY(180deg);
+            transform: scale(2.7) rotateY(180deg);
         }
     }
     .card-suit-center > svg {
-        transform: scale(2.6);
+        transform: scale(2.7);
     }
 }
 
