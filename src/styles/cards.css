@@ -92,6 +92,7 @@
 }
 
 .card-roman {
+    display: none;
     position: absolute;
     bottom: 0;
     right: 0.2vw;
