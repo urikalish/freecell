@@ -2,7 +2,7 @@
 @keyframes reveal {
     0% {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-6vw);
     }
 
     100% {

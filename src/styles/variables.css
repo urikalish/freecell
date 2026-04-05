@@ -17,7 +17,7 @@
     --card-bg-regular: linear-gradient(145deg, hsl(45, 35%, 90%), hsl(45, 35%, 80%));
     --card-bg-light: linear-gradient(145deg, hsl(45, 40%, 95%), hsl(45, 40%, 85%));
     --card-highlight: hsl(45, 40%, 95%);
-    --card-border: rgba(112, 96, 64, 0.2);
+    --card-border: hsl(45, 30%, 70%);
 
     --card-width: 10.8vw;
     --card-gap: 1vw;
