@@ -165,11 +165,11 @@ export function renderDifficultyOverlay(currentDifficulty: DifficultyLevel): str
     const activeClass = level === currentDifficulty ? ' active' : '';
     return `<button class="difficulty-btn${activeClass}" data-difficulty="${level}">${level}</button>`;
   }).join('');
-  return `<div class="difficulty-overlay" id="difficulty-overlay">
-    <div class="difficulty-box">
-      <div class="difficulty-title">New Game</div>
+  return `<div class="new-game-overlay" id="new-game-overlay">
+    <div class="new-game-box">
+      <div class="new-game-title">New Game</div>
       <div class="difficulty-buttons">${buttonsHtml}</div>
-      <button class="difficulty-cancel" id="difficulty-cancel">Cancel</button>
+      <button class="new-game-cancel" id="new-game-cancel">Cancel</button>
     </div>
   </div>`;
 }

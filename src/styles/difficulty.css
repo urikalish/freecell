@@ -1,4 +1,4 @@
-.difficulty-overlay {
+.new-game-overlay {
     position: fixed;
     inset: 0;
     z-index: 300;
@@ -11,7 +11,7 @@
     animation: overlay-in 0.2s ease-out;
 }
 
-.difficulty-box {
+.new-game-box {
     background-color: var(--panel-bg);
     border: 1px solid var(--color-brass-dark);
     border-radius: 6px;
@@ -21,7 +21,7 @@
     max-width: 80vw;
 }
 
-.difficulty-title {
+.new-game-title {
     font-family: 'Federo', sans-serif;
     font-size: 3.5vw;
     color: var(--color-brass);
@@ -85,7 +85,7 @@
     background-color: rgba(176, 160, 128, 0.2);
 }
 
-.difficulty-cancel {
+.new-game-cancel {
     margin-top: 5vw;
     width: 40vw;
     background: none;
@@ -101,6 +101,6 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-.difficulty-cancel:active {
+.new-game-cancel:active {
     opacity: 1;
 }

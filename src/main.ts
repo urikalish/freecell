@@ -313,7 +313,7 @@ function bindDifficultyEvents(): void {
       newGame(difficulty);
     });
   });
-  document.getElementById('difficulty-cancel')?.addEventListener('click', () => {
+  document.getElementById('new-game-cancel')?.addEventListener('click', () => {
     difficultyOpen = false;
     render();
   });
