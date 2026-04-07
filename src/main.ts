@@ -381,6 +381,24 @@ document.addEventListener(
   { passive: false },
 );
 
+let lastTouchEnd = 0;
+document.addEventListener(
+  'touchend',
+  function (e) {
+    const now = Date.now();
+    if (now - lastTouchEnd <= 300) {
+      e.preventDefault();
+      // Zoom is suppressed, but we still want the tap to register as a click.
+      // When preventDefault() is called on touchend, the browser skips the
+      // synthetic click event, so we dispatch one manually.
+      const touch = e.changedTouches[0];
+      const target = document.elementFromPoint(touch.clientX, touch.clientY);
+      target?.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+    }
+    lastTouchEnd = now;
+  },
+  { passive: false },
+);
 document.addEventListener('gesturestart', event => {
   event.preventDefault();
 });
