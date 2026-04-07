@@ -161,15 +161,28 @@ export function renderVictoryOverlay(): string {
 }
 
 export function renderDifficultyOverlay(currentDifficulty: DifficultyLevel): string {
-  const buttonsHtml = DIFFICULTY_LEVELS.map(level => {
-    const activeClass = level === currentDifficulty ? ' active' : '';
-    return `<button class="difficulty-btn${activeClass}" data-difficulty="${level}">${level}</button>`;
+  const optionsHtml = DIFFICULTY_LEVELS.map(level => {
+    const selected = level === currentDifficulty ? ' selected' : '';
+    return `<option value="${level}"${selected}>${level}</option>`;
   }).join('');
   return `<div class="new-game-overlay" id="new-game-overlay">
     <div class="new-game-box">
       <div class="new-game-title">New Game</div>
-      <div class="difficulty-buttons">${buttonsHtml}</div>
-      <button class="new-game-cancel" id="new-game-cancel">Cancel</button>
+      <div class="ng-field">
+        <label class="ng-label" for="difficulty-select">Difficulty</label>
+        <select class="difficulty-select" id="difficulty-select">${optionsHtml}</select>
+      </div>
+      <div class="or-divider">or</div>
+      <div class="ng-field">
+        <label class="ng-label" for="deal-number-input">Deal number</label>
+        <div class="deal-number-input-row">
+          <input type="number" id="deal-number-input" class="deal-number-input" min="1" max="32000" placeholder="1 – 32,000" />
+        </div>
+      </div>
+      <div class="new-game-actions">
+        <button class="new-game-cancel" id="new-game-cancel">Cancel</button>
+        <button class="new-game-play" id="new-game-play">Play</button>
+      </div>
     </div>
   </div>`;
 }

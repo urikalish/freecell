@@ -16,7 +16,7 @@ import './styles/header.css';
 import './styles/cells-row.css';
 import './styles/tableau.css';
 import './styles/actions.css';
-import './styles/difficulty.css';
+import './styles/new-game.css';
 import './styles/victory.css';
 import './styles/cards.css';
 import './styles/footer.css';
@@ -29,7 +29,7 @@ import {
   DifficultyLevel,
   DEFAULT_DIFFICULTY,
 } from './model/types';
-import { createNewGame } from './model/deck';
+import { createNewGame, createNewGameWithDealId } from './model/deck';
 import {
   findValidMoves,
   executeMove,
@@ -53,8 +53,8 @@ let tapCycleTargets: MoveCandidate[] = [];
 let tapCycleIndex = -1;
 let timerInterval: ReturnType<typeof setInterval> | null = null;
 let isAnimating = false;
-let gameStarted = false;
-let difficultyOpen = false;
+let isGameStarted = false;
+let isNewGameDialogOpen = false;
 
 const DIFFICULTY_KEY = 'freecell-difficulty';
 
@@ -128,9 +128,9 @@ function autoMoveToFoundations(): void {
 function render(): void {
   app.innerHTML = renderGame(state, selectedCardId, validTargets);
 
-  if (difficultyOpen) {
+  if (isNewGameDialogOpen) {
     app.insertAdjacentHTML('beforeend', renderDifficultyOverlay(getSavedDifficulty()));
-    bindDifficultyEvents();
+    bindNewGameEvents();
   } else if (isGameWon(state)) {
     app.insertAdjacentHTML('beforeend', renderVictoryOverlay());
     setTimeout(() => animateVictory(), 1500);
@@ -294,35 +294,76 @@ function bindEvents(): void {
   });
 
   document.getElementById('btn-new-game')?.addEventListener('click', () => {
-    difficultyOpen = true;
+    isNewGameDialogOpen = true;
     render();
   });
 }
 
 function requestNewGame(): void {
-  difficultyOpen = true;
+  isNewGameDialogOpen = true;
   render();
 }
 
-function bindDifficultyEvents(): void {
-  document.querySelectorAll<HTMLButtonElement>('.difficulty-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const difficulty = btn.dataset.difficulty as DifficultyLevel;
+function bindNewGameEvents(): void {
+  const dealInput = document.getElementById('deal-number-input') as HTMLInputElement;
+  const select = document.getElementById('difficulty-select') as HTMLSelectElement;
+
+  dealInput?.addEventListener('input', () => {
+    if (dealInput.value) select.value = '';
+  });
+  select?.addEventListener('change', () => {
+    if (select.value) dealInput.value = '';
+  });
+
+  document.getElementById('new-game-play')?.addEventListener('click', () => {
+    const raw = parseInt(dealInput?.value ?? '', 10);
+    if (!isNaN(raw)) {
+      if (raw < 1 || raw > 32000) {
+        dealInput.setCustomValidity('Enter a number between 1 and 32,000');
+        dealInput.reportValidity();
+        return;
+      }
+      dealInput.setCustomValidity('');
+      isNewGameDialogOpen = false;
+      newGameWithDealId(raw);
+    } else {
+      const difficulty = (select?.value as DifficultyLevel) || getSavedDifficulty();
       saveDifficulty(difficulty);
-      difficultyOpen = false;
+      isNewGameDialogOpen = false;
       newGame(difficulty);
-    });
+    }
+  });
+  dealInput?.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      (document.getElementById('new-game-play') as HTMLElement)?.click();
+    }
   });
   document.getElementById('new-game-cancel')?.addEventListener('click', () => {
-    difficultyOpen = false;
+    isNewGameDialogOpen = false;
     render();
   });
 }
 function newGame(difficulty: DifficultyLevel): void {
   stopTimer();
-  gameStarted = false;
+  isGameStarted = false;
   clearSelection();
   state = createNewGame(difficulty);
+
+  // Auto-move any initially safe cards
+  autoMoveToFoundations();
+
+  render();
+  isAnimating = true;
+  animateDeal(() => {
+    isAnimating = false;
+  });
+}
+
+function newGameWithDealId(dealId: number): void {
+  stopTimer();
+  isGameStarted = false;
+  clearSelection();
+  state = createNewGameWithDealId(dealId);
 
   // Auto-move any initially safe cards
   autoMoveToFoundations();
@@ -344,8 +385,8 @@ function undo(): void {
 }
 
 function startTimerIfNeeded(): void {
-  if (gameStarted) return;
-  gameStarted = true;
+  if (isGameStarted) return;
+  isGameStarted = true;
   state.gameStartTime = Date.now();
   timerInterval = setInterval(() => {
     state.elapsedSeconds = Math.floor((Date.now() - state.gameStartTime) / 1000);

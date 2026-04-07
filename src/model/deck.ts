@@ -64,6 +64,33 @@ export function createNewGame(difficulty: DifficultyLevel = 'Easy'): GameState {
   };
 }
 
+function getDifficultyForDealId(dealId: number): DifficultyLevel {
+  for (const [difficulty, ids] of Object.entries(DIFFICULTY_DEAL_IDS) as [
+    DifficultyLevel,
+    number[],
+  ][]) {
+    if (ids.includes(dealId)) return difficulty;
+  }
+  return 'Medium';
+}
+
+export function createNewGameWithDealId(dealId: number): GameState {
+  const difficulty = getDifficultyForDealId(dealId);
+  const tableau = msFreeCellTableau(dealId);
+
+  return {
+    difficulty,
+    dealId,
+    freeCells: [null, null, null, null],
+    foundations: [[], [], [], []],
+    tableau,
+    gameStartTime: 0,
+    elapsedSeconds: 0,
+    moveCount: 0,
+    history: [],
+  };
+}
+
 export function cloneState(state: GameState): GameState {
   return {
     difficulty: state.difficulty,
