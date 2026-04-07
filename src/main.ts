@@ -1,3 +1,13 @@
+document.addEventListener(
+  'touchmove',
+  function (e) {
+    if (e.touches.length > 1) {
+      e.preventDefault();
+    }
+  },
+  { passive: false },
+);
+
 import './styles/variables.css';
 import './styles/animations.css';
 import './styles/base.css';
