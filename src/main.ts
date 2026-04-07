@@ -5,7 +5,7 @@ document.addEventListener(
       e.preventDefault();
     }
   },
-  { passive: false },
+  { passive: false, capture: true },
 );
 
 import './styles/variables.css';
