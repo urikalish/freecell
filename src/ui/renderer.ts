@@ -186,4 +186,3 @@ export function renderDifficultyOverlay(currentDifficulty: DifficultyLevel): str
     </div>
   </div>`;
 }
-
