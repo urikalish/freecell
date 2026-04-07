@@ -179,6 +179,10 @@
 }
 
 .new-game-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5vw;
     flex: 0 0 20vw;
     background-color: var(--action-btn-bg);
     color: var(--color-parchment-dim);
@@ -193,6 +197,12 @@
         filter 0.15s ease,
         transform 0.12s ease,
         border-color 0.15s ease;
+}
+
+.new-game-action-btn .btn-icon {
+    width: 3vw;
+    height: 3vw;
+    flex-shrink: 0;
 }
 
 .new-game-action-btn:active {
@@ -221,3 +231,4 @@
 .new-game-cancel:active {
     border-color: rgba(176, 160, 128, 0.3);
 }
+
