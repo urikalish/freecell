@@ -180,7 +180,7 @@
 
 .new-game-action-btn {
     flex: 0 0 20vw;
-    background: var(--color-cell);
+    background-color: var(--action-btn-bg);
     color: var(--color-parchment-dim);
     border: 1px solid var(--color-brass-dark);
     border-radius: 1.5vw;
