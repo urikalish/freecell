@@ -180,8 +180,8 @@ export function renderDifficultyOverlay(currentDifficulty: DifficultyLevel): str
         </div>
       </div>
       <div class="new-game-actions">
-        <button class="new-game-action-btn new-game-cancel" id="new-game-cancel"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Cancel</button>
-        <button class="new-game-action-btn new-game-play" id="new-game-play"><svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>Play</button>
+        <button class="new-game-action-btn new-game-cancel" id="new-game-cancel"><svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span class="btn-label">Cancel</span></button>
+        <button class="new-game-action-btn new-game-play" id="new-game-play"><svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg><span class="btn-label">Play</span></button>
       </div>
     </div>
   </div>`;
