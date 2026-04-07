@@ -397,7 +397,7 @@ document.addEventListener(
     }
     lastTouchEnd = now;
   },
-  { passive: false },
+  { passive: false, capture: true },
 );
 document.addEventListener('gesturestart', event => {
   event.preventDefault();
