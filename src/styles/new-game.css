@@ -186,7 +186,7 @@
     border-radius: 1.5vw;
     padding: 3.2vw 2vw;
     font-family: 'Federo', sans-serif;
-    font-size: 2.8vw;
+    font-size: var(--font-btn);
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     transition:
