@@ -11,7 +11,7 @@
     background-color: var(--action-btn-bg);
     border: 1px solid var(--color-brass-dark);
     border-radius: 4px;
-    padding: 1.5vw;
+    padding: 1.5vw 0;
     color: var(--color-parchment-dim);
     font-family: 'Federo', sans-serif;
     font-weight: 400;
