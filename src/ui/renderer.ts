@@ -180,8 +180,8 @@ export function renderDifficultyOverlay(currentDifficulty: DifficultyLevel): str
         </div>
       </div>
       <div class="new-game-actions">
-        <button class="new-game-cancel" id="new-game-cancel">Cancel</button>
-        <button class="new-game-play" id="new-game-play">Play</button>
+        <button class="new-game-action-btn new-game-cancel" id="new-game-cancel">Cancel</button>
+        <button class="new-game-action-btn new-game-play" id="new-game-play">Play</button>
       </div>
     </div>
   </div>`;

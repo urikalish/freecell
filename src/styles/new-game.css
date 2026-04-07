@@ -25,7 +25,7 @@
 
 .new-game-box {
     width: 70vw;
-    background: linear-gradient(160deg, hsla(120, 15%, 9%, 0.97) 0%, hsla(108, 20%, 7%, 0.98) 100%);
+    background: var(--surface-bg);
     border: 1px solid rgba(176, 160, 128, 0.22);
     border-radius: 3vw;
     padding: 6vw 5vw 5vw;
@@ -178,55 +178,46 @@
     margin-top: 15vw;
 }
 
-.new-game-play {
+.new-game-action-btn {
     flex: 0 0 20vw;
-    background: var(--color-brass-dark);
     background: var(--color-cell);
-    color: var(--color-parchment);
-    border: 1px solid hsl(43, 45%, 52%);
+    color: var(--color-parchment-dim);
+    border: 1px solid var(--color-brass-dark);
     border-radius: 1.5vw;
-    padding: 3.2vw 4vw;
+    padding: 3.2vw 2vw;
     font-family: 'Federo', sans-serif;
-    font-style: normal;
-    font-size: 3.2vw;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    font-size: 2.8vw;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
+    transition:
+        filter 0.15s ease,
+        transform 0.12s ease,
+        border-color 0.15s ease;
+}
+
+.new-game-action-btn:active {
+    transform: scale(0.97);
+    filter: brightness(0.9);
+}
+
+/* ── Play ────────────────────────────────────────────────────── */
+
+.new-game-play {
+    font-style: normal;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     box-shadow:
         0 4px 16px rgba(0, 0, 0, 0.4),
         0 0 20px rgba(176, 160, 128, 0.12);
-    transition:
-        filter 0.15s ease,
-        transform 0.12s ease;
-}
-
-.new-game-play:active {
-    transform: scale(0.97);
-    filter: brightness(0.9);
 }
 
 /* ── Cancel ─────────────────────────────────────────────────── */
 
 .new-game-cancel {
-    flex: 0 0 20vw;
-    background: none;
-    border: 1px solid rgba(176, 160, 128, 0.15);
-    border-radius: 1.5vw;
-    padding: 3.2vw 2vw;
-    color: hsl(44, 16%, 40%);
-    font-family: 'Federo', sans-serif;
     font-style: italic;
-    font-size: 2.6vw;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
     letter-spacing: 0.05em;
-    transition:
-        color 0.15s ease,
-        border-color 0.15s ease;
 }
 
 .new-game-cancel:active {
-    color: var(--color-parchment-dim);
     border-color: rgba(176, 160, 128, 0.3);
 }
