@@ -318,11 +318,11 @@ function bindDifficultyEvents(): void {
     render();
   });
 }
-function newGame(difficulty?: DifficultyLevel): void {
+function newGame(difficulty: DifficultyLevel): void {
   stopTimer();
   gameStarted = false;
   clearSelection();
-  state = createNewGame(difficulty ?? getSavedDifficulty());
+  state = createNewGame(difficulty);
 
   // Auto-move any initially safe cards
   autoMoveToFoundations();
@@ -362,7 +362,7 @@ function stopTimer(): void {
 }
 
 function initApp(): void {
-  newGame();
+  newGame(getSavedDifficulty());
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (screen.orientation as any)?.lock?.('portrait').catch(() => {
     // Not supported or denied (desktop) — CSS fallback handles it
