@@ -154,7 +154,7 @@ export function renderGame(
 export function renderVictoryOverlay(): string {
   return `<div class="victory-overlay" id="victory-overlay">
     <div class="victory-content">
-      <h2 class="victory-title">Congratulations!</h2>
+      <h2 class="victory-title">You are victorious!</h2>
       <p class="victory-subtitle">All foundations complete</p>
       <div class="victory-fireworks" id="victory-fireworks"></div>
       <button class="btn-new-game" id="btn-new-game">New Game</button>
