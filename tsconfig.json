@@ -12,6 +12,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "noUncheckedSideEffectImports": false,
     "resolveJsonModule": true,
     "sourceMap": true,
     "rootDir": "./src",
