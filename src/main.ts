@@ -13,12 +13,13 @@ import './styles/animations.css';
 import './styles/base.css';
 import './styles/layout.css';
 import './styles/header.css';
+import './styles/playing-area.css';
 import './styles/cells-row.css';
 import './styles/tableau.css';
+import './styles/cards.css';
 import './styles/actions.css';
 import './styles/new-game.css';
 import './styles/victory.css';
-import './styles/cards.css';
 import './styles/footer.css';
 
 import {
@@ -37,6 +38,7 @@ import {
   isGameWon,
   findSafeFoundationMoves,
   getMovableCards,
+  hasAnyValidMoves,
 } from './model/moves';
 import {
   renderGame,
@@ -126,7 +128,9 @@ function autoMoveToFoundations(): void {
 }
 
 function render(): void {
-  app.innerHTML = renderGame(state, selectedCardId, validTargets);
+  const noValidMoves =
+    isGameStarted && !isGameWon(state) && !isAnimating && !hasAnyValidMoves(state);
+  app.innerHTML = renderGame(state, selectedCardId, validTargets, noValidMoves);
 
   if (isNewGameDialogOpen) {
     app.insertAdjacentHTML('beforeend', renderDifficultyOverlay(getSavedDifficulty()));

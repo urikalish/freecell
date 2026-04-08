@@ -1,16 +1,3 @@
-/* === SEPARATOR === */
-.separator {
-    height: 33px;
-    margin: 1.5vw;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: url(/img/separator.svg) no-repeat center -8px;
-    background-size: cover;
-    opacity: 0.4;
-}
-
 /* === LANDSCAPE FALLBACK === */
 @media screen and (orientation: landscape) {
     #app::before {

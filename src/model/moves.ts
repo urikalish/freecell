@@ -196,6 +196,25 @@ export function findValidMoves(state: GameState, from: Location): MoveCandidate[
   return candidates;
 }
 
+export function hasAnyValidMoves(state: GameState): boolean {
+  for (let i = 0; i < state.freeCells.length; i++) {
+    if (state.freeCells[i] && findValidMoves(state, { zone: 'freecell', index: i }).length > 0) {
+      return true;
+    }
+  }
+  for (let colIndex = 0; colIndex < state.tableau.length; colIndex++) {
+    const col = state.tableau[colIndex];
+    if (col.length === 0) continue;
+    const movableLen = getMovableSequenceLength(col, state);
+    const startIdx = col.length - movableLen;
+    for (let cardIndex = startIdx; cardIndex < col.length; cardIndex++) {
+      if (findValidMoves(state, { zone: 'tableau', index: colIndex, cardIndex }).length > 0) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
 export function executeMove(state: GameState, move: MoveCandidate, countMove = true): GameState {
   const newState = cloneState(state);
 

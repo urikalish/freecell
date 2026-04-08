@@ -53,6 +53,7 @@ export function renderGame(
   state: GameState,
   selectedCardId: string | null,
   validTargets: Set<string>,
+  noValidMoves: boolean = false,
 ): string {
   const freeCellsHtml = state.freeCells
     .map((card, i) => {
@@ -131,6 +132,7 @@ export function renderGame(
       </div>
       <div class="separator"></div>
       <div class="tableau">${tableauHtml}</div>
+      ${noValidMoves ? '<div class="no-moves-banner">No valid moves</div>' : ''}
     </div>
     <div class="action-bar">
       <button class="action-btn" id="btn-undo">
